@@ -1,2 +1,1 @@
-# groverhq.github.io
-GroverHQ website
+Website coming soon
