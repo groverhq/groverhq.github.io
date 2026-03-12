@@ -1,0 +1,22 @@
+---
+const links = [
+  { name: "Services", href: "/services" },
+  { name: "Case Studies", href: "/case-studies" },
+  { name: "About", href: "/about" },
+  { name: "Contact", href: "/contact" },
+];
+---
+
+<nav class="w-full flex items-center justify-between px-8 py-4 border-b border-gray-200 bg-white">
+  <a href="/" class="text-2xl font-bold">GroverHQ</a>
+
+  <div class="hidden md:flex gap-8">
+    {links.map(link => (
+      <a href={link.href} class="text-gray-700 hover:text-black transition">
+        {link.name}
+      </a>
+    ))}
+  </div>
+
+  <a href="/contact" class="md:hidden text-gray-700">Menu</a>
+</nav>
