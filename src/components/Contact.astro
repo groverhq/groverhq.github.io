@@ -1,0 +1,281 @@
+<section
+    id="contact"
+    class="bg-neutral-950 text-white py-24 px-6 lg:px-12 border-t border-neutral-800"
+>
+    <div class="max-w-6xl mx-auto">
+        <!-- Heading -->
+        <div class="text-center mb-16">
+            <h2 class="text-3xl lg:text-5xl font-bold mb-4">
+                Let's Build Something Great
+            </h2>
+            <p class="text-neutral-400 text-lg max-w-2xl mx-auto">
+                Have a project in mind? Tell us a bit about it and we’ll get
+                back to you soon.
+            </p>
+        </div>
+
+        <!-- Form + Contact Info -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+            <!-- Contact Form -->
+            <form class="space-y-6" onsubmit="return false;">
+                <!-- Name -->
+                <div>
+                    <label class="block text-neutral-300 mb-2">Name</label>
+                    <input
+                        id="name"
+                        type="text"
+                        class="input-field"
+                        placeholder="Your name"
+                    />
+                    <p id="error-name" class="error-text hidden">
+                        Please enter your name
+                    </p>
+                </div>
+
+                <!-- Phone -->
+                <div>
+                    <label class="block text-neutral-300 mb-2"
+                        >Phone Number</label
+                    >
+                    <input
+                        id="phone"
+                        type="tel"
+                        class="input-field"
+                        placeholder="9878236480"
+                    />
+                    <p id="error-phone" class="error-text hidden">
+                        Please enter a valid phone number
+                    </p>
+                </div>
+
+                <!-- Message -->
+                <div>
+                    <label class="block text-neutral-300 mb-2">Message</label>
+                    <textarea
+                        id="message"
+                        rows="5"
+                        class="input-field"
+                        placeholder="Tell us about your project..."></textarea>
+                    <p id="error-message" class="error-text hidden">
+                        Please enter a message
+                    </p>
+                </div>
+
+                <!-- Submit -->
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <!-- WhatsApp Button -->
+                    <button
+                        type="button"
+                        onclick="sendWhatsApp()"
+                        class="flex-1 bg-green-500 text-white font-semibold py-3 rounded-lg hover:bg-green-600 transition cursor-pointer"
+                    >
+                        Send WhatsApp
+                    </button>
+
+                    <!-- Email Button -->
+                    <button
+                        type="button"
+                        onclick="sendEmail()"
+                        class="flex-1 bg-blue-500 text-white font-semibold py-3 rounded-lg hover:bg-blue-600 transition cursor-pointer"
+                    >
+                        Send Email
+                    </button>
+                </div>
+            </form>
+
+            <!-- Contact Info -->
+            <div
+                class="flex flex-col justify-center text-neutral-400 space-y-6"
+            >
+                <p class="text-lg">Prefer direct contact? Reach out anytime.</p>
+
+                <!-- Email -->
+                <div>
+                    <p class="text-neutral-300 font-medium mb-1">Email</p>
+                    <a
+                        href="mailto:info@groverhq.com"
+                        class="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-300 hover:underline transition"
+                    >
+                        <!-- Envelope Icon -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25H4.5a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5H4.5a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.5a2.25 2.25 0 01-2.28 0l-7.5-4.5A2.25 2.25 0 012.25 6.993V6.75"
+                            ></path>
+                        </svg>
+
+                        info@groverhq.com →
+                    </a>
+                </div>
+
+                <!-- WhatsApp -->
+                <div>
+                    <p class="text-neutral-300 font-medium mb-1">
+                        Phone / WhatsApp
+                    </p>
+                    <a
+                        href="https://wa.me/919878236480"
+                        class="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-300 hover:underline transition"
+                    >
+                        <!-- Chat Bubble Icon -->
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            stroke-width="1.5"
+                            stroke="currentColor"
+                            class="w-5 h-5"
+                        >
+                            <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="M8.25 9.75h7.5M8.25 12.75h4.5M4.5 6.75A2.25 2.25 0 016.75 4.5h10.5A2.25 2.25 0 0119.5 6.75v7.5A2.25 2.25 0 0117.25 16.5H9l-3.75 3v-12.75z"
+                            ></path>
+                        </svg>
+
+                        9878236480 →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Banner -->
+    <div
+        id="successBanner"
+        class="hidden fixed top-6 right-6 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300"
+    >
+        Message sent successfully!
+    </div>
+
+    <!-- Error Banner -->
+    <div
+        id="errorBanner"
+        class="hidden fixed top-6 right-6 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300"
+    >
+        Something went wrong. Please try again.
+    </div>
+
+    <!-- Validation + Send Script -->
+    <script is:inline>
+        function validateFields() {
+            const name = document.getElementById("name");
+            const phone = document.getElementById("phone");
+            const message = document.getElementById("message");
+
+            const errName = document.getElementById("error-name");
+            const errPhone = document.getElementById("error-phone");
+            const errMessage = document.getElementById("error-message");
+
+            let valid = true;
+
+            // Reset
+            [name, phone, message].forEach((f) =>
+                f.classList.remove("input-error"),
+            );
+            [errName, errPhone, errMessage].forEach((e) =>
+                e.classList.add("hidden"),
+            );
+
+            // Name
+            if (name.value.trim().length < 2) {
+                name.classList.add("input-error");
+                errName.classList.remove("hidden");
+                valid = false;
+            }
+
+            // Phone
+            const digits = phone.value.replace(/\D/g, "");
+            if (digits.length < 10) {
+                phone.classList.add("input-error");
+                errPhone.classList.remove("hidden");
+                valid = false;
+            }
+
+            // Message
+            if (message.value.trim().length < 5) {
+                message.classList.add("input-error");
+                errMessage.classList.remove("hidden");
+                valid = false;
+            }
+
+            if (!valid) return null;
+
+            return {
+                name: name.value,
+                phone: phone.value,
+                message: message.value,
+            };
+        }
+
+        function showBanner(type) {
+            const success = document.getElementById("successBanner");
+            const error = document.getElementById("errorBanner");
+
+            if (type === "success") {
+                success.classList.remove("hidden");
+                success.style.opacity = "1";
+                setTimeout(() => {
+                    success.style.opacity = "0";
+                    setTimeout(() => success.classList.add("hidden"), 300);
+                }, 3000);
+            }
+
+            if (type === "error") {
+                error.classList.remove("hidden");
+                error.style.opacity = "1";
+                setTimeout(() => {
+                    error.style.opacity = "0";
+                    setTimeout(() => error.classList.add("hidden"), 300);
+                }, 3000);
+            }
+        }
+
+        function sendWhatsApp() {
+            const data = validateFields();
+            if (!data) return;
+
+            const whatsappNumber = "919878236480";
+            const text = `New Inquiry from GroverHQ Website:
+
+Name: ${data.name}
+Phone: ${data.phone}
+Message: ${data.message}`;
+
+            const url = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(text)}`;
+            window.open(url, "_blank");
+        }
+
+        async function sendEmail() {
+            const data = validateFields();
+            if (!data) return;
+
+            // Build FormData
+            const formData = new FormData();
+            formData.append("name", data.name);
+            formData.append("phone", data.phone);
+            formData.append("message", data.message);
+
+            // Submit via AJAX to Formspree
+            const response = await fetch("https://formspree.io/f/mojkwgno", {
+                method: "POST",
+                body: formData,
+                headers: { Accept: "application/json" },
+            });
+
+            if (response.ok) {
+                showBanner("success");
+            } else {
+                showBanner("error");
+            }
+        }
+    </script>
+</section>

@@ -2,7 +2,8 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "GroverHQ", description = "Automation & AI Solutions" } = Astro.props;
+const { title = "GroverHQ", description = "Automation & AI Solutions" } =
+  Astro.props;
 ---
 
 <html lang="en">
@@ -11,6 +12,12 @@ const { title = "GroverHQ", description = "Automation & AI Solutions" } = Astro.
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <meta name="title" content={title} />
+    <meta
+      name="keywords"
+      content="automation, ai solutions, web development, india tech agency, groverhq"
+    />
+    <meta name="author" content="GroverHQ" />
   </head>
 
   <body class="bg-white text-gray-900">
@@ -19,5 +26,96 @@ const { title = "GroverHQ", description = "Automation & AI Solutions" } = Astro.
       <slot />
     </main>
     <Footer />
+
+    <!-- Scroll-to-Top Button -->
+    <button
+      id="scrollTopBtn"
+      class="hidden fixed bottom-24 right-6 bg-white text-black w-14 h-14 rounded-full shadow-lg cursor-pointer hover:bg-gray-200 transition z-50 flex flex-col items-center justify-center text-xs font-semibold"
+      aria-label="Scroll to top"
+    >
+      <!-- Arrow -->
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-4 h-4 mb-0.5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 15l7-7 7 7"></path>
+      </svg>
+
+      <!-- Label -->
+      TOP
+
+      <!-- Progress Ring -->
+      <svg
+        class="absolute inset-0 w-full h-full pointer-events-none"
+        viewBox="0 0 36 36"
+      >
+        <path
+          id="progressPath"
+          stroke="#3b82f6"
+          stroke-width="3"
+          fill="none"
+          stroke-linecap="round"
+          d="M18 2
+         a 16 16 0 1 1 0 32
+         a 16 16 0 1 1 0 -32"
+          stroke-dasharray="100"
+          stroke-dashoffset="100"></path>
+      </svg>
+    </button>
+
+    <!-- Floating Button Logic -->
+    <script is:inline>
+      const scrollBtn = document.getElementById("scrollTopBtn");
+      const progressPath = document.getElementById("progressPath");
+
+      function updateProgress() {
+        const scroll = window.scrollY;
+        const height =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const progress = (scroll / height) * 100;
+        progressPath.style.strokeDashoffset = 100 - progress;
+      }
+
+      window.addEventListener("scroll", () => {
+        updateProgress();
+
+        if (window.scrollY > 300) {
+          scrollBtn.classList.remove("hidden");
+          scrollBtn.style.opacity = "1";
+        } else {
+          scrollBtn.style.opacity = "0";
+          setTimeout(() => scrollBtn.classList.add("hidden"), 200);
+        }
+      });
+
+      scrollBtn.addEventListener("click", () => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+    </script>
+
+    <!-- Floating WhatsApp Bubble -->
+    <a
+      href="https://wa.me/919878236480"
+      class="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg cursor-pointer hover:bg-green-600 transition z-50"
+      aria-label="Chat on WhatsApp"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-6 h-6"
+        fill="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          d="M20.52 3.48A11.78 11.78 0 0012 0C5.37 0 0 5.37 0 12a11.9 11.9 0 001.64 6L0 24l6.26-1.64A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.6a9.6 9.6 0 01-4.92-1.35l-.35-.21-3.72.98.99-3.63-.23-.37A9.6 9.6 0 1121.6 12c0 5.28-4.32 9.6-9.6 9.6zm5.28-7.2c-.29-.15-1.71-.84-1.98-.93-.27-.1-.47-.15-.67.15-.2.29-.77.93-.94 1.12-.17.2-.35.22-.64.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.35.44-.52.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.5-.17 0-.37-.02-.57-.02-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.11 3.22 5.11 4.52.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.07 1.71-.7 1.95-1.38.24-.67.24-1.24.17-1.38-.07-.15-.27-.22-.57-.37z"
+        ></path>
+      </svg>
+    </a>
   </body>
 </html>
