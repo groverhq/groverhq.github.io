@@ -1,22 +1,75 @@
 ---
+import Logo from "../assets/logo-light.png";
+
 const links = [
-  { name: "Services", href: "/services" },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "About", href: "/about" },
-  { name: "Contact", href: "/contact" },
+  { name: "Services", href: "#services" },
+  { name: "Why Us", href: "#why-us" },
+  { name: "Work", href: "#work" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
 ];
 ---
 
-<nav class="w-full flex items-center justify-between px-8 py-4 border-b border-gray-200 bg-white">
-  <a href="/" class="text-2xl font-bold">GroverHQ</a>
+<nav class="w-full flex items-center justify-between px-8 py-4 border-b border-gray-200 bg-white relative">
+  <!-- Logo -->
+  <a href="/">
+    <img
+      src={Logo.src}
+      alt="GroverHQ Logo"
+      class="h-20 lg:h-24 w-auto object-contain drop-shadow-sm"
+      style="transform: scale(1.15); transform-origin: left center;"
+    />
+  </a>
 
+  <!-- Desktop Links -->
   <div class="hidden md:flex gap-8">
-    {links.map(link => (
-      <a href={link.href} class="text-gray-700 hover:text-black transition">
-        {link.name}
-      </a>
-    ))}
+    {
+      links.map((link) => (
+        <a href={link.href} class="text-gray-700 hover:text-black transition">
+          {link.name}
+        </a>
+      ))
+    }
   </div>
 
-  <a href="/contact" class="md:hidden text-gray-700">Menu</a>
+  <!-- Mobile Hamburger -->
+  <button id="mobileMenuBtn" class="md:hidden text-gray-700 focus:outline-none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16" />
+    </svg>
+  </button>
+
+  <!-- Mobile Menu Panel -->
+  <div
+    id="mobileMenu"
+    class="hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 flex flex-col py-4 md:hidden shadow-lg z-50"
+  >
+    {
+      links.map((link) => (
+        <a
+          href={link.href}
+          class="px-8 py-3 text-gray-700 hover:bg-gray-100 transition"
+        >
+          {link.name}
+        </a>
+      ))
+    }
+  </div>
 </nav>
+
+<script is:inline>
+  const btn = document.getElementById("mobileMenuBtn");
+  const menu = document.getElementById("mobileMenu");
+
+  btn.addEventListener("click", () => {
+    menu.classList.toggle("hidden");
+  });
+
+  // Auto-close menu when clicking a link
+  menu.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      menu.classList.add("hidden");
+    });
+  });
+</script>
