@@ -1,3 +1,7 @@
+---
+import BannerTall from "../assets/banner-tall.png"; // your banner
+---
+
 <section id="work" class="bg-white py-24 px-6 lg:px-12 border-t border-gray-200">
   <div class="max-w-6xl mx-auto">
 
@@ -5,23 +9,55 @@
     <div class="text-center mb-16">
       <h2 class="text-3xl lg:text-5xl font-bold mb-4">Our Work</h2>
       <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        We're currently preparing our first set of case studies. Stay tuned — great things are coming.
+        A growing collection of clean, fast, and scalable digital products built with precision and care.
       </p>
     </div>
 
-    <!-- Single centered placeholder -->
-    <div class="max-w-xl mx-auto text-center">
-      <div class="aspect-video bg-gray-100 border border-gray-200 rounded-xl mb-6"></div>
-      <h3 class="text-xl font-semibold mb-2">Case Studies Coming Soon</h3>
-      <p class="text-gray-600">
-        Want to be our first featured project? Let's build something amazing together.
-      </p>
+    <!-- Projects Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
 
-      <div class="mt-6">
-        <a href="#contact" class="text-black font-medium underline hover:opacity-70 transition">
+      <!-- Project 1: GroverHQ -->
+      <div class="group">
+        <div class="aspect-video bg-gray-100 border border-gray-200 mb-5">
+          <img 
+            src={BannerTall.src}
+            alt="GroverHQ Website" 
+            class="w-auto h-auto object-cover group-hover:scale-105 transition duration-300"
+          />
+        </div>
+
+        <h3 class="text-2xl font-semibold mb-2">GroverHQ Website</h3>
+        <p class="text-gray-600 mb-4">
+          A fast, modern, founder‑led agency website built with clean UI, scalable architecture, and a conversion‑focused layout.
+        </p>
+
+        <ul class="text-gray-500 text-sm space-y-1 mb-4">
+          <li>• Built with Astro, Tailwind, and modern best practices</li>
+          <li>• Fully responsive with premium UI/UX</li>
+          <li>• Optimized for speed, SEO, and clarity</li>
+          <li>• Designed for trust, credibility, and conversions</li>
+        </ul>
+
+        <a 
+          href="https://groverhq.com" 
+          target="_blank" 
+          class="text-black font-medium text-lg underline hover:opacity-70 transition"
+        >
+          Visit Project →
+        </a>
+      </div>
+
+      <!-- Placeholder for future projects -->
+      <div class="flex flex-col justify-center text-center border border-dashed border-gray-300 rounded-xl p-10">
+        <h3 class="text-xl font-semibold mb-3">Your Project Could Be Next</h3>
+        <p class="text-gray-600 mb-6">
+          Want to be our next featured case study? Let’s build something exceptional together.
+        </p>
+        <a href="#contact" class="text-black font-medium text-xl underline hover:opacity-70 transition">
           Start a Project
         </a>
       </div>
+
     </div>
 
   </div>

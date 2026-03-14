@@ -4,20 +4,157 @@ import Footer from "../components/Footer.astro";
 
 const { title = "GroverHQ", description = "Automation & AI Solutions" } =
   Astro.props;
+const site = Astro.site?.href || "";
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "GroverHQ",
+  url: site,
+  logo: `${site}logo-light.png`,
+  image: `${site}og-image.png`,
+  description:
+    "GroverHQ builds fast, scalable websites, apps, and automations for modern businesses.",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mohali",
+    addressRegion: "Punjab",
+    addressCountry: "India",
+  },
+  sameAs: [
+    "https://www.linkedin.com/company/groverhq",
+    "https://github.com/groverhq",
+    "https://x.com/Grover_HQ",
+    "https://instagram.com/grover.hq",
+    "https://www.youtube.com/@GroverHQ",
+    "https://facebook.com/GroverHQofficial",
+    "https://m.me/GroverHQofficial",
+    "https://wa.me/919878236480",
+    "https://maps.app.goo.gl/aHfDMJcUiHEYdj1v5",
+    "https://share.google/diNbvz6Pj4CTbKJYQ",
+  ],
+  hasOfferCatalog: {
+    "@type": "OfferCatalog",
+    name: "GroverHQ Services",
+    itemListElement: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Web Development",
+          description:
+            "Fast, responsive, SEO‑friendly websites built with modern frameworks.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "App Development",
+          description:
+            "High‑performance mobile and web apps tailored to business needs, from MVPs to internal tools.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "UI/UX Design",
+          description:
+            "Clean, intuitive interfaces designed for clarity, speed, and conversion, including wireframes and design systems.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Brand Identity",
+          description:
+            "Logos, color systems, and brand assets that elevate your presence for new brands or modern rebrands.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Automation & Integrations",
+          description:
+            "Workflow automation and tool integrations including CRM, WhatsApp, email, payments, and internal processes.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Maintenance & Support",
+          description:
+            "Ongoing updates, monitoring, and improvements for long‑term reliability and partnership.",
+        },
+      },
+    ],
+  },
+};
 ---
 
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary Meta -->
     <title>{title}</title>
-    <meta name="description" content={description} />
     <meta name="title" content={title} />
     <meta
-      name="keywords"
-      content="automation, ai solutions, web development, india tech agency, groverhq"
+      name="description"
+      content={description ||
+        "GroverHQ builds fast, scalable websites, apps, and automations for modern businesses."}
     />
+
+    <!-- Keywords (light, non-spammy) -->
+    <meta
+      name="keywords"
+      content="web development agency, app development, automation, integrations, UI UX design, Mohali tech agency, GroverHQ"
+    />
+
     <meta name="author" content="GroverHQ" />
+    <link rel="canonical" href={site} />
+
+    <!-- Favicons -->
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <!-- Apple Touch Icon -->
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={site} />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content={description ||
+        "Fast, scalable digital products for modern businesses."}
+    />
+    <meta property="og:image" content={`${site}/og-image.png`} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={site} />
+    <meta name="twitter:title" content={title} />
+    <meta
+      name="twitter:description"
+      content={description ||
+        "Fast, scalable digital products for modern businesses."}
+    />
+    <meta name="twitter:image" content={`${site}/og-image.png`} />
+
+    <!-- JSON-LD Schema: Organization + Website -->
+    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+    <!-- Cloudflare Web Analytics -->
+    <script
+      defer
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon='{"token": "817646fdca6249d191a9d4b9ea7e0a89"}'></script>
   </head>
 
   <body class="bg-white text-gray-900">
