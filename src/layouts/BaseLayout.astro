@@ -2,23 +2,30 @@
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 
-const { title = "GroverHQ", description = "Automation & AI Solutions" } =
-  Astro.props;
+const {
+  title = "GroverHQ Digital Solutions: Web, Apps, Bots, Automation, AI",
+  description = "GroverHQ delivers modern digital solutions for businesses — websites, apps, bots, automation, CRM, internal tools, industry systems, integrations and AI workflows.",
+} = Astro.props;
 const site = Astro.site?.href || "";
 const schema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": ["Organization", "LocalBusiness"],
   name: "GroverHQ",
   url: site,
   logo: `${site}logo-light.png`,
   image: `${site}og-image.png`,
   description:
-    "GroverHQ builds fast, scalable websites, apps, and automations for modern businesses.",
+    "GroverHQ delivers modern digital solutions for businesses — Web, Apps, Bots, Automation and AI.",
   address: {
     "@type": "PostalAddress",
     addressLocality: "Mohali",
     addressRegion: "Punjab",
     addressCountry: "India",
+  },
+  areaServed: ["India", "Mohali", "Chandigarh", "Delhi NCR"],
+  foundingLocation: {
+    "@type": "Place",
+    name: "Mohali, Punjab, India",
   },
   sameAs: [
     "https://www.linkedin.com/company/groverhq",
@@ -42,7 +49,7 @@ const schema = {
           "@type": "Service",
           name: "Web Development",
           description:
-            "Fast, responsive, SEO‑friendly websites built with modern frameworks.",
+            "Business websites, landing pages, portfolios and online presence systems.",
         },
       },
       {
@@ -51,43 +58,34 @@ const schema = {
           "@type": "Service",
           name: "App Development",
           description:
-            "High‑performance mobile and web apps tailored to business needs, from MVPs to internal tools.",
+            "Web apps, mobile apps, internal tools and industry‑specific systems.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "UI/UX Design",
+          name: "Bots & Automation",
           description:
-            "Clean, intuitive interfaces designed for clarity, speed, and conversion, including wireframes and design systems.",
+            "AI bots, workflow automation, WhatsApp automation and internal process automation.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Brand Identity",
+          name: "CRM & Customer Systems",
           description:
-            "Logos, color systems, and brand assets that elevate your presence for new brands or modern rebrands.",
+            "CRM, follow‑ups, loyalty, reviews, customer portals and communication tools.",
         },
       },
       {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
-          name: "Automation & Integrations",
+          name: "Integrations",
           description:
-            "Workflow automation and tool integrations including CRM, WhatsApp, email, payments, and internal processes.",
-        },
-      },
-      {
-        "@type": "Offer",
-        itemOffered: {
-          "@type": "Service",
-          name: "Maintenance & Support",
-          description:
-            "Ongoing updates, monitoring, and improvements for long‑term reliability and partnership.",
+            "Tally, Zoho, Razorpay, WhatsApp API, Google Sheets and custom API integrations.",
         },
       },
     ],
@@ -112,7 +110,7 @@ const schema = {
     <!-- Keywords (light, non-spammy) -->
     <meta
       name="keywords"
-      content="web development agency, app development, automation, integrations, UI UX design, Mohali tech agency, GroverHQ"
+      content="digital solutions, web development, app development, bots, automation, AI, CRM systems, internal tools, ecommerce, integrations, Mohali tech agency, GroverHQ"
     />
 
     <meta name="author" content="GroverHQ" />
@@ -134,7 +132,7 @@ const schema = {
       content={description ||
         "Fast, scalable digital products for modern businesses."}
     />
-    <meta property="og:image" content={`${site}/og-image.png`} />
+    <meta property="og:image" content={`${site}og-image.png`} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -145,7 +143,7 @@ const schema = {
       content={description ||
         "Fast, scalable digital products for modern businesses."}
     />
-    <meta name="twitter:image" content={`${site}/og-image.png`} />
+    <meta name="twitter:image" content={`${site}og-image.png`} />
 
     <!-- JSON-LD Schema: Organization + Website -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
