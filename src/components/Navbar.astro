@@ -1,4 +1,5 @@
 ---
+import { Image } from "astro:assets";
 import Logo from "../assets/logo-light.png";
 
 const links = [
@@ -16,11 +17,14 @@ const links = [
   <!-- Logo -->
   <a href="/" class="block transition hover:scale-[1.02]">
     <div class="p-2 border border-gray-400 rounded-md">
-      <img
-        src={Logo.src}
+      <Image
+        src={Logo}
         alt="GroverHQ Logo"
+        width={500}
+        height={500}
+        format="webp"
+        loading="eager"
         class="h-16 lg:h-20 w-auto object-contain"
-        fetchpriority=high
       />
     </div>
   </a>
