@@ -4,7 +4,7 @@ import Footer from "../components/Footer.astro";
 
 const {
   title = "GroverHQ Digital Solutions: Web, Apps, Bots, Automation, AI",
-  description = "GroverHQ delivers modern digital solutions for businesses — websites, apps, bots, automation, CRM, internal tools, industry systems, integrations and AI workflows.",
+  description = "GroverHQ builds modern digital solutions for businesses — websites, apps, bots, automation, CRM, internal tools, industry systems, integrations and AI workflows.",
 } = Astro.props;
 const site = Astro.site?.href || "";
 const schema = {
@@ -252,5 +252,20 @@ const schema = {
         ></path>
       </svg>
     </a>
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.15 },
+      );
+
+      document
+        .querySelectorAll(".fade-up")
+        .forEach((el) => observer.observe(el));
+    </script>
   </body>
 </html>
