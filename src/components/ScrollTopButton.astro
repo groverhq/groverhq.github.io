@@ -1,0 +1,73 @@
+---
+---
+
+<button
+  id="scrollTopBtn"
+  class="fixed bottom-24 right-6 bg-white text-black w-14 h-14 rounded-full shadow-lg cursor-pointer hover:bg-gray-200 transition z-50 flex flex-col items-center justify-center text-xs font-semibold opacity-0 pointer-events-none"
+  aria-label="Scroll to top"
+>
+  <!-- Arrow -->
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="w-4 h-4 mb-0.5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M5 15l7-7 7 7"></path>
+  </svg>
+
+  <!-- Label -->
+  TOP
+
+  <!-- Progress Ring -->
+  <svg
+    class="absolute inset-0 w-full h-full pointer-events-none"
+    viewBox="0 0 36 36"
+  >
+    <path
+      id="progressPath"
+      stroke="#3b82f6"
+      stroke-width="3"
+      fill="none"
+      stroke-linecap="round"
+      d="M18 2
+       a 16 16 0 1 1 0 32
+       a 16 16 0 1 1 0 -32"
+      stroke-dasharray="100"
+      stroke-dashoffset="100"></path>
+  </svg>
+</button>
+
+<script>
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  const progressPath = document.getElementById("progressPath");
+
+  function updateProgress() {
+    const scroll = window.scrollY;
+    const height =
+      document.documentElement.scrollHeight - window.innerHeight;
+    const progress = (scroll / height) * 100;
+    if (progressPath) {
+      progressPath.style.strokeDashoffset = (100 - progress).toString();
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    updateProgress();
+
+    if (window.scrollY > 300) {
+      scrollBtn?.classList.remove("opacity-0", "pointer-events-none");
+    } else {
+      scrollBtn?.classList.add("opacity-0", "pointer-events-none");
+    }
+  });
+
+  scrollBtn?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+</script>

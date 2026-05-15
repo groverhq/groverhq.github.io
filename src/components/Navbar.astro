@@ -1,14 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import Logo from "../assets/logo-light.png";
-
-const links = [
-  { name: "Services", href: "#services" },
-  { name: "Why Us", href: "#why-us" },
-  { name: "Work", href: "#work" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
-];
+import { NAV_LINKS } from "../config";
 ---
 
 <nav
@@ -32,7 +25,7 @@ const links = [
   <!-- Desktop Links -->
   <div class="hidden md:flex gap-8">
     {
-      links.map((link) => (
+      NAV_LINKS.map((link) => (
         <a href={link.href} class="text-gray-700 hover:text-black transition">
           {link.name}
         </a>
@@ -64,10 +57,10 @@ const links = [
   <!-- Mobile Menu Panel -->
   <div
     id="mobileMenu"
-    class="hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 flex flex-col py-4 md:hidden shadow-lg z-50"
+    class="hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 py-4 md:hidden shadow-lg z-50"
   >
     {
-      links.map((link) => (
+      NAV_LINKS.map((link) => (
         <a
           href={link.href}
           class="px-8 py-3 text-gray-700 hover:bg-gray-100 transition"
@@ -85,12 +78,15 @@ const links = [
 
   btn.addEventListener("click", () => {
     menu.classList.toggle("hidden");
+    menu.classList.toggle("flex");
+    menu.classList.toggle("flex-col");
   });
 
   // Auto-close menu when clicking a link
   menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.add("hidden");
+      menu.classList.remove("flex", "flex-col");
     });
   });
 </script>
