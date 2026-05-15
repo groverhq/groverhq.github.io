@@ -70,6 +70,18 @@ export const SOCIAL_LINKS = [
     icon: "whatsapp",
     ariaLabel: "WhatsApp",
   },
+  {
+    name: "Google Maps",
+    url: "https://maps.app.goo.gl/aHfDMJcUiHEYdj1v5",
+    icon: "googlemaps",
+    ariaLabel: "Google Maps",
+  },
+  {
+    name: "Google Business",
+    url: "https://share.google/diNbvz6Pj4CTbKJYQ",
+    icon: "googlebusiness",
+    ariaLabel: "Google Business",
+  },
 ];
 
 // Navigation Links

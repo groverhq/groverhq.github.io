@@ -64,27 +64,59 @@ const icons: Record<string, string> = {
     '<path d="M12 2.25c-5.52 0-9.75 3.96-9.75 8.82 0 2.79 1.32 5.28 3.42 6.93v3.75l3.42-1.86c.96.27 1.98.42 3.03.42 5.52 0 9.75-3.96 9.75-8.82S17.52 2.25 12 2.25zm5.01 7.62l-3.06 3.24-1.68-1.98-3.3 1.98 3.06-3.24 1.68 1.98 3.3-1.98z" />',
   whatsapp:
     '<path d="M20.52 3.48A11.78 11.78 0 0012 0C5.37 0 0 5.37 0 12a11.9 11.9 0 001.64 6L0 24l6.26-1.64A11.9 11.9 0 0012 24c6.63 0 12-5.37 12-12 0-3.19-1.24-6.19-3.48-8.52zM12 21.6a9.6 9.6 0 01-4.92-1.35l-.35-.21-3.72.98.99-3.63-.23-.37A9.6 9.6 0 1121.6 12c0 5.28-4.32 9.6-9.6 9.6zm5.28-7.2c-.29-.15-1.71-.84-1.98-.93-.27-.1-.47-.15-.67.15-.2.29-.77.93-.94 1.12-.17.2-.35.22-.64.07-.29-.15-1.23-.45-2.34-1.44-.86-.77-1.44-1.71-1.61-2-.17-.29-.02-.45.13-.6.13-.13.29-.35.44-.52.15-.17.2-.29.29-.49.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.92-2.21-.24-.58-.49-.5-.67-.5-.17 0-.37-.02-.57-.02-.2 0-.52.07-.79.37-.27.29-1.04 1.02-1.04 2.49 0 1.47 1.07 2.89 1.22 3.09.15.2 2.11 3.22 5.11 4.52.71.31 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.07 1.71-.7 1.95-1.38.24-.67.24-1.24.17-1.38-.07-.15-.27-.22-.57-.37z" />',
+  googlemaps:
+    '<path d="M12 2a7 7 0 0 0-7 7c0 5.2 7 13 7 13s7-7.8 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 14.5 9 2.5 2.5 0 0 1 12 11.5z" />',
+  googlebusiness:
+    '<path d="M4 3h16l2 6H2l2-6zm0 8h16v10H4V11z" />',
 };
 ---
 
-<div class="flex flex-wrap gap-3">
-  {
-    links.map((link) => (
-      <a
-        href={link.url}
-        class={`flex items-center justify-center rounded-full ${sizeClasses[size]} ${bgClasses[variant]} transition transform hover:scale-105`}
-        target="_blank"
-        rel="noopener"
-        aria-label={link.ariaLabel}
-      >
-        <svg
-          class={`${iconSizeClasses[size]} ${textClasses[variant]}`}
-          fill="currentColor"
-          viewBox="0 0 24 24"
+<div class="flex flex-col gap-4">
+  <!-- Row 1: First 5 icons -->
+  <div class="flex flex-wrap gap-3">
+    {
+      links.slice(0, 5).map((link) => (
+        <a
+          href={link.url}
+          class={`flex items-center justify-center rounded-full ${sizeClasses[size]} ${bgClasses[variant]} transition transform hover:scale-105`}
+          target="_blank"
+          rel="noopener"
+          aria-label={link.ariaLabel}
         >
-          <Fragment set:html={icons[link.icon]} />
-        </svg>
-      </a>
-    ))
+          <svg
+            class={`${iconSizeClasses[size]} ${textClasses[variant]}`}
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <Fragment set:html={icons[link.icon]} />
+          </svg>
+        </a>
+      ))
+    }
+  </div>
+
+  <!-- Row 2: Remaining icons -->
+  {
+    links.length > 5 && (
+      <div class="flex flex-wrap gap-3">
+        {links.slice(5).map((link) => (
+          <a
+            href={link.url}
+            class={`flex items-center justify-center rounded-full ${sizeClasses[size]} ${bgClasses[variant]} transition transform hover:scale-105`}
+            target="_blank"
+            rel="noopener"
+            aria-label={link.ariaLabel}
+          >
+            <svg
+              class={`${iconSizeClasses[size]} ${textClasses[variant]}`}
+              fill="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <Fragment set:html={icons[link.icon]} />
+            </svg>
+          </a>
+        ))}
+      </div>
+    )
   }
 </div>
