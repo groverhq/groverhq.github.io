@@ -1,7 +1,7 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
-import sitemap from '@astrojs/sitemap';
+import sitemap, { ChangeFreqEnum } from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,7 +15,7 @@ export default defineConfig({
         // Home (/) = 1.0, /services = 0.9, deeper pages = 0.8
         const url = new URL(item.url);
         const depth = url.pathname.split('/').filter(Boolean).length;
-        
+
         if (depth === 0) {
           item.priority = 1.0; // Home
         } else if (depth === 1) {
@@ -23,6 +23,16 @@ export default defineConfig({
         } else {
           item.priority = 0.8; // Deeper pages
         }
+
+        // Add changefreq for better SEO
+        if (item.url.includes('/services')) {
+          item.changefreq = ChangeFreqEnum.WEEKLY;
+        } else if (item.url.includes('/work')) {
+          item.changefreq = ChangeFreqEnum.MONTHLY;
+        } else {
+          item.changefreq = ChangeFreqEnum.YEARLY;
+        }
+
         return item;
       },
     }),
@@ -32,6 +42,12 @@ export default defineConfig({
     build: {
       minify: 'terser',
       cssCodeSplit: true,
+      terserOptions: {
+        // @ts-expect-error - compress is valid Terser option not in type definitions
+        compress: {
+          drop_console: true
+        },
+      }
     },
   },
   image: {
