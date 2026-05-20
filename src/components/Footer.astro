@@ -16,10 +16,33 @@ import { CONTACT_INFO, NAV_LINKS } from "../config";
         Digital Solutions for Modern Businesses — Web, Apps, Bots, Automation &
         AI.
       </p>
-      <div class="mt-8 space-y-1 text-neutral-400 text-sm">
-        <p>{CONTACT_INFO.address}</p>
-        <p>{CONTACT_INFO.phone}</p>
-        <p>{CONTACT_INFO.email}</p>
+      <div class="mt-8 space-y-1 text-sm">
+        <p>
+          <a
+            href="https://maps.app.goo.gl/aHfDMJcUiHEYdj1v5"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-400 hover:text-blue-300 hover:underline transition"
+          >
+            {CONTACT_INFO.address}
+          </a>
+        </p>
+        <p>
+          <a
+            href={`tel:+${CONTACT_INFO.phoneLink}`}
+            class="text-blue-400 hover:text-blue-300 hover:underline transition"
+          >
+            {CONTACT_INFO.phone}
+          </a>
+        </p>
+        <p>
+          <a
+            href={`mailto:${CONTACT_INFO.email}`}
+            class="text-blue-400 hover:text-blue-300 hover:underline transition"
+          >
+            {CONTACT_INFO.email}
+          </a>
+        </p>
       </div>
     </div>
 
