@@ -2,6 +2,11 @@
 import { Image } from "astro:assets";
 import Logo from "../assets/logo-light.png";
 import { NAV_LINKS } from "../config";
+
+type NavLink = {
+  name: string;
+  href: string;
+};
 ---
 
 <nav
@@ -26,7 +31,7 @@ import { NAV_LINKS } from "../config";
   <!-- Desktop Links -->
   <div class="hidden md:flex gap-8">
     {
-      NAV_LINKS.map((link) => (
+      NAV_LINKS.map((link: NavLink) => (
         <a href={link.href} class="text-gray-700 hover:text-black transition">
           {link.name}
         </a>
@@ -61,7 +66,7 @@ import { NAV_LINKS } from "../config";
     class="hidden absolute top-full left-0 w-full bg-white border-b border-gray-200 py-4 md:hidden shadow-lg z-50"
   >
     {
-      NAV_LINKS.map((link) => (
+      NAV_LINKS.map((link: NavLink) => (
         <a
           href={link.href}
           class="px-8 py-3 text-gray-700 hover:bg-gray-100 transition"
