@@ -1,3 +1,9 @@
+---
+import { Image } from "astro:assets";
+import LuthraDesktop from "../assets/luthra-desktop.png";
+import LuthraMobile from "../assets/luthra-mobile.png";
+---
+
 <section
   id="work"
   class="fade-up bg-white py-24 px-6 lg:px-12 border-t border-gray-200"
@@ -14,26 +20,71 @@
 
     <!-- Projects Grid -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Project 1: GroverHQ -->
+      <!-- Project 1: Luthra Interiors -->
+      <div class="group">
+        <h3 class="text-2xl font-semibold mb-2">Luthra Interiors Website</h3>
+        <p class="text-gray-700 mb-4">
+          A modern, product‑focused interior brand website built with Astro and
+          Cloudflare Pages. Designed for clarity, speed, and a premium browsing
+          experience across all devices.
+        </p>
+
+        <!-- Screenshots -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 mb-6">
+          <!-- Desktop Screenshot -->
+          <div class="sm:col-span-3">
+            <Image
+              src={LuthraDesktop}
+              alt="Luthra Interiors Desktop Screenshot"
+              width={1600}
+              format="png"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+            />
+          </div>
+
+          <!-- Mobile Screenshot -->
+          <div class="flex justify-center sm:justify-start">
+            <Image
+              src={LuthraMobile}
+              alt="Luthra Interiors Mobile Screenshot"
+              width={600}
+              format="png"
+              sizes="(max-width: 640px) 40vw, 20vw"
+            />
+          </div>
+        </div>
+
+        <ul class="text-gray-600 text-sm space-y-1 mb-4">
+          <li>• Built with Astro, Tailwind, and Cloudflare Pages</li>
+          <li>• Fully responsive with animation‑rich UI</li>
+          <li>• Optimized for SEO, indexing, and fast performance</li>
+        </ul>
+
+        <div class="mt-4">
+          <a
+            href="https://luthrainteriors.com"
+            target="_blank"
+            class="text-black font-medium text-lg underline hover:opacity-70 transition"
+          >
+            Visit Project →
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: GroverHQ -->
       <div class="group">
         <h3 class="text-2xl font-semibold mb-2">GroverHQ Website</h3>
-        <p class="text-gray-700 mb-4">
+        <p class="text-gray-700 mb-8">
           A fast, modern, founder‑led agency website built with clean UI,
           scalable architecture, and a conversion‑focused layout.
         </p>
-
-        <ul class="text-gray-600 text-sm space-y-1 mb-4">
-          <li>• Built with Astro, Tailwind, and modern best practices</li>
-          <li>• Fully responsive with premium UI/UX</li>
-          <li>• Designed for trust, credibility, and conversions</li>
-        </ul>
 
         <!-- Lighthouse Scores -->
         <div class="bg-gray-50 border border-gray-200 rounded-xl p-8">
           <h3 class="text-xl font-semibold mb-4">Performance Audit</h3>
           <p class="text-gray-600 mb-6">
             GroverHQ is engineered for speed, clarity, and accessibility. Here
-            are our latest scores from Google Lighthouse (May 2026):
+            are our latest scores from Google Lighthouse:
           </p>
 
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-6 text-center">
@@ -56,9 +107,16 @@
           </div>
 
           <p class="text-gray-500 text-sm mt-8 font-medium">
-            Perfect 100/100 across Performance, Accessibility, Best Practices, and SEO.
+            Perfect 100/100 across Performance, Accessibility, Best Practices,
+            and SEO.
           </p>
         </div>
+
+        <ul class="text-gray-600 text-sm space-y-1 mt-6 mb-4">
+          <li>• Built with Astro, Tailwind, and modern best practices</li>
+          <li>• Fully responsive with premium UI/UX</li>
+          <li>• Designed for trust, credibility, and conversions</li>
+        </ul>
 
         <div class="mt-4">
           <a
@@ -70,23 +128,23 @@
           </a>
         </div>
       </div>
+    </div>
 
-      <!-- Placeholder for future projects -->
-      <div
-        class="flex flex-col justify-center text-center border border-dashed border-gray-300 rounded-xl p-10"
+    <!-- CTA Block -->
+    <div
+      class="mt-16 flex flex-col justify-center text-center border border-dashed border-gray-300 rounded-xl p-10"
+    >
+      <h3 class="text-xl font-semibold mb-3">Your Project Could Be Next</h3>
+      <p class="text-gray-600 mb-6">
+        Want to be our next featured case study? Let’s build something
+        exceptional together.
+      </p>
+      <a
+        href="/#contact"
+        class="block sm:inline-block px-6 sm:px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition w-full sm:w-auto text-center"
       >
-        <h3 class="text-xl font-semibold mb-3">Your Project Could Be Next</h3>
-        <p class="text-gray-600 mb-6">
-          Want to be our next featured case study? Let’s build something
-          exceptional together.
-        </p>
-        <a
-          href="/#contact"
-          class="block sm:inline-block px-6 sm:px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition w-full sm:w-auto text-center"
-        >
-          Start a Project
-        </a>
-      </div>
+        Start a Project
+      </a>
     </div>
   </div>
 </section>

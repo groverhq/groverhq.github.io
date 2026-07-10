@@ -1,4 +1,12 @@
-<section id="about" class="fade-up bg-gray-50 py-24 px-6 lg:px-12 border-t border-gray-200">
+---
+import { Image } from "astro:assets";
+import LuthraLogo from "../assets/luthra-logo.jpg";
+---
+
+<section
+  id="about"
+  class="fade-up bg-gray-50 py-24 px-6 lg:px-12 border-t border-gray-200"
+>
   <div class="max-w-6xl mx-auto">
 
     <!-- Heading -->
@@ -12,13 +20,29 @@
     <!-- Content -->
     <div class="max-w-4xl mx-auto text-center text-gray-700 leading-relaxed">
       <p class="mb-6">
-        GroverHQ was created with a simple belief — businesses deserve digital experiences that are fast, reliable, and designed with intention. 
+        GroverHQ was created with a simple belief — businesses deserve digital experiences that are fast, reliable, and designed with intention.
         We combine modern engineering with clean design to help brands grow with confidence.
       </p>
 
       <p class="mb-6">
         Led by developers from top MNCs, we bring deep technical expertise, founder‑level attention, and a commitment to delivering work that feels premium, purposeful, and future‑ready.
       </p>
+    </div>
+
+    <!-- Our Clients -->
+    <div class="mt-20">
+      <h3 class="text-center text-2xl font-semibold mb-10">Our Clients</h3>
+
+      <div class="flex flex-wrap justify-center items-center gap-10">
+        <a href="https://luthrainteriors.com" target="_blank" rel="noopener noreferrer">
+          <Image
+            src={LuthraLogo}
+            height={100}
+            alt="Luthra Interiors Logo"
+            class="opacity-90 rounded-2xl hover:opacity-100 transition"
+          />
+        </a>
+      </div>
     </div>
 
   </div>
