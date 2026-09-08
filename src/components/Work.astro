@@ -2,6 +2,8 @@
 import { Image } from "astro:assets";
 import LuthraDesktop from "../assets/luthra-desktop.png";
 import LuthraMobile from "../assets/luthra-mobile.png";
+import HeerDesktop from "../assets/heer-desktop.png";
+import HeerMobile from "../assets/heer-mobile.png";
 ---
 
 <section
@@ -29,9 +31,7 @@ import LuthraMobile from "../assets/luthra-mobile.png";
           experience across all devices.
         </p>
 
-        <!-- Screenshots -->
-        <div class="grid grid-cols-1 sm:grid-cols-4 mb-6">
-          <!-- Desktop Screenshot -->
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
           <div class="sm:col-span-3">
             <Image
               src={LuthraDesktop}
@@ -41,8 +41,6 @@ import LuthraMobile from "../assets/luthra-mobile.png";
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
             />
           </div>
-
-          <!-- Mobile Screenshot -->
           <div class="flex justify-center sm:justify-start">
             <Image
               src={LuthraMobile}
@@ -71,8 +69,58 @@ import LuthraMobile from "../assets/luthra-mobile.png";
         </div>
       </div>
 
-      <!-- Project 2: GroverHQ -->
+      <!-- Project 2: Heer Heart & Lung Clinic -->
       <div class="group">
+        <h3 class="text-2xl font-semibold mb-2">
+          Heer Heart &amp; Lung Clinic Website
+        </h3>
+        <p class="text-gray-700 mb-4">
+          A trust‑first website for Dr. Parvesh Grover's cardiology &amp;
+          pulmonology super‑speciality clinic in Madhu Vihar, East Delhi. Built
+          around appointment booking, WhatsApp enquiries, and live Google
+          review integration.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+          <div class="sm:col-span-3">
+            <Image
+              src={HeerDesktop}
+              alt="Heer Heart & Lung Clinic Desktop Screenshot"
+              width={1600}
+              format="png"
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+            />
+          </div>
+          <div class="flex justify-center sm:justify-start">
+            <Image
+              src={HeerMobile}
+              alt="Heer Heart & Lung Clinic Mobile Screenshot"
+              width={600}
+              format="png"
+              sizes="(max-width: 640px) 40vw, 20vw"
+            />
+          </div>
+        </div>
+
+        <ul class="text-gray-600 text-sm space-y-1 mb-4">
+          <li>• Built with Astro, deployed for a healthcare/clinic use case</li>
+          <li>• One-click appointment booking and WhatsApp enquiry flow</li>
+          <li>• Live Google Business review embed, service &amp; symptom pages</li>
+        </ul>
+
+        <div class="mt-4">
+          <a
+            href="https://heermedcentre.in"
+            target="_blank"
+            class="text-black font-medium text-lg underline hover:opacity-70 transition"
+          >
+            Visit Project →
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: GroverHQ (spans full width on md+) -->
+      <div class="group md:col-span-2">
         <h3 class="text-2xl font-semibold mb-2">GroverHQ Website</h3>
         <p class="text-gray-700 mb-8">
           A fast, modern, founder‑led agency website built with clean UI,
@@ -136,7 +184,7 @@ import LuthraMobile from "../assets/luthra-mobile.png";
     >
       <h3 class="text-xl font-semibold mb-3">Your Project Could Be Next</h3>
       <p class="text-gray-600 mb-6">
-        Want to be our next featured case study? Let’s build something
+        Want to be our next featured case study? Let's build something
         exceptional together.
       </p>
       <a
