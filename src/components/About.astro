@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import LuthraLogo from "../assets/luthra-logo.jpg";
+import HeerLogo from "../assets/heer-logo.png";
 ---
 
 <section
@@ -8,24 +9,28 @@ import LuthraLogo from "../assets/luthra-logo.jpg";
   class="fade-up bg-gray-50 py-24 px-6 lg:px-12 border-t border-gray-200"
 >
   <div class="max-w-6xl mx-auto">
-
     <!-- Heading -->
     <div class="text-center mb-16">
       <h2 class="text-3xl lg:text-5xl font-bold mb-4">About GroverHQ</h2>
       <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        A modern, founder‑led tech agency focused on building fast, scalable, and beautifully crafted digital products.
+        A modern, founder‑led tech agency focused on building fast, scalable,
+        and beautifully crafted digital products.
       </p>
     </div>
 
     <!-- Content -->
     <div class="max-w-4xl mx-auto text-center text-gray-700 leading-relaxed">
       <p class="mb-6">
-        GroverHQ was created with a simple belief — businesses deserve digital experiences that are fast, reliable, and designed with intention.
-        We combine modern engineering with clean design to help brands grow with confidence.
+        GroverHQ was created with a simple belief — businesses deserve digital
+        experiences that are fast, reliable, and designed with intention. We
+        combine modern engineering with clean design to help brands grow with
+        confidence.
       </p>
 
       <p class="mb-6">
-        Led by developers from top MNCs, we bring deep technical expertise, founder‑level attention, and a commitment to delivering work that feels premium, purposeful, and future‑ready.
+        Led by developers from top MNCs, we bring deep technical expertise,
+        founder‑level attention, and a commitment to delivering work that feels
+        premium, purposeful, and future‑ready.
       </p>
     </div>
 
@@ -33,17 +38,32 @@ import LuthraLogo from "../assets/luthra-logo.jpg";
     <div class="mt-20">
       <h3 class="text-center text-2xl font-semibold mb-10">Our Clients</h3>
 
-      <div class="flex flex-wrap justify-center items-center gap-10">
-        <a href="https://luthrainteriors.com" target="_blank" rel="noopener noreferrer">
+      <div class="flex flex-wrap justify-center items-center gap-6">
+        <a
+          href="https://luthrainteriors.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-56 h-32 flex items-center justify-center p-4 hover:opacity-80 transition"
+        >
           <Image
             src={LuthraLogo}
-            height={100}
             alt="Luthra Interiors Logo"
-            class="opacity-90 rounded-2xl hover:opacity-100 transition"
+            class="max-w-full max-h-full w-auto h-auto object-contain rounded-2xl"
+          />
+        </a>
+        <a
+          href="https://heermedcentre.in"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-56 h-32 flex items-center justify-center p-4 hover:opacity-80 transition"
+        >
+          <Image
+            src={HeerLogo}
+            alt="Heer Heart & Lung Clinic Logo"
+            class="max-w-full max-h-full w-auto h-auto object-contain rounded-2xl bg-[#ebe2c6]"
           />
         </a>
       </div>
     </div>
-
   </div>
 </section>

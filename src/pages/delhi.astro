@@ -1,0 +1,81 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_INFO } from "../config";
+
+const pageTitle = "Website Design & Development in Delhi | GroverHQ";
+const pageDescription =
+  "GroverHQ builds fast, conversion-focused websites for clinics, doctors, and local businesses in Delhi NCR — including our clinic website for Heer Heart & Lung Super Speciality Clinic in Madhu Vihar, East Delhi.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+      Website Design &amp; Development in Delhi
+    </h1>
+
+    <p class="text-gray-700 text-lg mb-6">
+      We've built and shipped a live clinic website for a Delhi-based
+      client — Dr. Parvesh Grover's
+      <a
+        href="/work/heer-heart-lung-clinic/"
+        class="underline hover:opacity-70"
+      >
+        Heer Heart &amp; Lung Super Speciality Clinic
+      </a>
+      in Madhu Vihar, Patparganj, East Delhi — handling everything from
+      appointment booking to WhatsApp enquiries and live Google review
+      integration. If you run a clinic, practice, or local business in Delhi
+      NCR, that's the kind of result you can expect.
+    </p>
+
+    <p class="text-gray-700 text-lg mb-6">
+      GroverHQ is based in {CONTACT_INFO.city}, {CONTACT_INFO.state}, and we
+      work remotely with clients across Delhi NCR — calls, screen-shares, and
+      async updates make distance a non-issue for a website project.
+    </p>
+
+    <h2 class="text-2xl font-semibold mt-12 mb-4">
+      What we build for Delhi-based clients
+    </h2>
+    <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
+      <li>
+        Clinic &amp; doctor websites — see our
+        <a
+          href="/services/web-design-for-clinics-doctors/"
+          class="underline hover:opacity-70"
+        >
+          clinic/doctor website service
+        </a>
+      </li>
+      <li>Business websites and landing pages</li>
+      <li>Booking, enquiry, and WhatsApp-first lead capture flows</li>
+      <li>Local SEO and Google Business optimisation</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-12 mb-4">Recent Delhi project</h2>
+    <p class="text-gray-700 text-lg mb-4">
+      A cardiology &amp; pulmonology super-speciality clinic in Madhu Vihar,
+      East Delhi —
+      <a
+        href="https://heermedcentre.in"
+        target="_blank"
+        class="underline hover:opacity-70"
+      >
+        visit heermedcentre.in →
+      </a>
+    </p>
+
+    <div class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center">
+      <h3 class="text-xl font-semibold mb-3">
+        Building a website for your Delhi practice or business?
+      </h3>
+      <a
+        href="/#contact"
+        class="inline-block px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
+      >
+        Start a Project
+      </a>
+    </div>
+  </section>
+</BaseLayout>
