@@ -1,0 +1,104 @@
+---
+import { Image } from "astro:assets";
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import LuthraDesktop from "../../assets/luthra-desktop.png";
+import LuthraMobile from "../../assets/luthra-mobile.png";
+
+const pageTitle = "Website Design & Development in Chandigarh | GroverHQ";
+const pageDescription =
+  "GroverHQ builds fast, modern websites for businesses in Chandigarh and the wider tricity area, working closely with clients from our Mohali base.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+      Website Design &amp; Development in Chandigarh
+    </h1>
+
+    <p class="text-gray-700 text-lg mb-6">
+      GroverHQ is based just across the border in Mohali, and Chandigarh is
+      part of our everyday service area — close enough for in-person
+      meetings, showroom visits, or site walkthroughs whenever a project
+      needs it. One of our clients,
+      <a
+        href="/work/luthra-interiors"
+        class="underline hover:opacity-70"
+      >
+        Luthra Interiors
+      </a>, explicitly lists Chandigarh as part of the region they serve
+      alongside Mohali and Punjab.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
+      <div class="sm:col-span-3">
+        <Image
+          src={LuthraDesktop}
+          alt="Luthra Interiors Desktop Screenshot"
+          width={1600}
+          format="png"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+        />
+      </div>
+      <div class="flex justify-center sm:justify-start">
+        <Image
+          src={LuthraMobile}
+          alt="Luthra Interiors Mobile Screenshot"
+          width={600}
+          format="png"
+          sizes="(max-width: 640px) 40vw, 20vw"
+        />
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-semibold mt-12 mb-4">
+      What we build for Chandigarh-based clients
+    </h2>
+    <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
+      <li>
+        Interior, retail &amp; showroom websites — see our
+        <a
+          href="/services/web-design-for-interior-designers/"
+          class="underline hover:opacity-70"
+        >
+          interior designer website service
+        </a>
+      </li>
+      <li>
+        Clinic &amp; doctor websites — see our
+        <a
+          href="/services/web-design-for-clinics-doctors/"
+          class="underline hover:opacity-70"
+        >
+          clinic/doctor website service
+        </a>
+      </li>
+      <li>Business websites and landing pages</li>
+      <li>Booking, enquiry, and WhatsApp-first lead capture flows</li>
+    </ul>
+
+    <p class="text-gray-700 text-lg mb-6">
+      Based in Mohali or Panchkula instead? See our
+      <a href="/locations/mohali/" class="underline hover:opacity-70">
+        Mohali
+      </a>
+      and
+      <a href="/locations/panchkula/" class="underline hover:opacity-70">
+        Panchkula
+      </a>
+      pages.
+    </p>
+
+    <div class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center">
+      <h3 class="text-xl font-semibold mb-3">
+        Building a website for your Chandigarh business?
+      </h3>
+      <a
+        href="/#contact"
+        class="inline-block px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
+      >
+        Start a Project
+      </a>
+    </div>
+  </section>
+</BaseLayout>
