@@ -8,9 +8,27 @@ import { SITE_CONFIG, SCHEMA_ORG } from "../config";
 const {
   title = SITE_CONFIG.title,
   description = SITE_CONFIG.description,
+  schema: schemaProp,
+  ogImage,
 } = Astro.props;
-const site = Astro.site?.href || SITE_CONFIG.url;
-const schema = { ...SCHEMA_ORG, url: site };
+
+// Site origin (e.g. https://groverhq.com/) — same on every page.
+const siteOrigin = Astro.site ?? new URL(SITE_CONFIG.url);
+
+// Per-page canonical URL — THIS must vary per page, unlike siteOrigin.
+// Previously this was hardcoded to siteOrigin on every page, which told
+// Google every new page's canonical was the homepage.
+const canonicalURL = new URL(Astro.url.pathname, siteOrigin).toString();
+
+const resolvedOgImage = ogImage
+  ? new URL(ogImage, siteOrigin).toString()
+  : new URL(SITE_CONFIG.ogImage, siteOrigin).toString();
+
+// Organization schema stays anchored to the homepage (correct for an
+// Organization/LocalBusiness entity). Individual pages can pass their own
+// `schema` prop (e.g. Service, LocalBusiness w/ areaServed, BreadcrumbList)
+// to override this default.
+const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
 ---
 
 <html lang="en">
@@ -34,7 +52,7 @@ const schema = { ...SCHEMA_ORG, url: site };
     />
 
     <meta name="author" content="GroverHQ" />
-    <link rel="canonical" href={site} />
+    <link rel="canonical" href={canonicalURL} />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -45,27 +63,27 @@ const schema = { ...SCHEMA_ORG, url: site };
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content={site} />
+    <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta
       property="og:description"
       content={description ||
         "Fast, scalable digital products for modern businesses."}
     />
-    <meta property="og:image" content={`${site}og-image.png`} />
+    <meta property="og:image" content={resolvedOgImage} />
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:url" content={site} />
+    <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta
       name="twitter:description"
       content={description ||
         "Fast, scalable digital products for modern businesses."}
     />
-    <meta name="twitter:image" content={`${site}og-image.png`} />
+    <meta name="twitter:image" content={resolvedOgImage} />
 
-    <!-- JSON-LD Schema: Organization + Website -->
+    <!-- JSON-LD Schema -->
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
 
     <!-- Cloudflare Web Analytics -->

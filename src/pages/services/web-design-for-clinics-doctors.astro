@@ -1,0 +1,126 @@
+---
+import { Image } from "astro:assets";
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../../config";
+import HeerDesktop from "../../assets/heer-desktop.png";
+import HeerMobile from "../../assets/heer-mobile.png";
+
+const pageTitle = "Website Design for Clinics & Doctors | GroverHQ";
+const pageDescription =
+    "GroverHQ builds trust-first websites for clinics, doctors, and healthcare practices — appointment booking, WhatsApp enquiries, and Google review integration. See our work for Heer Heart & Lung Clinic, Delhi.";
+
+const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website Design for Clinics and Doctors",
+    provider: {
+        "@type": "Organization",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.url,
+    },
+    areaServed: ["India", "Delhi NCR", "Mohali", "Chandigarh", "Panchkula"],
+    description: pageDescription,
+};
+---
+
+<BaseLayout
+    title={pageTitle}
+    description={pageDescription}
+    schema={serviceSchema}
+>
+    <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+        <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+            Website Design for Clinics &amp; Doctors
+        </h1>
+
+        <p class="text-gray-700 text-lg mb-6">
+            A clinic website has one job above all others: turn a visitor into a
+            booked appointment, without making them wait on hold or hunt for a
+            phone number. We build clinic and doctor websites around that single
+            goal — clear symptoms-to-specialist framing, one-click appointment
+            booking, a WhatsApp enquiry flow patients actually use, and live
+            Google review integration so trust is visible on the first screen.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
+            <div class="sm:col-span-3">
+                <Image
+                    src={HeerDesktop}
+                    alt="Heer Heart & Lung Clinic Desktop Screenshot"
+                    width={1600}
+                    format="png"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                />
+            </div>
+            <div class="flex justify-center sm:justify-start">
+                <Image
+                    src={HeerMobile}
+                    alt="Heer Heart & Lung Clinic Mobile Screenshot"
+                    width={600}
+                    format="png"
+                    sizes="(max-width: 640px) 40vw, 20vw"
+                />
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">What's included</h2>
+        <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
+            <li>
+                Doctor profile, specialities, and credentials laid out clearly
+            </li>
+            <li>Appointment booking and WhatsApp-first enquiry flow</li>
+            <li>Live Google Business review embed</li>
+            <li>Service and symptom-specific pages for search visibility</li>
+            <li>
+                Fast, mobile-first build — most patients search on their phone
+            </li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Case study</h2>
+        <p class="text-gray-700 text-lg mb-4">
+            <a
+                href="/work/#heer-heart-lung-clinic-website"
+                class="underline hover:opacity-70"
+            >
+                Heer Heart &amp; Lung Super Speciality Clinic
+            </a>
+            — Dr. Parvesh Grover's cardiology &amp; pulmonology practice in Madhu
+            Vihar, East Delhi. Built with appointment booking, WhatsApp enquiries,
+            and live review integration from day one. (<a
+                href="https://heermedcentre.in"
+                target="_blank"
+                class="underline hover:opacity-70">visit heermedcentre.in →</a
+            >)
+        </p>
+
+        <p class="text-gray-700 text-lg mb-6">
+            Building or based in Mohali, Chandigarh, or Panchkula instead? See
+            our
+            <a href="/locations/mohali/" class="underline hover:opacity-70">
+                Mohali
+            </a>,
+            <a href="/locations/chandigarh/" class="underline hover:opacity-70">
+                Chandigarh
+            </a>, and
+            <a href="/locations/panchkula/" class="underline hover:opacity-70">
+                Panchkula
+            </a>
+            pages for local project examples and service details.
+        </p>
+
+        <div
+            class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center"
+        >
+            <h3 class="text-xl font-semibold mb-3">
+                Running a clinic or practice that needs a website?
+            </h3>
+            <a
+                href="/#contact"
+                class="inline-block px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
+            >
+                Start a Project
+            </a>
+        </div>
+    </section>
+</BaseLayout>

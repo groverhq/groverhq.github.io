@@ -1,0 +1,128 @@
+---
+import { Image } from "astro:assets";
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../../config";
+import LuthraDesktop from "../../assets/luthra-desktop.png";
+import LuthraMobile from "../../assets/luthra-mobile.png";
+
+const pageTitle = "Website Design for Interior Designers | GroverHQ";
+const pageDescription =
+    "GroverHQ builds product-focused, premium websites for interior designers and interior brands — fast, gallery-driven, and built to convert browsers into showroom visits. See our work for Luthra Interiors.";
+
+const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "Website Design for Interior Designers",
+    provider: {
+        "@type": "Organization",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.url,
+    },
+    areaServed: ["India", "Mohali", "Chandigarh", "Panchkula", "Delhi NCR"],
+    description: pageDescription,
+};
+---
+
+<BaseLayout
+    title={pageTitle}
+    description={pageDescription}
+    schema={serviceSchema}
+>
+    <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+        <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+            Website Design for Interior Designers
+        </h1>
+
+        <p class="text-gray-700 text-lg mb-6">
+            An interior brand's website has to do what a showroom does — let the
+            work speak first. We build product-focused, gallery-driven sites
+            that load fast, look premium on any device, and give visitors a
+            clear path from browsing a gallery to booking a showroom visit or
+            consultation.
+        </p>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
+            <div class="sm:col-span-3">
+                <Image
+                    src={LuthraDesktop}
+                    alt="Luthra Interiors Desktop Screenshot"
+                    width={1600}
+                    format="png"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                />
+            </div>
+            <div class="flex justify-center sm:justify-start">
+                <Image
+                    src={LuthraMobile}
+                    alt="Luthra Interiors Mobile Screenshot"
+                    width={600}
+                    format="png"
+                    sizes="(max-width: 640px) 40vw, 20vw"
+                />
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">What's included</h2>
+        <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
+            <li>Category and product galleries built for fast browsing</li>
+            <li>Showroom visit / consultation booking flow</li>
+            <li>WhatsApp enquiry integration</li>
+            <li>
+                Mobile-first, animation-rich UI without sacrificing load speed
+            </li>
+            <li>
+                SEO structure built for local "interior designer near me"
+                searches
+            </li>
+        </ul>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Case study</h2>
+        <p class="text-gray-700 text-lg mb-4">
+            <a
+                href="/work/#luthra-interiors-website"
+                class="underline hover:opacity-70"
+            >
+                Luthra Interiors
+            </a>
+            — a modern, product-focused interior brand website built with Astro and
+            Cloudflare Pages, covering WPC panels, 3D wall panels, decorative sheets,
+            and wallpapers, with a fully responsive, animation-rich UI optimised for
+            speed and SEO. (<a
+                href="https://luthrainteriors.com"
+                target="_blank"
+                class="underline hover:opacity-70"
+                >visit luthrainteriors.com →</a
+            >)
+        </p>
+
+        <p class="text-gray-700 text-lg mb-6">
+            Based in Delhi instead? See our
+            <a href="/locations/delhi/" class="underline hover:opacity-70">
+                Delhi
+            </a>
+            page, or explore our
+            <a
+                href="/services/web-design-for-clinics-doctors/"
+                class="underline hover:opacity-70"
+            >
+                clinic &amp; doctor website service
+            </a>
+            if healthcare is closer to your industry.
+        </p>
+
+        <div
+            class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center"
+        >
+            <h3 class="text-xl font-semibold mb-3">
+                Building a website for your interior brand or showroom?
+            </h3>
+            <a
+                href="/#contact"
+                class="inline-block px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
+            >
+                Start a Project
+            </a>
+        </div>
+    </section>
+</BaseLayout>
