@@ -23,34 +23,10 @@ export const CONTACT_INFO = {
 // Social Links with proper metadata
 export const SOCIAL_LINKS = [
   {
-    name: "LinkedIn",
-    url: "https://www.linkedin.com/company/groverhq",
-    icon: "linkedin",
-    ariaLabel: "LinkedIn",
-  },
-  {
-    name: "GitHub",
-    url: "https://github.com/groverhq",
-    icon: "github",
-    ariaLabel: "GitHub",
-  },
-  {
-    name: "X (Twitter)",
-    url: "https://x.com/Grover_HQ",
-    icon: "x",
-    ariaLabel: "X (Twitter)",
-  },
-  {
     name: "Instagram",
     url: "https://www.instagram.com/grover.hq",
     icon: "instagram",
     ariaLabel: "Instagram",
-  },
-  {
-    name: "YouTube",
-    url: "https://www.youtube.com/@GroverHQ",
-    icon: "youtube",
-    ariaLabel: "YouTube",
   },
   {
     name: "Facebook",
@@ -59,16 +35,16 @@ export const SOCIAL_LINKS = [
     ariaLabel: "Facebook",
   },
   {
-    name: "Messenger",
-    url: "https://m.me/GroverHQofficial",
-    icon: "messenger",
-    ariaLabel: "Messenger",
-  },
-  {
     name: "WhatsApp",
     url: "https://wa.me/919878236480",
     icon: "whatsapp",
     ariaLabel: "WhatsApp",
+  },
+  {
+    name: "Google Business",
+    url: "https://share.google/diNbvz6Pj4CTbKJYQ",
+    icon: "googlebusiness",
+    ariaLabel: "Google Business",
   },
   {
     name: "Google Maps",
@@ -77,10 +53,34 @@ export const SOCIAL_LINKS = [
     ariaLabel: "Google Maps",
   },
   {
-    name: "Google Business",
-    url: "https://share.google/diNbvz6Pj4CTbKJYQ",
-    icon: "googlebusiness",
-    ariaLabel: "Google Business",
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/company/groverhq",
+    icon: "linkedin",
+    ariaLabel: "LinkedIn",
+  },
+  {
+    name: "X (Twitter)",
+    url: "https://x.com/Grover_HQ",
+    icon: "x",
+    ariaLabel: "X (Twitter)",
+  },
+  {
+    name: "YouTube",
+    url: "https://www.youtube.com/@GroverHQ",
+    icon: "youtube",
+    ariaLabel: "YouTube",
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/groverhq",
+    icon: "github",
+    ariaLabel: "GitHub",
+  },
+  {
+    name: "Messenger",
+    url: "https://m.me/GroverHQofficial",
+    icon: "messenger",
+    ariaLabel: "Messenger",
   },
 ];
 
@@ -91,6 +91,20 @@ export const NAV_LINKS = [
   { name: "Work", href: "/work/" },
   { name: "About", href: "/#about" },
   { name: "Contact", href: "/#contact" },
+];
+
+// Location Pages (footer + services hub links)
+export const LOCATION_LINKS = [
+  { name: "Mohali", href: "/locations/mohali/" },
+  { name: "Chandigarh", href: "/locations/chandigarh/" },
+  { name: "Panchkula", href: "/locations/panchkula/" },
+  { name: "Delhi", href: "/locations/delhi/" },
+];
+
+// Industry-Specific Service Pages (footer + services hub links)
+export const SERVICE_VERTICAL_LINKS = [
+  { name: "Clinics & Doctors", href: "/services/web-design-for-clinics-doctors/" },
+  { name: "Interior Designers", href: "/services/web-design-for-interior-designers/" },
 ];
 
 // Schema Organization Data

@@ -1,0 +1,99 @@
+---
+import { Image } from "astro:assets";
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { CONTACT_INFO } from "../../config";
+import LuthraDesktop from "../../assets/luthra-desktop.png";
+import LuthraMobile from "../../assets/luthra-mobile.png";
+
+const pageTitle = "Website Design & Development in Mohali | GroverHQ";
+const pageDescription =
+  "GroverHQ is based in Sector 68, Mohali, building fast, modern websites for local businesses across the city — including Luthra Interiors in Sector 82.";
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+      Website Design &amp; Development in Mohali
+    </h1>
+
+    <p class="text-gray-700 text-lg mb-6">
+      GroverHQ is headquartered right here in {CONTACT_INFO.address} — this
+      is home turf. We've built and shipped a live project for
+      <a
+        href="/work/luthra-interiors"
+        class="underline hover:opacity-70"
+      >
+        Luthra Interiors
+      </a>, a WPC panels, wallpapers, and decorative sheets showroom in
+      Sector 82, JLPL Industrial Area. If your business is anywhere in
+      Mohali — Sector 68, Sector 82, Phase 1 through Phase 11, or the wider
+      city — we're a short drive away for a proper in-person consult, not
+      just a video call.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
+      <div class="sm:col-span-3">
+        <Image
+          src={LuthraDesktop}
+          alt="Luthra Interiors Desktop Screenshot"
+          width={1600}
+          format="png"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+        />
+      </div>
+      <div class="flex justify-center sm:justify-start">
+        <Image
+          src={LuthraMobile}
+          alt="Luthra Interiors Mobile Screenshot"
+          width={600}
+          format="png"
+          sizes="(max-width: 640px) 40vw, 20vw"
+        />
+      </div>
+    </div>
+
+    <h2 class="text-2xl font-semibold mt-12 mb-4">
+      What we build for Mohali-based clients
+    </h2>
+    <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
+      <li>
+        Interior, retail &amp; showroom websites — see our
+        <a
+          href="/services/web-design-for-interior-designers/"
+          class="underline hover:opacity-70"
+        >
+          interior designer website service
+        </a>
+      </li>
+      <li>Business websites and landing pages</li>
+      <li>Booking, enquiry, and WhatsApp-first lead capture flows</li>
+      <li>Local SEO and Google Business optimisation</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-12 mb-4">Recent Mohali project</h2>
+    <p class="text-gray-700 text-lg mb-4">
+      A WPC panels, charcoal sheets &amp; wallpapers wholesaler in Sector 82,
+      Mohali —
+      <a
+        href="https://luthrainteriors.com"
+        target="_blank"
+        class="underline hover:opacity-70"
+      >
+        visit luthrainteriors.com →
+      </a>
+    </p>
+
+    <div class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center">
+      <h3 class="text-xl font-semibold mb-3">
+        Building a website for your Mohali business?
+      </h3>
+      <a
+        href="/#contact"
+        class="inline-block px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
+      >
+        Start a Project
+      </a>
+    </div>
+  </section>
+</BaseLayout>
