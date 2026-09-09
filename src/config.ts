@@ -86,9 +86,9 @@ export const SOCIAL_LINKS = [
 
 // Navigation Links
 export const NAV_LINKS = [
-  { name: "Services", href: "/#services" },
+  { name: "Services", href: "/services/" },
   { name: "Why Us", href: "/#why-us" },
-  { name: "Work", href: "/#work" },
+  { name: "Work", href: "/work/" },
   { name: "About", href: "/#about" },
   { name: "Contact", href: "/#contact" },
 ];

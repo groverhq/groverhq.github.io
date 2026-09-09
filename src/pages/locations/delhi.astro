@@ -1,7 +1,10 @@
 ---
+import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { CONTACT_INFO } from "../../config";
+import HeerDesktop from "../../assets/heer-desktop.png";
+import HeerMobile from "../../assets/heer-mobile.png";
 
 const pageTitle = "Website Design & Development in Delhi | GroverHQ";
 const pageDescription =
@@ -15,19 +18,40 @@ const pageDescription =
     </h1>
 
     <p class="text-gray-700 text-lg mb-6">
-      We've built and shipped a live clinic website for a Delhi-based
-      client — Dr. Parvesh Grover's
+      We've built and shipped a live clinic website for a Delhi-based client —
+      Dr. Parvesh Grover's
       <a
-        href="/work/heer-heart-lung-clinic/"
+        href="/work/#heer-heart-lung-clinic-website"
         class="underline hover:opacity-70"
       >
         Heer Heart &amp; Lung Super Speciality Clinic
       </a>
-      in Madhu Vihar, Patparganj, East Delhi — handling everything from
-      appointment booking to WhatsApp enquiries and live Google review
-      integration. If you run a clinic, practice, or local business in Delhi
-      NCR, that's the kind of result you can expect.
+      in Madhu Vihar, Patparganj, East Delhi — handling everything from appointment
+      booking to WhatsApp enquiries and live Google review integration. If you run
+      a clinic, practice, or local business in Delhi NCR, that's the kind of result
+      you can expect.
     </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
+      <div class="sm:col-span-3">
+        <Image
+          src={HeerDesktop}
+          alt="Heer Heart & Lung Clinic Desktop Screenshot"
+          width={1600}
+          format="png"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+        />
+      </div>
+      <div class="flex justify-center sm:justify-start">
+        <Image
+          src={HeerMobile}
+          alt="Heer Heart & Lung Clinic Mobile Screenshot"
+          width={600}
+          format="png"
+          sizes="(max-width: 640px) 40vw, 20vw"
+        />
+      </div>
+    </div>
 
     <p class="text-gray-700 text-lg mb-6">
       GroverHQ is based in {CONTACT_INFO.city}, {CONTACT_INFO.state}, and we
@@ -66,7 +90,9 @@ const pageDescription =
       </a>
     </p>
 
-    <div class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center">
+    <div
+      class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center"
+    >
       <h3 class="text-xl font-semibold mb-3">
         Building a website for your Delhi practice or business?
       </h3>
