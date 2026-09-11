@@ -1,6 +1,6 @@
 <section
     id="contact"
-    class="fade-up bg-neutral-950 text-white py-24 px-6 lg:px-12 border-t border-neutral-800"
+    class="fade-up bg-surface text-ink py-24 px-6 lg:px-12 border-t border-border"
 >
     <div class="max-w-6xl mx-auto">
         <!-- Heading -->
@@ -8,7 +8,7 @@
             <h2 class="text-3xl lg:text-5xl font-bold mb-4">
                 Let's Build Something Great
             </h2>
-            <p class="text-neutral-400 text-lg max-w-2xl mx-auto">
+            <p class="text-muted text-lg max-w-2xl mx-auto">
                 Have a project in mind? Tell us a bit about it and we’ll get
                 back to you soon.
             </p>
@@ -20,9 +20,7 @@
             <form class="space-y-6" onsubmit="return false;">
                 <!-- Name -->
                 <div>
-                    <label for="name" class="block text-neutral-300 mb-2"
-                        >Name</label
-                    >
+                    <label for="name" class="block text-ink mb-2">Name</label>
                     <input
                         id="name"
                         type="text"
@@ -37,7 +35,7 @@
 
                 <!-- Phone -->
                 <div>
-                    <label for="phone" class="block text-neutral-300 mb-2"
+                    <label for="phone" class="block text-ink mb-2"
                         >Phone Number</label
                     >
                     <input
@@ -54,7 +52,7 @@
 
                 <!-- Message -->
                 <div>
-                    <label for="message" class="block text-neutral-300 mb-2"
+                    <label for="message" class="block text-ink mb-2"
                         >Message</label
                     >
                     <textarea
@@ -73,7 +71,7 @@
                     <button
                         type="button"
                         onclick="sendWhatsApp()"
-                        class="flex-1 bg-green-800 text-white font-semibold py-3 rounded-lg hover:bg-green-900 transition cursor-pointer"
+                        class="flex-1 border-2 border-border text-ink font-semibold py-3 rounded-lg hover:bg-bg hover:border-ink transition cursor-pointer"
                         aria-label="Send WhatsApp Message"
                     >
                         Send WhatsApp
@@ -83,7 +81,7 @@
                     <button
                         type="button"
                         onclick="sendEmail()"
-                        class="flex-1 bg-blue-600 text-white font-semibold py-3 rounded-lg hover:bg-blue-700 transition cursor-pointer"
+                        class="flex-1 bg-accent text-accent-ink font-semibold py-3 rounded-lg hover:opacity-90 transition cursor-pointer"
                         aria-label="Send Email"
                     >
                         Send Email
@@ -92,17 +90,15 @@
             </form>
 
             <!-- Contact Info -->
-            <div
-                class="flex flex-col justify-center text-neutral-400 space-y-6"
-            >
+            <div class="flex flex-col justify-center text-muted space-y-6">
                 <p class="text-lg">Prefer direct contact? Reach out anytime.</p>
 
                 <!-- Email -->
                 <div>
-                    <p class="text-neutral-300 font-medium mb-1">Email</p>
+                    <p class="text-ink font-medium mb-1">Email</p>
                     <a
                         href="mailto:info@groverhq.com"
-                        class="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-300 hover:underline transition"
+                        class="flex items-center gap-2 text-accent font-medium hover:opacity-80 transition"
                     >
                         <!-- Envelope Icon -->
                         <svg
@@ -120,18 +116,16 @@
                             ></path>
                         </svg>
 
-                        info@groverhq.com →
-                    </a>
+                        info@groverhq.com →</a
+                    >
                 </div>
 
                 <!-- WhatsApp -->
                 <div>
-                    <p class="text-neutral-300 font-medium mb-1">
-                        Phone / WhatsApp
-                    </p>
+                    <p class="text-ink font-medium mb-1">Phone / WhatsApp</p>
                     <a
                         href="https://wa.me/919878236480"
-                        class="flex items-center gap-2 text-blue-400 font-medium hover:text-blue-300 hover:underline transition"
+                        class="flex items-center gap-2 text-accent font-medium hover:opacity-80 transition"
                     >
                         <!-- Chat Bubble Icon -->
                         <svg
@@ -149,8 +143,8 @@
                             ></path>
                         </svg>
 
-                        9878236480 →
-                    </a>
+                        9878236480 →</a
+                    >
                 </div>
             </div>
         </div>

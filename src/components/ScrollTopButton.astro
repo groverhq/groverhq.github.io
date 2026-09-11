@@ -1,9 +1,10 @@
 ---
+
 ---
 
 <button
   id="scrollTopBtn"
-  class="fixed bottom-24 right-6 bg-white text-black w-14 h-14 rounded-full shadow-lg cursor-pointer hover:bg-gray-200 transition z-50 flex flex-col items-center justify-center text-xs font-semibold opacity-0 pointer-events-none"
+  class="fixed bottom-24 right-6 bg-surface border border-border text-ink w-14 h-14 rounded-full shadow-lg cursor-pointer hover:border-ink transition z-50 flex flex-col items-center justify-center text-xs font-semibold opacity-0 pointer-events-none"
   aria-label="Scroll to top"
 >
   <!-- Arrow -->
@@ -31,7 +32,7 @@
   >
     <path
       id="progressPath"
-      stroke="#3b82f6"
+      class="stroke-accent"
       stroke-width="3"
       fill="none"
       stroke-linecap="round"
@@ -49,8 +50,7 @@
 
   function updateProgress() {
     const scroll = window.scrollY;
-    const height =
-      document.documentElement.scrollHeight - window.innerHeight;
+    const height = document.documentElement.scrollHeight - window.innerHeight;
     const progress = (scroll / height) * 100;
     if (progressPath) {
       progressPath.style.strokeDashoffset = (100 - progress).toString();

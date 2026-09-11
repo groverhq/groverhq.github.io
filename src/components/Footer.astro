@@ -8,16 +8,14 @@ import {
 } from "../config";
 ---
 
-<footer
-  class="bg-neutral-950 text-neutral-400 py-12 px-8 border-t border-neutral-800 mt-24"
->
+<footer class="bg-bg text-muted py-12 px-8 border-t border-border">
   <div
     class="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-start lg:gap-20"
   >
     <!-- Brand -->
     <div class="lg:w-1/4">
-      <h3 class="text-white text-xl font-semibold mb-2">GroverHQ</h3>
-      <p class="text-neutral-400 max-w-sm">
+      <h3 class="text-ink text-xl font-semibold mb-2">GroverHQ</h3>
+      <p class="text-muted max-w-sm">
         Digital Solutions for Modern Businesses
         <br />
         — Web, Apps, Bots, Automation & AI.
@@ -29,26 +27,26 @@ import {
             href="https://maps.app.goo.gl/aHfDMJcUiHEYdj1v5"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-blue-400 hover:text-blue-300 hover:underline transition"
+            class="text-accent hover:opacity-80 transition"
           >
-            {CONTACT_INFO.address}
-          </a>
+            {CONTACT_INFO.address}</a
+          >
         </p>
         <p>
           <a
             href={`tel:+${CONTACT_INFO.phoneLink}`}
-            class="text-blue-400 hover:text-blue-300 hover:underline transition"
+            class="text-accent hover:opacity-80 transition"
           >
-            {CONTACT_INFO.phone}
-          </a>
+            {CONTACT_INFO.phone}</a
+          >
         </p>
         <p>
           <a
             href={`mailto:${CONTACT_INFO.email}`}
-            class="text-blue-400 hover:text-blue-300 hover:underline transition"
+            class="text-accent hover:opacity-80 transition"
           >
-            {CONTACT_INFO.email}
-          </a>
+            {CONTACT_INFO.email}</a
+          >
         </p>
       </div>
     </div>
@@ -59,12 +57,12 @@ import {
     >
       <!-- Company Links -->
       <div class="lg:pl-8">
-        <h4 class="text-white font-medium mb-3">Company</h4>
+        <h4 class="text-ink font-medium mb-3">Company</h4>
         <ul class="space-y-2">
           {
             NAV_LINKS.map((link) => (
               <li>
-                <a href={link.href} class="hover:text-white transition">
+                <a href={link.href} class="hover:text-ink transition">
                   {link.name}
                 </a>
               </li>
@@ -75,12 +73,16 @@ import {
 
       <!-- Locations -->
       <div>
-        <h4 class="text-white font-medium mb-3">Locations</h4>
+        <h4 class="text-ink font-medium mb-3">
+          <a href="/locations/" class="hover:text-accent transition">
+            Locations</a
+          >
+        </h4>
         <ul class="space-y-2">
           {
             LOCATION_LINKS.map((link) => (
               <li>
-                <a href={link.href} class="hover:text-white transition">
+                <a href={link.href} class="hover:text-ink transition">
                   {link.name}
                 </a>
               </li>
@@ -91,12 +93,12 @@ import {
 
       <!-- Industries -->
       <div>
-        <h4 class="text-white font-medium mb-3">Industries</h4>
+        <h4 class="text-ink font-medium mb-3">Industries</h4>
         <ul class="space-y-2">
           {
             SERVICE_VERTICAL_LINKS.map((link) => (
               <li>
-                <a href={link.href} class="hover:text-white transition">
+                <a href={link.href} class="hover:text-ink transition">
                   {link.name}
                 </a>
               </li>
@@ -114,7 +116,7 @@ import {
 
   <!-- Copyright -->
   <div
-    class="w-full text-center mt-12 pt-6 border-t border-neutral-800 text-sm text-neutral-400"
+    class="w-full text-center mt-12 pt-6 border-t border-border text-sm text-muted"
   >
     © {new Date().getFullYear()} GroverHQ. All rights reserved.
   </div>

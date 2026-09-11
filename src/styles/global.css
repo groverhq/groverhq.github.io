@@ -1,11 +1,45 @@
 @import "tailwindcss";
 
+/*
+  THEME TOKEN SYSTEM
+  -------------------
+  Semantic color tokens, not raw values. Every component should use
+  bg-surface / text-ink / bg-accent etc. instead of bg-black / text-gray-700 /
+  border-gray-200 — so swapping the whole site's look later is a matter of
+  adding a new block of these 7 variables, not touching every component.
+
+  Active theme is set via data-theme="noir" on <html> in BaseLayout.astro.
+  To add a new theme: duplicate the [data-theme="noir"] block below with a
+  new name and new hex values, then flip the attribute in BaseLayout.
+*/
+
+@theme {
+    --color-bg: var(--theme-bg);
+    --color-surface: var(--theme-surface);
+    --color-ink: var(--theme-ink);
+    --color-muted: var(--theme-muted);
+    --color-border: var(--theme-border);
+    --color-accent: var(--theme-accent);
+    --color-accent-ink: var(--theme-accent-ink);
+}
+
+/* noir — dark base, off-white ink, calm aquamarine accent */
+[data-theme="noir"] {
+    --theme-bg: #0b0d10;
+    --theme-surface: #15181c;
+    --theme-ink: #f2f3f5;
+    --theme-muted: #9ca3af;
+    --theme-border: #262b31;
+    --theme-accent: #4eead1;
+    --theme-accent-ink: #0b0d10;
+}
+
 html {
     scroll-behavior: smooth;
 }
 
 .input-field {
-    @apply w-full bg-neutral-900 border border-neutral-700 rounded-lg px-4 py-3 text-white focus:border-neutral-500 focus:outline-none;
+    @apply w-full bg-surface border border-border rounded-lg px-4 py-3 text-ink focus:border-accent focus:outline-none;
 }
 
 .input-error {

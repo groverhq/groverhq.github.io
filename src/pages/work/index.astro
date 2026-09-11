@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { buildBreadcrumbSchema } from "../../utils/schema";
 import LuthraDesktop from "../../assets/luthra-desktop.png";
 import LuthraMobile from "../../assets/luthra-mobile.png";
 import HeerDesktop from "../../assets/heer-desktop.png";
@@ -9,145 +10,179 @@ import HeerMobile from "../../assets/heer-mobile.png";
 
 const pageTitle = "Our Work | GroverHQ Case Studies";
 const pageDescription =
-  "See GroverHQ's client work — clinic websites, interior brand websites, and more. Built with Astro, Tailwind, and modern best practices for speed and SEO.";
+    "See GroverHQ's client work — clinic websites, interior brand websites, and more. Built with Astro, Tailwind, and modern best practices for speed and SEO.";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Work", url: "/work/" },
+]);
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
-  <section class="py-24 px-6 lg:px-12 max-w-6xl mx-auto">
-    <div class="text-center mb-16">
-      <h1 class="text-3xl lg:text-5xl font-bold mb-4">Our Work</h1>
-      <p class="text-gray-600 text-lg max-w-2xl mx-auto">
-        A growing collection of clean, fast, and scalable digital products
-        built with precision and care.
-      </p>
-    </div>
+<BaseLayout
+    title={pageTitle}
+    description={pageDescription}
+    schema={breadcrumbSchema}
+>
+    <section class="py-24 px-6 lg:px-12 max-w-6xl mx-auto">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+            <a href="/" class="hover:text-accent transition">Home</a>
+            <span class="mx-2">/</span>
+            <span class="text-ink">Work</span>
+        </nav>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
-      <!-- Luthra Interiors -->
-      <div class="group">
-        <h2 id="luthra-interiors-website" class="text-2xl font-semibold mb-2">Luthra Interiors Website</h2>
-        <p class="text-gray-700 mb-4">
-          A modern, product‑focused interior brand website built with Astro
-          and Cloudflare Pages. Designed for clarity, speed, and a premium
-          browsing experience across all devices.
-        </p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
-          <div class="sm:col-span-3">
-            <Image
-              src={LuthraDesktop}
-              alt="Luthra Interiors Desktop Screenshot"
-              width={1600}
-              format="png"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
-            />
-          </div>
-          <div class="flex justify-center sm:justify-start">
-            <Image
-              src={LuthraMobile}
-              alt="Luthra Interiors Mobile Screenshot"
-              width={600}
-              format="png"
-              sizes="(max-width: 640px) 40vw, 20vw"
-            />
-          </div>
+        <div class="text-center mb-16">
+            <h1 class="text-3xl lg:text-5xl font-bold mb-4">Our Work</h1>
+            <p class="text-muted text-lg max-w-2xl mx-auto">
+                A growing collection of clean, fast, and scalable digital
+                products built with precision and care.
+            </p>
         </div>
 
-        <ul class="text-gray-600 text-sm space-y-1 mb-4">
-          <li>• Built with Astro, Tailwind, and Cloudflare Pages</li>
-          <li>• Fully responsive with animation‑rich UI</li>
-          <li>• Optimized for SEO, indexing, and fast performance</li>
-        </ul>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <!-- Luthra Interiors -->
+            <div class="group">
+                <h2
+                    id="luthra-interiors-website"
+                    class="text-2xl font-semibold mb-2"
+                >
+                    Luthra Interiors Website
+                </h2>
+                <p class="text-ink mb-4">
+                    A modern, product‑focused interior brand website built with
+                    Astro and Cloudflare Pages. Designed for clarity, speed, and
+                    a premium browsing experience across all devices.
+                </p>
 
-        <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-          <a
-            href="/work/luthra-interiors/"
-            class="text-black font-medium text-lg underline hover:opacity-70 transition"
-          >
-            Read Case Study →
-          </a>
-          <a
-            href="https://luthrainteriors.com"
-            target="_blank"
-            class="text-gray-600 font-medium text-lg underline hover:opacity-70 transition"
-          >
-            Visit Live Site →
-          </a>
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+                    <div class="sm:col-span-3">
+                        <Image
+                            src={LuthraDesktop}
+                            alt="Luthra Interiors Desktop Screenshot"
+                            width={1600}
+                            format="png"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                        />
+                    </div>
+                    <div class="flex justify-center sm:justify-start">
+                        <Image
+                            src={LuthraMobile}
+                            alt="Luthra Interiors Mobile Screenshot"
+                            width={600}
+                            format="png"
+                            sizes="(max-width: 640px) 40vw, 20vw"
+                        />
+                    </div>
+                </div>
+
+                <ul class="text-muted text-sm space-y-1 mb-4">
+                    <li>• Built with Astro, Tailwind, and Cloudflare Pages</li>
+                    <li>• Fully responsive with animation‑rich UI</li>
+                    <li>• Optimized for SEO, indexing, and fast performance</li>
+                </ul>
+
+                <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                    <a
+                        href="/work/luthra-interiors/"
+                        class="text-accent font-medium text-lg underline hover:opacity-80 transition"
+                    >
+                        Read Case Study →</a
+                    >
+                    <a
+                        href="https://luthrainteriors.com"
+                        target="_blank"
+                        class="text-muted font-medium text-lg underline hover:opacity-80 transition"
+                    >
+                        Visit Live Site →</a
+                    >
+                </div>
+            </div>
+
+            <!-- Heer Heart & Lung Clinic -->
+            <div class="group">
+                <h2
+                    id="heer-heart-lung-clinic-website"
+                    class="text-2xl font-semibold mb-2"
+                >
+                    Heer Heart &amp; Lung Clinic Website
+                </h2>
+                <p class="text-ink mb-4">
+                    A trust‑first website for Dr. Parvesh Grover's cardiology
+                    &amp; pulmonology super‑speciality clinic in Madhu Vihar,
+                    East Delhi. Built around appointment booking, WhatsApp
+                    enquiries, and live Google review integration.
+                </p>
+
+                <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
+                    <div class="sm:col-span-3">
+                        <Image
+                            src={HeerDesktop}
+                            alt="Heer Heart & Lung Clinic Desktop Screenshot"
+                            width={1600}
+                            format="png"
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                        />
+                    </div>
+                    <div class="flex justify-center sm:justify-start">
+                        <Image
+                            src={HeerMobile}
+                            alt="Heer Heart & Lung Clinic Mobile Screenshot"
+                            width={600}
+                            format="png"
+                            sizes="(max-width: 640px) 40vw, 20vw"
+                        />
+                    </div>
+                </div>
+
+                <ul class="text-muted text-sm space-y-1 mb-4">
+                    <li>
+                        • Built with Astro, deployed for a healthcare/clinic use
+                        case
+                    </li>
+                    <li>
+                        • One-click appointment booking and WhatsApp enquiry
+                        flow
+                    </li>
+                    <li>
+                        • Live Google Business review embed, service &amp;
+                        symptom pages
+                    </li>
+                </ul>
+
+                <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                    <a
+                        href="/work/heer-heart-lung-clinic/"
+                        class="text-accent font-medium text-lg underline hover:opacity-80 transition"
+                    >
+                        Read Case Study →</a
+                    >
+                    <a
+                        href="https://heermedcentre.in"
+                        target="_blank"
+                        class="text-muted font-medium text-lg underline hover:opacity-80 transition"
+                    >
+                        Visit Live Site →</a
+                    >
+                </div>
+            </div>
         </div>
-      </div>
 
-      <!-- Heer Heart & Lung Clinic -->
-      <div class="group">
-        <h2 id="heer-heart-lung-clinic-website" class="text-2xl font-semibold mb-2">
-          Heer Heart &amp; Lung Clinic Website
-        </h2>
-        <p class="text-gray-700 mb-4">
-          A trust‑first website for Dr. Parvesh Grover's cardiology &amp;
-          pulmonology super‑speciality clinic in Madhu Vihar, East Delhi.
-          Built around appointment booking, WhatsApp enquiries, and live
-          Google review integration.
-        </p>
-
-        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mb-6">
-          <div class="sm:col-span-3">
-            <Image
-              src={HeerDesktop}
-              alt="Heer Heart & Lung Clinic Desktop Screenshot"
-              width={1600}
-              format="png"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
-            />
-          </div>
-          <div class="flex justify-center sm:justify-start">
-            <Image
-              src={HeerMobile}
-              alt="Heer Heart & Lung Clinic Mobile Screenshot"
-              width={600}
-              format="png"
-              sizes="(max-width: 640px) 40vw, 20vw"
-            />
-          </div>
+        <!-- CTA Block -->
+        <div
+            class="mt-16 flex flex-col justify-center text-center border border-dashed border-border rounded-xl p-10"
+        >
+            <h3 class="text-xl font-semibold mb-3">
+                Your Project Could Be Next
+            </h3>
+            <p class="text-muted mb-6">
+                Want to be our next featured case study? Let's build something
+                exceptional together.
+            </p>
+            <a
+                href="/#contact"
+                class="block sm:inline-block px-6 sm:px-8 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition w-full sm:w-auto text-center"
+            >
+                Start a Project</a
+            >
         </div>
-
-        <ul class="text-gray-600 text-sm space-y-1 mb-4">
-          <li>• Built with Astro, deployed for a healthcare/clinic use case</li>
-          <li>• One-click appointment booking and WhatsApp enquiry flow</li>
-          <li>• Live Google Business review embed, service &amp; symptom pages</li>
-        </ul>
-
-        <div class="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-          <a
-            href="/work/heer-heart-lung-clinic/"
-            class="text-black font-medium text-lg underline hover:opacity-70 transition"
-          >
-            Read Case Study →
-          </a>
-          <a
-            href="https://heermedcentre.in"
-            target="_blank"
-            class="text-gray-600 font-medium text-lg underline hover:opacity-70 transition"
-          >
-            Visit Live Site →
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- CTA Block -->
-    <div
-      class="mt-16 flex flex-col justify-center text-center border border-dashed border-gray-300 rounded-xl p-10"
-    >
-      <h3 class="text-xl font-semibold mb-3">Your Project Could Be Next</h3>
-      <p class="text-gray-600 mb-6">
-        Want to be our next featured case study? Let's build something
-        exceptional together.
-      </p>
-      <a
-        href="/#contact"
-        class="block sm:inline-block px-6 sm:px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition w-full sm:w-auto text-center"
-      >
-        Start a Project
-      </a>
-    </div>
-  </section>
+    </section>
 </BaseLayout>
