@@ -10,6 +10,7 @@ const {
   description = SITE_CONFIG.description,
   schema: schemaProp,
   ogImage,
+  noindex = false,
 } = Astro.props;
 
 // Site origin (e.g. https://groverhq.com/) — same on every page.
@@ -25,13 +26,19 @@ const resolvedOgImage = ogImage
   : new URL(SITE_CONFIG.ogImage, siteOrigin).toString();
 
 // Organization schema stays anchored to the homepage (correct for an
-// Organization/LocalBusiness entity). Individual pages can pass their own
-// `schema` prop (e.g. Service, LocalBusiness w/ areaServed, BreadcrumbList)
-// to override this default.
-const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
+// Organization/LocalBusiness entity). Individual pages can pass a `schema`
+// prop — a single object, or an array (e.g. [Service, BreadcrumbList, FAQPage])
+// — to override or extend this default. Each entry renders as its own
+// JSON-LD <script> tag.
+const defaultSchema = { ...SCHEMA_ORG, url: siteOrigin.href };
+const schemaList = schemaProp
+  ? Array.isArray(schemaProp)
+    ? schemaProp
+    : [schemaProp]
+  : [defaultSchema];
 ---
 
-<html lang="en">
+<html lang="en" data-theme="noir">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -52,7 +59,18 @@ const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
     />
 
     <meta name="author" content="GroverHQ" />
+    <meta
+      name="robots"
+      content={noindex
+        ? "noindex, follow"
+        : "index, follow, max-image-preview:large"}
+    />
+    <meta name="theme-color" content="#0B0D10" />
     <link rel="canonical" href={canonicalURL} />
+
+    <!-- Performance hints -->
+    <link rel="preconnect" href="https://static.cloudflareinsights.com" />
+    <link rel="preconnect" href="https://formspree.io" />
 
     <!-- Favicons -->
     <link rel="icon" type="image/png" href="/favicon.png" />
@@ -63,6 +81,8 @@ const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE_CONFIG.name} />
+    <meta property="og:locale" content="en_IN" />
     <meta property="og:url" content={canonicalURL} />
     <meta property="og:title" content={title} />
     <meta
@@ -74,6 +94,7 @@ const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@Grover_HQ" />
     <meta name="twitter:url" content={canonicalURL} />
     <meta name="twitter:title" content={title} />
     <meta
@@ -84,7 +105,11 @@ const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
     <meta name="twitter:image" content={resolvedOgImage} />
 
     <!-- JSON-LD Schema -->
-    <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    {
+      schemaList.map((s) => (
+        <script type="application/ld+json" set:html={JSON.stringify(s)} />
+      ))
+    }
 
     <!-- Cloudflare Web Analytics -->
     <script
@@ -93,7 +118,7 @@ const schema = schemaProp ?? { ...SCHEMA_ORG, url: siteOrigin.href };
       data-cf-beacon='{"token": "817646fdca6249d191a9d4b9ea7e0a89"}'></script>
   </head>
 
-  <body class="bg-white text-gray-900">
+  <body class="bg-bg text-ink">
     <Navbar />
     <main class="min-h-screen">
       <slot />

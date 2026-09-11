@@ -1,0 +1,64 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { LOCATION_LINKS } from "../../config";
+import { buildBreadcrumbSchema } from "../../utils/schema";
+
+const pageTitle = "Where We Work | GroverHQ Locations";
+const pageDescription =
+  "GroverHQ is based in Mohali and works with clients across Chandigarh, Panchkula, and Delhi NCR — see our local projects and service details for each area.";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Locations", url: "/locations/" },
+]);
+---
+
+<BaseLayout
+  title={pageTitle}
+  description={pageDescription}
+  schema={breadcrumbSchema}
+>
+  <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+    <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+      <a href="/" class="hover:text-accent transition">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-ink">Locations</span>
+    </nav>
+
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">Where We Work</h1>
+
+    <p class="text-muted text-lg mb-10">
+      GroverHQ is based in Mohali, and works closely with clients across the
+      tricity and Delhi NCR. Pick your city for local project examples and
+      service details.
+    </p>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      {
+        LOCATION_LINKS.map((link) => (
+          <a
+            href={link.href}
+            class="block p-8 bg-surface border border-border rounded-xl hover:border-accent transition-all duration-300"
+          >
+            <h2 class="text-xl font-semibold">{link.name}</h2>
+          </a>
+        ))
+      }
+    </div>
+
+    <div
+      class="mt-16 border border-dashed border-border rounded-xl p-10 text-center"
+    >
+      <h3 class="text-xl font-semibold mb-3">
+        Not seeing your city? We may still cover it.
+      </h3>
+      <a
+        href="/#contact"
+        class="inline-block px-8 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+      >
+        Start a Project</a
+      >
+    </div>
+  </section>
+</BaseLayout>

@@ -3,112 +3,142 @@ import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "../../config";
+import { buildBreadcrumbSchema } from "../../utils/schema";
 import LuthraDesktop from "../../assets/luthra-desktop.png";
 import LuthraMobile from "../../assets/luthra-mobile.png";
 
 const pageTitle = "Luthra Interiors Website | GroverHQ Case Study";
 const pageDescription =
-  "How GroverHQ built a fast, product-focused website for Luthra Interiors — a WPC panels, decorative sheets, and wallpapers wholesaler in Sector 82, Mohali.";
+    "How GroverHQ built a fast, product-focused website for Luthra Interiors — a WPC panels, decorative sheets, and wallpapers wholesaler in Sector 82, Mohali.";
 
 const caseStudySchema = {
-  "@context": "https://schema.org",
-  "@type": "CreativeWork",
-  name: "Luthra Interiors Website",
-  creator: {
-    "@type": "Organization",
-    name: SITE_CONFIG.name,
-    url: SITE_CONFIG.url,
-  },
-  about: "Interior products showroom website design",
-  url: "https://luthrainteriors.com",
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    name: "Luthra Interiors Website",
+    creator: {
+        "@type": "Organization",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.url,
+    },
+    about: "Interior products showroom website design",
+    url: "https://luthrainteriors.com",
 };
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Work", url: "/work/" },
+    { name: "Luthra Interiors", url: "/work/luthra-interiors/" },
+]);
 ---
 
 <BaseLayout
-  title={pageTitle}
-  description={pageDescription}
-  schema={caseStudySchema}
+    title={pageTitle}
+    description={pageDescription}
+    schema={[caseStudySchema, breadcrumbSchema]}
 >
-  <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
-    <p class="mb-4">
-      <a href="/work/" class="text-sm underline hover:opacity-70">← All work</a>
-    </p>
+    <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+            <a href="/" class="hover:text-accent transition">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/work/" class="hover:text-accent transition">Work</a>
+            <span class="mx-2">/</span>
+            <span class="text-ink">Luthra Interiors</span>
+        </nav>
 
-    <h1 class="text-3xl lg:text-5xl font-bold mb-6">
-      Luthra Interiors Website
-    </h1>
+        <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+            Luthra Interiors Website
+        </h1>
 
-    <p class="text-gray-700 text-lg mb-6">
-      Luthra Interiors is a direct wholesale and retail supplier of premium
-      architectural surface products — WPC wall panels, charcoal sheets,
-      charcoal louvers, imported PU stone, custom wallpapers, wood floors,
-      and window blinds — based in Sector 82, JLPL Industrial Area, Mohali.
-      They needed a website that could do what their showroom does: let
-      the products speak for themselves.
-    </p>
+        <p class="text-ink text-lg mb-6">
+            Luthra Interiors is a direct wholesale and retail supplier of
+            premium architectural surface products — WPC wall panels, charcoal
+            sheets, charcoal louvers, imported PU stone, custom wallpapers, wood
+            floors, and window blinds — based in Sector 82, JLPL Industrial
+            Area, Mohali. They needed a website that could do what their
+            showroom does: let the products speak for themselves.
+        </p>
 
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
-      <div class="sm:col-span-3">
-        <Image
-          src={LuthraDesktop}
-          alt="Luthra Interiors Desktop Screenshot"
-          width={1600}
-          format="png"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
-        />
-      </div>
-      <div class="flex justify-center sm:justify-start">
-        <Image
-          src={LuthraMobile}
-          alt="Luthra Interiors Mobile Screenshot"
-          width={600}
-          format="png"
-          sizes="(max-width: 640px) 40vw, 20vw"
-        />
-      </div>
-    </div>
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 my-10">
+            <div class="sm:col-span-3">
+                <Image
+                    src={LuthraDesktop}
+                    alt="Luthra Interiors Desktop Screenshot"
+                    width={1600}
+                    format="png"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 80vw, 50vw"
+                />
+            </div>
+            <div class="flex justify-center sm:justify-start">
+                <Image
+                    src={LuthraMobile}
+                    alt="Luthra Interiors Mobile Screenshot"
+                    width={600}
+                    format="png"
+                    sizes="(max-width: 640px) 40vw, 20vw"
+                />
+            </div>
+        </div>
 
-    <h2 class="text-2xl font-semibold mt-12 mb-4">What we built</h2>
-    <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
-      <li>Category-driven product galleries across 12 product lines</li>
-      <li>A showcase gallery of real installation and design work</li>
-      <li>WhatsApp and email enquiry flow, plus a Google Maps embed for showroom visits</li>
-      <li>Fully responsive, animation-rich UI built with Astro and Tailwind</li>
-      <li>Optimised for SEO, indexing, and fast performance on Cloudflare Pages</li>
-    </ul>
+        <h2 class="text-2xl font-semibold mt-12 mb-4">What we built</h2>
+        <ul class="text-ink text-lg space-y-2 mb-8 list-disc pl-6">
+            <li>Category-driven product galleries across 12 product lines</li>
+            <li>A showcase gallery of real installation and design work</li>
+            <li>
+                WhatsApp and email enquiry flow, plus a Google Maps embed for
+                showroom visits
+            </li>
+            <li>
+                Fully responsive, animation-rich UI built with Astro and
+                Tailwind
+            </li>
+            <li>
+                Optimised for SEO, indexing, and fast performance on Cloudflare
+                Pages
+            </li>
+        </ul>
 
-    <h2 class="text-2xl font-semibold mt-12 mb-4">Related</h2>
-    <ul class="text-gray-700 text-lg space-y-2 mb-8 list-disc pl-6">
-      <li>
-        <a href="/services/web-design-for-interior-designers/" class="underline hover:opacity-70">
-          Our website service for interior designers &amp; showrooms
-        </a>
-      </li>
-      <li>
-        <a href="/locations/mohali/" class="underline hover:opacity-70">
-          More about our work in Mohali
-        </a>
-      </li>
-    </ul>
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Related</h2>
+        <ul class="text-ink text-lg space-y-2 mb-8 list-disc pl-6">
+            <li>
+                <a
+                    href="/services/web-design-for-interior-designers/"
+                    class="text-accent underline hover:opacity-80"
+                >
+                    Our website service for interior designers &amp; showrooms</a
+                >
+            </li>
+            <li>
+                <a
+                    href="/locations/mohali/"
+                    class="text-accent underline hover:opacity-80"
+                >
+                    More about our work in Mohali</a
+                >
+            </li>
+        </ul>
 
-    <div class="mt-4">
-      <a
-        href="https://luthrainteriors.com"
-        target="_blank"
-        class="text-black font-medium text-lg underline hover:opacity-70 transition"
-      >
-        Visit Project →
-      </a>
-    </div>
+        <div class="mt-4">
+            <a
+                href="https://luthrainteriors.com"
+                target="_blank"
+                class="text-accent font-medium text-lg underline hover:opacity-80 transition"
+            >
+                Visit Project →</a
+            >
+        </div>
 
-    <div class="mt-16 border border-dashed border-gray-300 rounded-xl p-10 text-center">
-      <h3 class="text-xl font-semibold mb-3">Your Project Could Be Next</h3>
-      <a
-        href="/#contact"
-        class="inline-block px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition"
-      >
-        Start a Project
-      </a>
-    </div>
-  </section>
+        <div
+            class="mt-16 border border-dashed border-border rounded-xl p-10 text-center"
+        >
+            <h3 class="text-xl font-semibold mb-3">
+                Your Project Could Be Next
+            </h3>
+            <a
+                href="/#contact"
+                class="inline-block px-8 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+            >
+                Start a Project</a
+            >
+        </div>
+    </section>
 </BaseLayout>

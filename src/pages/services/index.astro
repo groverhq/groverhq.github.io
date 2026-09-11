@@ -1,20 +1,34 @@
 ---
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SERVICE_VERTICAL_LINKS, LOCATION_LINKS } from "../../config";
+import { buildBreadcrumbSchema } from "../../utils/schema";
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services/" },
+]);
 ---
 
 <BaseLayout
     title="GroverHQ Services: Website, Apps, Bots, Automation & AI"
     description="Explore all digital services by GroverHQ — websites, apps, automation, CRM, integrations, internal tools, industry systems, AI workflows and more."
+    schema={breadcrumbSchema}
 >
-    <section class="bg-white text-gray-900 pt-24 px-6 lg:px-12">
+    <section class="bg-bg text-ink pt-24 px-6 lg:px-12">
         <div class="max-w-6xl mx-auto">
+            <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+                <a href="/" class="hover:text-accent transition">Home</a>
+                <span class="mx-2">/</span>
+                <span class="text-ink">Services</span>
+            </nav>
+
             <!-- Heading -->
             <div class="text-center mb-16">
                 <h1 class="text-4xl lg:text-6xl font-bold mb-4">
                     Our Services
                 </h1>
-                <p class="text-gray-600 text-lg max-w-2xl mx-auto">
+                <p class="text-muted text-lg max-w-2xl mx-auto">
                     A complete list of all digital solutions we offer — from
                     websites to automation, AI, CRM, internal tools, and
                     industry-ready systems.
@@ -30,88 +44,88 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <a
                             href="#websites"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Websites
-                        </a>
+                            Websites</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#selling"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Online Selling
-                        </a>
+                            Online Selling</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#crm"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            CRM
-                        </a>
+                            CRM</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#operations"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Operations
-                        </a>
+                            Operations</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#industry"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Industry Systems
-                        </a>
+                            Industry Systems</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#automation"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Automation
-                        </a>
+                            Automation</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#integrations"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Integrations
-                        </a>
+                            Integrations</a
+                        >
                     </li>
 
                     <li>
                         <a
                             href="#admin"
                             class="flex items-center justify-center h-16 px-3 text-center leading-tight
-                bg-gray-100 rounded-xl border border-gray-200
-                hover:bg-gray-200 hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
-                            Admin Tools
-                        </a>
+                            Admin Tools</a
+                        >
                     </li>
                 </ul>
             </nav>
@@ -121,21 +135,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                 <a
                     href="/GroverHQ_Services_Full.pdf"
                     target="_blank"
-                    class="px-8 py-4 bg-gray-900 text-white rounded-lg font-medium hover:bg-black transition-all duration-200"
+                    class="px-8 py-4 bg-accent text-accent-ink rounded-lg font-medium hover:opacity-90 transition-all duration-200"
                 >
-                    Download Full Services Menu (PDF)
-                </a>
+                    Download Full Services Menu (PDF)</a
+                >
             </div>
 
             <div class="mt-24 space-y-20">
                 <section
                     id="websites"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Websites & Online Presence
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -143,68 +157,64 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 Business Website <span
-                                    class="text-gray-500 text-sm">₹40,000+</span
+                                    class="text-muted text-sm">₹40,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Modern, fast, SEO-ready.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Product Catalog <span
-                                    class="text-gray-500 text-sm">₹50,000+</span
+                                Product Catalog <span class="text-muted text-sm"
+                                    >₹50,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Filters, galleries.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Landing Pages <span
-                                    class="text-gray-500 text-sm">₹12,000+</span
+                                Landing Pages <span class="text-muted text-sm"
+                                    >₹12,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 High-conversion.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Google Business Profile <span
-                                    class="text-gray-500 text-sm">₹10,000+</span
+                                    class="text-muted text-sm">₹10,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                Optimization.
-                            </p>
+                            </h3><p class="text-muted text-sm">Optimization.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 WhatsApp Business Setup <span
-                                    class="text-gray-500 text-sm">₹5,000+</span
+                                    class="text-muted text-sm">₹5,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Catalog + replies.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Domain + Email + Hosting <span
-                                    class="text-gray-500 text-sm">₹5,000+</span
+                                    class="text-muted text-sm">₹5,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                Setup + DNS.
-                            </p>
+                            </h3><p class="text-muted text-sm">Setup + DNS.</p>
                         </div>
                     </div>
                 </section>
 
                 <section
                     id="selling"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Online Selling & Payments
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -212,54 +222,50 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 E‑commerce Store <span
-                                    class="text-gray-500 text-sm">₹75,000+</span
+                                    class="text-muted text-sm">₹75,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Cart + checkout.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Ordering & Delivery <span
-                                    class="text-gray-500 text-sm">₹50,000+</span
+                                    class="text-muted text-sm">₹50,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Tracking + updates.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Inventory & Stock <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                    class="text-muted text-sm">₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                Stock alerts.
-                            </p>
+                            </h3><p class="text-muted text-sm">Stock alerts.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Distributor Orders <span
-                                    class="text-gray-500 text-sm">₹50,000+</span
+                                    class="text-muted text-sm">₹50,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                B2B ordering.
-                            </p>
+                            </h3><p class="text-muted text-sm">B2B ordering.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Subscription Billing <span
-                                    class="text-gray-500 text-sm">₹35,000+</span
+                                    class="text-muted text-sm">₹35,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Recurring payments.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 WhatsApp Ordering <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                    class="text-muted text-sm">₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Catalog + flow.
                             </p>
                         </div>
@@ -268,67 +274,67 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
                 <section
                     id="crm"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         CRM & Customer Loyalty
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
                     >
                         <div>
                             <h3 class="font-semibold">
-                                CRM System <span class="text-gray-500 text-sm"
+                                CRM System <span class="text-muted text-sm"
                                     >₹35,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Leads + customers.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Automated Follow‑ups <span
-                                    class="text-gray-500 text-sm">₹15,000+</span
+                                    class="text-muted text-sm">₹15,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 WhatsApp + email.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Review Automation <span
-                                    class="text-gray-500 text-sm">₹15,000+</span
+                                    class="text-muted text-sm">₹15,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Google + WhatsApp.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Loyalty & Rewards <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                    class="text-muted text-sm">₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Points + cashback.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Referral Program <span
-                                    class="text-gray-500 text-sm">₹15,000+</span
+                                    class="text-muted text-sm">₹15,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Tracking + rewards.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Chatbots <span class="text-gray-500 text-sm"
+                                Chatbots <span class="text-muted text-sm"
                                     >₹20,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 FAQ + lead bots.
                             </p>
                         </div>
@@ -337,49 +343,45 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
                 <section
                     id="operations"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Operations & Internal Tools
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
                     >
                         <div>
                             <h3 class="font-semibold">
-                                Billing System <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                Billing System <span class="text-muted text-sm"
+                                    >₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                GST + PDFs.
-                            </p>
+                            </h3><p class="text-muted text-sm">GST + PDFs.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Attendance & Payroll <span
-                                    class="text-gray-500 text-sm">₹30,000+</span
+                                    class="text-muted text-sm">₹30,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Staff + reports.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Appointment System <span
-                                    class="text-gray-500 text-sm">₹18,000+</span
+                                    class="text-muted text-sm">₹18,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                Scheduling.
-                            </p>
+                            </h3><p class="text-muted text-sm">Scheduling.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Ticket System <span
-                                    class="text-gray-500 text-sm">₹30,000+</span
+                                Ticket System <span class="text-muted text-sm"
+                                    >₹30,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Complaints + SLA.
                             </p>
                         </div>
@@ -387,83 +389,83 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 Field Staff Mgmt <span
-                                    class="text-gray-500 text-sm">₹40,000+</span
+                                    class="text-muted text-sm">₹40,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Tracking + tasks.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Vendor & Purchase <span
-                                    class="text-gray-500 text-sm">₹30,000+</span
+                                    class="text-muted text-sm">₹30,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 PO + inventory.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Document Mgmt <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                Document Mgmt <span class="text-muted text-sm"
+                                    >₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Files + access.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Project & Tasks <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                Project & Tasks <span class="text-muted text-sm"
+                                    >₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Teams + deadlines.
                             </p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Expense OCR <span class="text-gray-500 text-sm"
+                                Expense OCR <span class="text-muted text-sm"
                                     >₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Scan + extract.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Vendor KYC <span class="text-gray-500 text-sm"
+                                Vendor KYC <span class="text-muted text-sm"
                                     >₹15,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Forms + verify.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Asset Management <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                    class="text-muted text-sm">₹25,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">QR + logs.</p>
+                            </h3><p class="text-muted text-sm">QR + logs.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Forms & Approvals <span
-                                    class="text-gray-500 text-sm">₹18,000+</span
+                                    class="text-muted text-sm">₹18,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">Workflows.</p>
+                            </h3><p class="text-muted text-sm">Workflows.</p>
                         </div>
                     </div>
                 </section>
 
                 <section
                     id="industry"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Industry‑Ready Systems
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -471,53 +473,53 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 Education System <span
-                                    class="text-gray-500 text-sm">₹50,000+</span
+                                    class="text-muted text-sm">₹50,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Students + fees.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Clinic System <span
-                                    class="text-gray-500 text-sm">₹60,000+</span
+                                Clinic System <span class="text-muted text-sm"
+                                    >₹60,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 EMR + billing.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Retail & Distribution <span
-                                    class="text-gray-500 text-sm">₹50,000+</span
+                                    class="text-muted text-sm">₹50,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Inventory + flow.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                AMC System <span class="text-gray-500 text-sm"
+                                AMC System <span class="text-muted text-sm"
                                     >₹35,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">Renewals.</p>
+                            </h3><p class="text-muted text-sm">Renewals.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Agency Workflow <span
-                                    class="text-gray-500 text-sm">₹30,000+</span
+                                Agency Workflow <span class="text-muted text-sm"
+                                    >₹30,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Tasks + approvals.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Hospitality Booking <span
-                                    class="text-gray-500 text-sm">₹40,000+</span
+                                    class="text-muted text-sm">₹40,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Rooms + payments.
                             </p>
                         </div>
@@ -526,12 +528,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
                 <section
                     id="automation"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Automation & Intelligence
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -539,55 +541,53 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 Workflow Automation <span
-                                    class="text-gray-500 text-sm">₹20,000+</span
+                                    class="text-muted text-sm">₹20,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Multi-step flows.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Auto‑Invoicing <span
-                                    class="text-gray-500 text-sm">₹15,000+</span
+                                Auto‑Invoicing <span class="text-muted text-sm"
+                                    >₹15,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 PDF + reminders.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 Low‑Stock Alerts <span
-                                    class="text-gray-500 text-sm">₹12,000+</span
+                                    class="text-muted text-sm">₹12,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
-                                WhatsApp/SMS.
-                            </p>
+                            </h3><p class="text-muted text-sm">WhatsApp/SMS.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                AI FAQ Bot <span class="text-gray-500 text-sm"
+                                AI FAQ Bot <span class="text-muted text-sm"
                                     >₹30,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Trained on data.
                             </p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                OCR Tools <span class="text-gray-500 text-sm"
+                                OCR Tools <span class="text-muted text-sm"
                                     >₹20,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Scan + extract.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
                                 WhatsApp Micro‑tools <span
-                                    class="text-gray-500 text-sm">₹10,000+</span
+                                    class="text-muted text-sm">₹10,000+</span
                                 >
-                            </h3><p class="text-gray-600 text-sm">
+                            </h3><p class="text-muted text-sm">
                                 Mini workflows.
                             </p>
                         </div>
@@ -596,12 +596,12 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 
                 <section
                     id="integrations"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Integrations, Sync Tools & APIs
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -609,75 +609,67 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 Tally Integration <span
-                                    class="text-gray-500 text-sm">₹20,000+</span
+                                    class="text-muted text-sm">₹20,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Invoices + ledger.
-                            </p>
+                            <p class="text-muted text-sm">Invoices + ledger.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Zoho Books/CRM <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                Zoho Books/CRM <span class="text-muted text-sm"
+                                    >₹25,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">Sync + logs.</p>
+                            <p class="text-muted text-sm">Sync + logs.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Payment Gateway <span
-                                    class="text-gray-500 text-sm">₹12,000+</span
+                                Payment Gateway <span class="text-muted text-sm"
+                                    >₹12,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Razorpay/Stripe.
-                            </p>
+                            <p class="text-muted text-sm">Razorpay/Stripe.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Shiprocket <span class="text-gray-500 text-sm"
+                                Shiprocket <span class="text-muted text-sm"
                                     >₹15,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Orders + tracking.
-                            </p>
+                            <p class="text-muted text-sm">Orders + tracking.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
                                 Google Sheets Sync <span
-                                    class="text-gray-500 text-sm">₹20,000+</span
+                                    class="text-muted text-sm">₹20,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">Dashboards.</p>
+                            <p class="text-muted text-sm">Dashboards.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                WhatsApp API <span class="text-gray-500 text-sm"
+                                WhatsApp API <span class="text-muted text-sm"
                                     >₹25,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Templates + CRM.
-                            </p>
+                            <p class="text-muted text-sm">Templates + CRM.</p>
                         </div>
                     </div>
                 </section>
 
                 <section
                     id="admin"
-                    class="fade-up p-8 bg-gray-50 rounded-2xl border border-gray-200 mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
                 >
                     <h2 class="text-3xl font-bold mb-2">
                         Business Admin & Utility Tools
                     </h2>
-                    <div class="h-1 w-20 bg-black mb-8"></div>
+                    <div class="h-1 w-20 bg-accent mb-8"></div>
 
                     <div
                         class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -685,140 +677,184 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
                         <div>
                             <h3 class="font-semibold">
                                 Quotations & Estimates <span
-                                    class="text-gray-500 text-sm">₹12,000+</span
+                                    class="text-muted text-sm">₹12,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                PDF + approvals.
-                            </p>
+                            <p class="text-muted text-sm">PDF + approvals.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Purchase Orders <span
-                                    class="text-gray-500 text-sm">₹15,000+</span
-                                >
-                            </h3>
-                            <p class="text-gray-600 text-sm">PO + tracking.</p>
-                        </div>
-
-                        <div>
-                            <h3 class="font-semibold">
-                                E‑Signatures <span class="text-gray-500 text-sm"
+                                Purchase Orders <span class="text-muted text-sm"
                                     >₹15,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">Secure signing.</p>
+                            <p class="text-muted text-sm">PO + tracking.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Knowledge Base <span
-                                    class="text-gray-500 text-sm">₹20,000+</span
+                                E‑Signatures <span class="text-muted text-sm"
+                                    >₹15,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">SOP + docs.</p>
+                            <p class="text-muted text-sm">Secure signing.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Customer Portal <span
-                                    class="text-gray-500 text-sm">₹30,000+</span
+                                Knowledge Base <span class="text-muted text-sm"
+                                    >₹20,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
+                            <p class="text-muted text-sm">SOP + docs.</p>
+                        </div>
+
+                        <div>
+                            <h3 class="font-semibold">
+                                Customer Portal <span class="text-muted text-sm"
+                                    >₹30,000+</span
+                                >
+                            </h3>
+                            <p class="text-muted text-sm">
                                 Invoices + tickets.
                             </p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Vendor Portal <span
-                                    class="text-gray-500 text-sm">₹30,000+</span
+                                Vendor Portal <span class="text-muted text-sm"
+                                    >₹30,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">PO + KYC.</p>
+                            <p class="text-muted text-sm">PO + KYC.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Staff Directory <span
-                                    class="text-gray-500 text-sm">₹8,000+</span
+                                Staff Directory <span class="text-muted text-sm"
+                                    >₹8,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Profiles + roles.
-                            </p>
+                            <p class="text-muted text-sm">Profiles + roles.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
                                 Leave Management <span
-                                    class="text-gray-500 text-sm">₹15,000+</span
+                                    class="text-muted text-sm">₹15,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
+                            <p class="text-muted text-sm">
                                 Requests + calendar.
                             </p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                Internal Chat <span
-                                    class="text-gray-500 text-sm">₹20,000+</span
+                                Internal Chat <span class="text-muted text-sm"
+                                    >₹20,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">Teams + files.</p>
+                            <p class="text-muted text-sm">Teams + files.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
-                                File Sharing <span class="text-gray-500 text-sm"
+                                File Sharing <span class="text-muted text-sm"
                                     >₹15,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Storage + access.
-                            </p>
+                            <p class="text-muted text-sm">Storage + access.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
                                 Staff Communication <span
-                                    class="text-gray-500 text-sm">₹12,000+</span
+                                    class="text-muted text-sm">₹12,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
-                                Updates + alerts.
-                            </p>
+                            <p class="text-muted text-sm">Updates + alerts.</p>
                         </div>
 
                         <div>
                             <h3 class="font-semibold">
                                 Shift & Roster Mgmt <span
-                                    class="text-gray-500 text-sm">₹25,000+</span
+                                    class="text-muted text-sm">₹25,000+</span
                                 >
                             </h3>
-                            <p class="text-gray-600 text-sm">
+                            <p class="text-muted text-sm">
                                 Shifts + attendance.
                             </p>
                         </div>
                     </div>
                 </section>
             </div>
+
+            <!-- By Industry -->
+            <div class="mt-24">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold mb-2">By Industry</h2>
+                    <p class="text-muted max-w-2xl mx-auto">
+                        Specialized website builds for industries we've already
+                        shipped real, live projects in.
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {
+                        SERVICE_VERTICAL_LINKS.map((link) => (
+                            <a
+                                href={link.href}
+                                class="block p-8 bg-surface border border-border rounded-xl hover:border-accent hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                            >
+                                <h3 class="text-xl font-semibold mb-2">
+                                    {link.name}
+                                </h3>
+                                <p class="text-muted text-sm">
+                                    See the case study and what's included →
+                                </p>
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
+
+            <!-- Where We Work -->
+            <div class="mt-20 pb-24">
+                <div class="text-center mb-10">
+                    <h2 class="text-3xl font-bold mb-2">Where We Work</h2>
+                    <p class="text-muted max-w-2xl mx-auto">
+                        Based in Mohali, serving the tricity and Delhi NCR.
+                    </p>
+                </div>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                    {
+                        LOCATION_LINKS.map((link) => (
+                            <a
+                                href={link.href}
+                                class="flex items-center justify-center h-16 px-3 text-center leading-tight
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                            >
+                                {link.name}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
         </div>
     </section>
-    <section class="fade-up p-12 bg-black text-white text-center">
+    <section class="fade-up p-12 bg-accent text-accent-ink text-center">
         <h2 class="text-3xl font-bold mb-4">Ready to Start Your Project?</h2>
-        <p class="text-neutral-300 mb-8">
-            Let’s build something modern, fast and reliable for your business.
+        <p class="text-accent-ink/80 mb-8">
+            Let's build something modern, fast and reliable for your business.
         </p>
 
         <a
             href="/#contact"
-            class="inline-block px-8 py-4 bg-white text-black rounded-md font-medium hover:bg-neutral-200 transition"
+            class="inline-block px-8 py-4 bg-bg text-ink rounded-md font-medium hover:opacity-90 transition"
         >
-            Start a Project
-        </a>
+            Start a Project</a
+        >
     </section>
 </BaseLayout>
