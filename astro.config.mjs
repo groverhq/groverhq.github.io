@@ -37,7 +37,6 @@ export default defineConfig({
       minify: 'terser',
       cssCodeSplit: true,
       terserOptions: {
-        // @ts-expect-error - compress is valid Terser option not in type definitions
         compress: {
           drop_console: true
         },
