@@ -1,0 +1,312 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG } from "../../config";
+import { buildBreadcrumbSchema, buildFAQSchema } from "../../utils/schema";
+
+const pageTitle = "Packages | GroverHQ";
+const pageDescription =
+    "GroverHQ's most popular bundled packages — a one-time website + Google Business Profile setup, and ongoing combined GBP + website maintenance. Add-ons available for e-commerce, appointment booking, CRM, and more.";
+
+const faqs = [
+    {
+        question: "What's included in the Website + Discoverability Setup?",
+        answer: "A full website built from scratch — home, services, about, and contact pages, WhatsApp-first enquiries, mobile-first design — paired with complete Google Business Profile optimization, so your business is set up correctly on both Search and Maps from day one. Hosting is included; you only need to own the domain.",
+    },
+    {
+        question:
+            "How is the GBP + Website Maintenance package different from the one-time build?",
+        answer: "The one-time package builds the site and sets up your Google Business Profile. The monthly maintenance package keeps both running afterward — weekly GBP management, ongoing website technical and SEO maintenance, and regular reporting. The first month is included free with the one-time build.",
+    },
+    {
+        question:
+            "Can I add e-commerce, appointment booking, or other features later?",
+        answer: "Yes. Both packages are built on a modular system — e-commerce, appointment booking with Google Meet, CRM, payment gateways, and other add-ons can be added anytime as independent mini-projects, without redoing any of the original build.",
+    },
+];
+
+const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Packages", url: "/packages/" },
+]);
+
+const faqSchema = buildFAQSchema(faqs);
+
+const offerSchema = [
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "Website + Google Business Profile Setup",
+        provider: {
+            "@type": "Organization",
+            name: SITE_CONFIG.name,
+            url: SITE_CONFIG.url,
+        },
+        offers: {
+            "@type": "Offer",
+            price: "50000",
+            priceCurrency: "INR",
+            url: `${SITE_CONFIG.url}/packages/`,
+        },
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        serviceType: "GBP + Website Maintenance",
+        provider: {
+            "@type": "Organization",
+            name: SITE_CONFIG.name,
+            url: SITE_CONFIG.url,
+        },
+        offers: {
+            "@type": "Offer",
+            price: "5000",
+            priceCurrency: "INR",
+            url: `${SITE_CONFIG.url}/packages/`,
+        },
+    },
+];
+---
+
+<BaseLayout
+    title={pageTitle}
+    description={pageDescription}
+    schema={[...offerSchema, breadcrumbSchema, faqSchema]}
+>
+    <section class="py-24 px-6 lg:px-12 max-w-5xl mx-auto">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+            <a href="/" class="hover:text-accent transition">Home</a>
+            <span class="mx-2">/</span>
+            <span class="text-ink">Packages</span>
+        </nav>
+
+        <div class="text-center mb-16">
+            <h1 class="text-4xl lg:text-6xl font-bold mb-4">Packages</h1>
+            <p class="text-muted text-lg max-w-2xl mx-auto">
+                The two bundles most clients start with — a one-time build to
+                get found on Google, and ongoing management to stay found.
+                Prefer to pick services individually instead? See our
+                <a
+                    href="/services/"
+                    class="text-accent underline hover:opacity-80"
+                >
+                    full services & pricing</a
+                >
+                page.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Package 1: One-time build -->
+            <div
+                class="relative pt-12 px-8 pb-8 bg-surface border border-border rounded-2xl"
+            >
+                <span
+                    class="absolute -top-4 left-8 px-3 py-1 bg-accent text-accent-ink text-xs font-semibold rounded-full shadow-md"
+                >
+                    Most Popular
+                </span>
+
+                <h2 class="text-2xl font-bold mb-1">
+                    Website + Discoverability Setup
+                </h2>
+                <p class="text-accent text-3xl font-bold mb-4">
+                    ₹50,000 <span class="text-muted text-base font-normal"
+                        >one-time</span
+                    >
+                </p>
+                <p class="text-ink mb-6">
+                    A complete website built from scratch, paired with full
+                    Google Business Profile optimization — so your business
+                    shows up correctly on Search and Maps from day one.
+                </p>
+
+                <ul class="text-muted text-sm space-y-2 mb-8">
+                    <li>• Fast, SEO-optimized website — hosting included</li>
+                    <li>• Full Google Business Profile setup & optimization</li>
+                    <li>• WhatsApp-first enquiry flow, mobile-first design</li>
+                    <li>• Go-live in 3 weeks from receiving content</li>
+                    <li>• First month of maintenance (below) included free</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-3">
+                    <a
+                        href="/#contact"
+                        class="px-6 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+                    >
+                        Start a Project</a
+                    >
+                    <a
+                        href="/Website-Discoverability-Setup.pdf"
+                        target="_blank"
+                        class="px-6 py-3 border border-border text-ink font-medium rounded-full hover:border-accent transition"
+                    >
+                        Full Details (PDF)</a
+                    >
+                </div>
+            </div>
+
+            <!-- Package 2: Ongoing maintenance -->
+            <div
+                class="relative pt-12 px-8 pb-8 bg-surface border border-border rounded-2xl"
+            >
+                <span
+                    class="absolute -top-4 left-8 px-3 py-1 bg-accent text-accent-ink text-xs font-semibold rounded-full shadow-md"
+                >
+                    Most Popular
+                </span>
+
+                <h2 class="text-2xl font-bold mb-1">
+                    GBP + Website Maintenance
+                </h2>
+                <p class="text-accent text-3xl font-bold mb-4">
+                    ₹5,000 <span class="text-muted text-base font-normal"
+                        >/ month</span
+                    >
+                </p>
+                <p class="text-ink mb-6">
+                    One combined monthly package that keeps both your Google
+                    Business Profile and your website healthy, current, and
+                    visible — no need to manage two separate services.
+                </p>
+
+                <ul class="text-muted text-sm space-y-2 mb-8">
+                    <li>• Weekly Google Business Profile management</li>
+                    <li>• Ongoing website technical & SEO maintenance</li>
+                    <li>• Weekly mini-reports, quarterly full report</li>
+                    <li>• Search Console review & indexing checks</li>
+                    <li>• Minor SEO fixes and small content corrections</li>
+                </ul>
+
+                <div class="flex flex-wrap gap-3">
+                    <a
+                        href="/#contact"
+                        class="px-6 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+                    >
+                        Start a Project</a
+                    >
+                    <a
+                        href="/Website-Discoverability-Setup.pdf"
+                        target="_blank"
+                        class="px-6 py-3 border border-border text-ink font-medium rounded-full hover:border-accent transition"
+                    >
+                        Full Details (PDF)</a
+                    >
+                </div>
+                <p class="text-muted text-xs mt-3">
+                    See Section 2 of the PDF for maintenance-only scope.
+                </p>
+            </div>
+        </div>
+
+        <!-- Add-Ons -->
+        <div class="mt-16">
+            <h2 class="text-2xl font-bold text-center mb-2">Common Add-Ons</h2>
+            <p class="text-muted text-center max-w-2xl mx-auto mb-8">
+                Not included in the base packages, but easy to add on. Priced on
+                request — see the PDF above for full scope.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+                <a
+                    href="/services/#selling"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >E-Commerce Store (Lite)</a
+                >
+                <a
+                    href="/services/#selling"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >E-Commerce Store (Full)</a
+                >
+                <a
+                    href="/services/#integrations"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Payment Gateway Integration</a
+                >
+                <a
+                    href="/services/#operations"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Appointment Booking + Google Meet</a
+                >
+                <a
+                    href="/services/#crm"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >CRM & Lead Management</a
+                >
+                <a
+                    href="/services/#admin"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Customer Login Portal</a
+                >
+                <a
+                    href="/services/#websites"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Blog / Content Management</a
+                >
+                <a
+                    href="/services/#websites"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Multi-Language Support</a
+                >
+                <a
+                    href="/services/#crm"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Live Chat Widget</a
+                >
+                <a
+                    href="/services/#crm"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Loyalty & Rewards Program</a
+                >
+                <a
+                    href="/services/#admin"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Advanced Analytics Dashboard</a
+                >
+                <a
+                    href="/services/#selling"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Inventory Management</a
+                >
+                <a
+                    href="/services/#admin"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Staff Scheduling</a
+                >
+                <a
+                    href="/services/#admin"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Custom Quotation / Invoice Generator</a
+                >
+                <a
+                    href="/services/"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Google Ads Management</a
+                >
+                <a
+                    href="/services/"
+                    class="px-4 py-2 bg-surface border border-border rounded-full text-sm hover:border-accent transition"
+                    >Meta Ads Management</a
+                >
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="mt-20">
+            <h2 class="text-2xl font-bold text-center mb-8">
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-6 max-w-3xl mx-auto">
+                {
+                    faqs.map((faq) => (
+                        <div class="border-b border-border pb-6">
+                            <h3 class="font-semibold text-lg mb-2">
+                                {faq.question}
+                            </h3>
+                            <p class="text-muted">{faq.answer}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+    </section>
+</BaseLayout>
