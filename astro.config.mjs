@@ -18,19 +18,13 @@ export default defineConfig({
 
         if (depth === 0) {
           item.priority = 1.0; // Home
+          item.changefreq = ChangeFreqEnum.WEEKLY; // Home page changes weekly
         } else if (depth === 1) {
           item.priority = 0.9; // Main pages
+          item.changefreq = ChangeFreqEnum.MONTHLY; // Main pages change monthly
         } else {
           item.priority = 0.8; // Deeper pages
-        }
-
-        // Add changefreq for better SEO
-        if (item.url.includes('/services')) {
-          item.changefreq = ChangeFreqEnum.WEEKLY;
-        } else if (item.url.includes('/work')) {
-          item.changefreq = ChangeFreqEnum.MONTHLY;
-        } else {
-          item.changefreq = ChangeFreqEnum.YEARLY;
+          item.changefreq = ChangeFreqEnum.YEARLY; // Deeper pages change yearly
         }
 
         return item;
