@@ -25,17 +25,22 @@ const resolvedOgImage = ogImage
   ? new URL(ogImage, siteOrigin).toString()
   : new URL(SITE_CONFIG.ogImage, siteOrigin).toString();
 
-// Organization schema stays anchored to the homepage (correct for an
-// Organization/LocalBusiness entity). Individual pages can pass a `schema`
-// prop — a single object, or an array (e.g. [Service, BreadcrumbList, FAQPage])
-// — to override or extend this default. Each entry renders as its own
-// JSON-LD <script> tag.
-const defaultSchema = { ...SCHEMA_ORG, url: siteOrigin.href };
-const schemaList = schemaProp
+// Organization schema is anchored to the homepage URL (correct for an
+// Organization/LocalBusiness entity) and now renders on EVERY page,
+// alongside whatever page-specific schema is passed in — e.g. a Service,
+// FAQPage, BreadcrumbList, or CreativeWork. Previously a custom `schema`
+// prop replaced the Organization schema entirely, meaning any page with
+// its own schema lost its entity markup. Now they combine: pass a single
+// object or an array via `schema`, and it's added to, not swapped for,
+// the site's Organization schema. Each entry renders as its own JSON-LD
+// <script> tag.
+const orgSchema = { ...SCHEMA_ORG, url: siteOrigin.href };
+const pageSchema = schemaProp
   ? Array.isArray(schemaProp)
     ? schemaProp
     : [schemaProp]
-  : [defaultSchema];
+  : [];
+const schemaList = [orgSchema, ...pageSchema];
 ---
 
 <html lang="en" data-theme="noir">
