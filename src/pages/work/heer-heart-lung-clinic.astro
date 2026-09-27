@@ -3,7 +3,7 @@ import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SITE_CONFIG } from "../../config";
-import { buildBreadcrumbSchema } from "../../utils/schema";
+import { buildBreadcrumbSchema, buildReviewSchema } from "../../utils/schema";
 import HeerDesktop from "../../assets/heer-desktop.png";
 import HeerMobile from "../../assets/heer-mobile.png";
 
@@ -29,12 +29,20 @@ const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Work", url: "/work/" },
     { name: "Heer Heart & Lung Clinic", url: "/work/heer-heart-lung-clinic/" },
 ]);
+
+const reviewSchema = buildReviewSchema({
+    author: "Dr. Parvesh Grover",
+    reviewBody:
+        "GroverHQ built our clinic website (heermedcentre.in) and the experience was excellent from start to finish. They understood exactly what a medical practice needs — clean design, easy appointment booking via WhatsApp, and a site that loads fast and looks professional. Highly recommend them for any healthcare or small business website.",
+    datePublished: "2026-09-22",
+    url: "https://maps.app.goo.gl/KuiygiEAapLRkxoq6",
+});
 ---
 
 <BaseLayout
     title={pageTitle}
     description={pageDescription}
-    schema={[caseStudySchema, breadcrumbSchema]}
+    schema={[caseStudySchema, breadcrumbSchema, reviewSchema]}
 >
     <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
         <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
@@ -96,6 +104,30 @@ const breadcrumbSchema = buildBreadcrumbSchema([
                 on their phone
             </li>
         </ul>
+
+        <h2 class="text-2xl font-semibold mt-12 mb-4">Client feedback</h2>
+        <figure class="border border-border rounded-xl p-8 mb-8 bg-surface/50">
+            <div class="text-accent mb-3" aria-hidden="true">★★★★★</div>
+            <blockquote class="text-ink text-lg italic mb-4">
+                “GroverHQ built our clinic website (heermedcentre.in) and the
+                experience was excellent from start to finish. They
+                understood exactly what a medical practice needs — clean
+                design, easy appointment booking via WhatsApp, and a site
+                that loads fast and looks professional. Highly recommend them
+                for any healthcare or small business website.”
+            </blockquote>
+            <figcaption class="text-muted">
+                — Dr. Parvesh Grover, Heer Heart &amp; Lung Super Speciality
+                Clinic ·{" "}
+                <a
+                    href="https://maps.app.goo.gl/KuiygiEAapLRkxoq6"
+                    target="_blank"
+                    rel="noopener"
+                    class="text-accent underline hover:opacity-80"
+                    >Google review</a
+                >
+            </figcaption>
+        </figure>
 
         <h2 class="text-2xl font-semibold mt-12 mb-4">Related</h2>
         <ul class="text-ink text-lg space-y-2 mb-8 list-disc pl-6">

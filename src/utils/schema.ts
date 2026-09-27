@@ -47,3 +47,44 @@ export function buildFAQSchema(
     })),
   };
 }
+
+/**
+ * Builds a Review JSON-LD object for a testimonial about GroverHQ.
+ * IMPORTANT: the review text, author, and rating here must also be
+ * visibly rendered on the page — same rule as FAQ markup.
+ */
+export function buildReviewSchema({
+  author,
+  reviewBody,
+  ratingValue = 5,
+  datePublished,
+  url,
+}: {
+  author: string;
+  reviewBody: string;
+  ratingValue?: number;
+  datePublished?: string;
+  url?: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    itemReviewed: {
+      "@type": "Organization",
+      name: SITE_CONFIG.name,
+      url: SITE_CONFIG.url,
+    },
+    author: {
+      "@type": "Person",
+      name: author,
+    },
+    reviewBody,
+    reviewRating: {
+      "@type": "Rating",
+      ratingValue,
+      bestRating: 5,
+    },
+    ...(datePublished ? { datePublished } : {}),
+    ...(url ? { url } : {}),
+  };
+}
