@@ -4,8 +4,6 @@ import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { CAMERA_VIEWER, CONTACT_INFO } from "../../config";
 import { buildBreadcrumbSchema } from "../../utils/schema";
-import liveSdPrice from "../../assets/camera-viewer/live-sd-price.jpg";
-import homeCameras from "../../assets/camera-viewer/home-cameras.jpg";
 import liveHd from "../../assets/camera-viewer/live-hd.jpg";
 
 const title = "Apps by GroverHQ | Camera Viewer for Samsung TV";
@@ -37,12 +35,6 @@ const facts = [
   ["Support", CONTACT_INFO.email],
 ];
 
-const docs = [
-  ["Privacy Policy", "/apps/camera-viewer/privacy/"],
-  ["Terms of Use", "/apps/camera-viewer/terms/"],
-  ["Security Policy", "/apps/camera-viewer/security/"],
-  ["Lawful Use Notice", "/apps/camera-viewer/lawful-use/"],
-];
 ---
 
 <BaseLayout
@@ -73,8 +65,8 @@ const docs = [
       <div class="grid grid-cols-1 lg:grid-cols-2">
         <a href={CAMERA_VIEWER.path} class="flex items-center bg-bg">
           <Image
-            src={liveSdPrice}
-            alt="GroverHQ Camera Viewer live view on a Samsung TV, with the free watermark and the unlock tile"
+            src={liveHd}
+            alt="GroverHQ Camera Viewer live view on a Samsung TV with the HD stream"
             width={960}
             format="webp"
             loading="lazy"
@@ -130,54 +122,6 @@ const docs = [
         ))
       }
     </dl>
-
-    <!-- More screens -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
-      <figure class="bg-surface border border-border rounded-xl overflow-hidden">
-        <Image
-          src={homeCameras}
-          alt="Camera Viewer home screen listing cameras found on the local network"
-          width={800}
-          format="webp"
-          loading="lazy"
-          class="w-full h-auto"
-        />
-        <figcaption class="px-4 py-3 text-sm text-muted">
-          Cameras found on your network
-        </figcaption>
-      </figure>
-      <figure class="bg-surface border border-border rounded-xl overflow-hidden">
-        <Image
-          src={liveHd}
-          alt="Camera Viewer live view with the Main (HD) stream"
-          width={800}
-          format="webp"
-          loading="lazy"
-          class="w-full h-auto"
-        />
-        <figcaption class="px-4 py-3 text-sm text-muted">
-          Live view in HD
-        </figcaption>
-      </figure>
-    </div>
-
-    <!-- Documents -->
-    <h2 class="text-2xl font-bold mb-4">Policies</h2>
-    <p class="text-muted max-w-3xl mb-4">
-      Clear, plain-language documents for the app. The same text is shown
-      inside the app itself.
-    </p>
-    <ul class="flex flex-wrap gap-x-6 gap-y-2 mb-16">
-      {
-        docs.map(([name, href]) => (
-          <li>
-            <a href={href} class="text-accent hover:opacity-80 transition">
-              {name}
-            </a>
-          </li>
-        ))
-      }
-    </ul>
 
     <!-- CTA -->
     <div class="border border-dashed border-border rounded-xl p-10 text-center">
