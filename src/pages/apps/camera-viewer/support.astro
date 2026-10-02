@@ -14,6 +14,13 @@ const breadcrumb = buildBreadcrumbSchema([
   { name: "Support", url: `${CAMERA_VIEWER.path}support/` },
 ]);
 
+const docs = [
+  ["Privacy Policy", "/apps/camera-viewer/privacy/"],
+  ["Terms of Use", "/apps/camera-viewer/terms/"],
+  ["Security Policy", "/apps/camera-viewer/security/"],
+  ["Lawful Use Notice", "/apps/camera-viewer/lawful-use/"],
+];
+
 const topics = [
   {
     heading: "My camera is not found by the scan",
@@ -61,6 +68,8 @@ const topics = [
     <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
       <a href="/" class="hover:text-accent transition">Home</a>
       <span class="mx-2">/</span>
+      <a href="/apps/" class="hover:text-accent transition">Apps</a>
+      <span class="mx-2">/</span>
       <a href={CAMERA_VIEWER.path} class="hover:text-accent transition"
         >Camera Viewer</a
       >
@@ -95,17 +104,18 @@ const topics = [
     </div>
 
     <div class="mt-14 pt-6 border-t border-border text-sm text-muted">
-      <a href="/apps/camera-viewer/privacy/" class="text-accent hover:opacity-80 transition"
-        >Privacy Policy</a
-      >
-      ·
-      <a href="/apps/camera-viewer/terms/" class="text-accent hover:opacity-80 transition"
-        >Terms of Use</a
-      >
-      ·
-      <a href="/apps/camera-viewer/lawful-use/" class="text-accent hover:opacity-80 transition"
-        >Lawful Use Notice</a
-      >
+      <p class="mb-3 text-ink font-medium">Camera Viewer documents</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {
+          docs.map(([name, href]) => (
+            <li>
+              <a href={href} class="text-accent hover:opacity-80 transition">
+                {name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
     </div>
   </section>
 </BaseLayout>

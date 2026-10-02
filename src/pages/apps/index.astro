@@ -2,9 +2,11 @@
 import "../../styles/global.css";
 import { Image } from "astro:assets";
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { CAMERA_VIEWER } from "../../config";
+import { CAMERA_VIEWER, CONTACT_INFO } from "../../config";
 import { buildBreadcrumbSchema } from "../../utils/schema";
 import liveSdPrice from "../../assets/camera-viewer/live-sd-price.jpg";
+import homeCameras from "../../assets/camera-viewer/home-cameras.jpg";
+import liveHd from "../../assets/camera-viewer/live-hd.jpg";
 
 const title = "Apps by GroverHQ | Camera Viewer for Samsung TV";
 const description =
@@ -13,6 +15,34 @@ const breadcrumb = buildBreadcrumbSchema([
   { name: "Home", url: "/" },
   { name: "Apps", url: "/apps/" },
 ]);
+
+const highlights = [
+  "Finds cameras on your network, or add one by IP address",
+  "IP cameras and multi-channel NVR/DVR recorders (RTSP / ONVIF)",
+  "Works with CP Plus, Hikvision, Dahua, Prama, Godrej and more",
+  "Everything runs on the TV: no account, no cloud, nothing sent to us",
+];
+
+const facts = [
+  ["Platform", "Samsung Smart TV (Tizen)"],
+  [
+    "Availability",
+    CAMERA_VIEWER.storeLive
+      ? "Samsung TV Store, India"
+      : "Coming soon to the Samsung TV Store, India",
+  ],
+  ["Price", `Free, with an optional HD unlock: ${CAMERA_VIEWER.priceText}`],
+  ["Works with", "IP cameras and NVR/DVR recorders that offer RTSP or ONVIF"],
+  ["Language", "English"],
+  ["Support", CONTACT_INFO.email],
+];
+
+const docs = [
+  ["Privacy Policy", "/apps/camera-viewer/privacy/"],
+  ["Terms of Use", "/apps/camera-viewer/terms/"],
+  ["Security Policy", "/apps/camera-viewer/security/"],
+  ["Lawful Use Notice", "/apps/camera-viewer/lawful-use/"],
+];
 ---
 
 <BaseLayout
@@ -21,37 +51,157 @@ const breadcrumb = buildBreadcrumbSchema([
   ogImage="/apps/camera-viewer/og.jpg"
   schema={breadcrumb}
 >
-  <section class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+  <section class="py-24 px-6 lg:px-12 max-w-5xl mx-auto">
     <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
       <a href="/" class="hover:text-accent transition">Home</a>
       <span class="mx-2">/</span>
       <span class="text-ink">Apps</span>
     </nav>
 
-    <h1 class="text-3xl lg:text-5xl font-bold mb-6">Apps</h1>
-    <p class="text-muted text-lg mb-10">
-      Products we build and run ourselves, alongside our work for clients.
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">Apps by GroverHQ</h1>
+    <p class="text-muted text-lg max-w-3xl mb-14">
+      Besides websites and custom software for clients across India, we build
+      and run a few products of our own. They are made in Mohali, work the way
+      we like software to work (simple, private, no surprises) and are
+      supported by us directly.
     </p>
 
-    <a
-      href={CAMERA_VIEWER.path}
-      class="block bg-surface border border-border rounded-xl overflow-hidden hover:border-accent transition-all duration-300"
+    <!-- Featured app -->
+    <div
+      class="bg-surface border border-border rounded-xl overflow-hidden mb-16"
     >
-      <Image
-        src={liveSdPrice}
-        alt="GroverHQ Camera Viewer live view on a Samsung TV"
-        width={960}
-        format="webp"
-        loading="lazy"
-        class="w-full h-auto"
-      />
-      <div class="p-8">
-        <h2 class="text-xl font-semibold mb-2">{CAMERA_VIEWER.name}</h2>
-        <p class="text-muted">
-          {CAMERA_VIEWER.tagline} Works with CP Plus, Hikvision, Dahua and other
-          RTSP/ONVIF cameras. Free, with an optional HD unlock.
-        </p>
+      <div class="grid grid-cols-1 lg:grid-cols-2">
+        <a href={CAMERA_VIEWER.path} class="flex items-center bg-bg">
+          <Image
+            src={liveSdPrice}
+            alt="GroverHQ Camera Viewer live view on a Samsung TV, with the free watermark and the unlock tile"
+            width={960}
+            format="webp"
+            loading="lazy"
+            class="w-full h-auto"
+          />
+        </a>
+        <div class="p-8 lg:p-10 flex flex-col">
+          <p class="text-accent font-medium mb-2">
+            App for Samsung Smart TV
+          </p>
+          <h2 class="text-2xl lg:text-3xl font-bold mb-3">
+            {CAMERA_VIEWER.name}
+          </h2>
+          <p class="text-muted mb-5">
+            Turn your Samsung TV into a live monitor for the IP cameras, CCTV
+            systems and NVRs already on your home or office network. No extra
+            screen, no phone app, no cables.
+          </p>
+          <ul class="space-y-2 text-muted mb-8 list-disc pl-5">
+            {highlights.map((h) => <li>{h}</li>)}
+          </ul>
+          <div class="flex flex-wrap gap-4 mt-auto">
+            <a
+              href={CAMERA_VIEWER.path}
+              class="px-7 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+            >
+              See details
+            </a>
+            <a
+              href="/apps/camera-viewer/support/"
+              class="px-7 py-3 border border-border rounded-full hover:border-accent transition"
+            >
+              Support
+            </a>
+          </div>
+        </div>
       </div>
-    </a>
+    </div>
+
+    <!-- At a glance -->
+    <h2 class="text-2xl font-bold mb-6">Camera Viewer at a glance</h2>
+    <dl
+      class="grid grid-cols-1 sm:grid-cols-[12rem_1fr] border border-border rounded-xl overflow-hidden mb-16"
+    >
+      {
+        facts.map(([k, v]) => (
+          <>
+            <dt class="bg-surface px-5 py-4 text-ink font-medium border-b border-border">
+              {k}
+            </dt>
+            <dd class="px-5 py-4 text-muted border-b border-border">{v}</dd>
+          </>
+        ))
+      }
+    </dl>
+
+    <!-- More screens -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-16">
+      <figure class="bg-surface border border-border rounded-xl overflow-hidden">
+        <Image
+          src={homeCameras}
+          alt="Camera Viewer home screen listing cameras found on the local network"
+          width={800}
+          format="webp"
+          loading="lazy"
+          class="w-full h-auto"
+        />
+        <figcaption class="px-4 py-3 text-sm text-muted">
+          Cameras found on your network
+        </figcaption>
+      </figure>
+      <figure class="bg-surface border border-border rounded-xl overflow-hidden">
+        <Image
+          src={liveHd}
+          alt="Camera Viewer live view with the Main (HD) stream"
+          width={800}
+          format="webp"
+          loading="lazy"
+          class="w-full h-auto"
+        />
+        <figcaption class="px-4 py-3 text-sm text-muted">
+          Live view in HD
+        </figcaption>
+      </figure>
+    </div>
+
+    <!-- Documents -->
+    <h2 class="text-2xl font-bold mb-4">Policies</h2>
+    <p class="text-muted max-w-3xl mb-4">
+      Clear, plain-language documents for the app. The same text is shown
+      inside the app itself.
+    </p>
+    <ul class="flex flex-wrap gap-x-6 gap-y-2 mb-16">
+      {
+        docs.map(([name, href]) => (
+          <li>
+            <a href={href} class="text-accent hover:opacity-80 transition">
+              {name}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- CTA -->
+    <div class="border border-dashed border-border rounded-xl p-10 text-center">
+      <h2 class="text-xl font-semibold mb-3">
+        Want an app or tool built for your business?
+      </h2>
+      <p class="text-muted mb-6">
+        The same team builds websites, apps, automation and internal tools for
+        clinics, designers, shops and growing companies.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/services/"
+          class="px-7 py-3 border border-border rounded-full hover:border-accent transition"
+        >
+          Our services
+        </a>
+        <a
+          href="/#contact"
+          class="px-7 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+        >
+          Start a Project
+        </a>
+      </div>
+    </div>
   </section>
 </BaseLayout>
