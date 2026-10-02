@@ -27,6 +27,17 @@ export default defineConfig({
           item.changefreq = ChangeFreqEnum.YEARLY; // Deeper pages change yearly
         }
 
+        // Legal / policy pages: indexable but low priority.
+        if (/\/(privacy|terms|security|lawful-use)\/$/.test(url.pathname)) {
+          item.priority = 0.3;
+          item.changefreq = ChangeFreqEnum.YEARLY;
+        }
+        // The Camera Viewer product page is a main landing page.
+        if (url.pathname === "/apps/camera-viewer/") {
+          item.priority = 0.9;
+          item.changefreq = ChangeFreqEnum.MONTHLY;
+        }
+
         return item;
       },
     }),

@@ -1,0 +1,111 @@
+---
+import "../../../styles/global.css";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { CAMERA_VIEWER, CONTACT_INFO } from "../../../config";
+import { buildBreadcrumbSchema } from "../../../utils/schema";
+
+const title = "Support | GroverHQ Camera Viewer";
+const description =
+  "Help for GroverHQ Camera Viewer on Samsung Smart TV: camera not found, no picture, login problems, subscription and contact details.";
+const breadcrumb = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Apps", url: "/apps/" },
+  { name: "Camera Viewer", url: CAMERA_VIEWER.path },
+  { name: "Support", url: `${CAMERA_VIEWER.path}support/` },
+]);
+
+const topics = [
+  {
+    heading: "My camera is not found by the scan",
+    body: [
+      "Check that the TV and the camera or recorder are on the same local network (same router or switch).",
+      "Use Add camera manually and type the camera's IP address. The usual RTSP port is 554.",
+      "Give the camera a fixed (static) IP address in your router so the address does not change.",
+    ],
+  },
+  {
+    heading: "It connects but there is no picture, or I get a login error",
+    body: [
+      "Check the user name and password. After a wrong password the app stops instead of retrying, to protect your camera from lockouts.",
+      "Make sure RTSP is switched on in the camera or recorder. Some models also need ONVIF switched on, and some need a separate ONVIF user (create one in the camera's settings and use it here).",
+      "Cloud-only Wi-Fi cameras that do not offer RTSP/ONVIF cannot be shown.",
+      "Cameras must use H.264 or H.265 video. For an NVR, pick the channel you want in the channel picker.",
+    ],
+  },
+  {
+    heading: "The picture starts slowly or is behind real time",
+    body: [
+      "Live streams usually take about 5 seconds to start and can be a few seconds behind. This is normal for now.",
+      "Do not rely on the app for security, alarms or any critical purpose.",
+    ],
+  },
+  {
+    heading: "There is no sound",
+    body: [
+      "Sound plays when the camera sends AAC audio. Some cameras send other formats (for example G.711), which are not supported yet. If your camera lets you choose the audio format, pick AAC.",
+    ],
+  },
+  {
+    heading: "Subscription, restore and refunds",
+    body: [
+      `The optional unlock (${CAMERA_VIEWER.priceText}) is sold and billed by Samsung Checkout. You can cancel in your Samsung account's subscription settings.`,
+      "After reinstalling the app or changing the TV, open the menu (top right) and choose Restore purchase.",
+      "Payments, cancellations and refunds are handled by Samsung under Samsung's terms. If you need help, write to us with your order details.",
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} schema={breadcrumb}>
+  <section class="py-24 px-6 lg:px-12 max-w-3xl mx-auto">
+    <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+      <a href="/" class="hover:text-accent transition">Home</a>
+      <span class="mx-2">/</span>
+      <a href={CAMERA_VIEWER.path} class="hover:text-accent transition"
+        >Camera Viewer</a
+      >
+      <span class="mx-2">/</span>
+      <span class="text-ink">Support</span>
+    </nav>
+
+    <h1 class="text-3xl lg:text-4xl font-bold mb-4">
+      GroverHQ Camera Viewer support
+    </h1>
+    <p class="text-muted mb-10">
+      Write to
+      <a
+        href={`mailto:${CONTACT_INFO.email}`}
+        class="text-accent hover:opacity-80 transition">{CONTACT_INFO.email}</a
+      > and tell us your TV model, camera or recorder brand and model, and what you see.
+    </p>
+
+    <div class="space-y-10">
+      {
+        topics.map((t) => (
+          <div>
+            <h2 class="text-xl font-semibold mb-3">{t.heading}</h2>
+            <ul class="list-disc pl-6 space-y-2 text-muted leading-relaxed">
+              {t.body.map((b) => (
+                <li>{b}</li>
+              ))}
+            </ul>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-14 pt-6 border-t border-border text-sm text-muted">
+      <a href="/apps/camera-viewer/privacy/" class="text-accent hover:opacity-80 transition"
+        >Privacy Policy</a
+      >
+      ·
+      <a href="/apps/camera-viewer/terms/" class="text-accent hover:opacity-80 transition"
+        >Terms of Use</a
+      >
+      ·
+      <a href="/apps/camera-viewer/lawful-use/" class="text-accent hover:opacity-80 transition"
+        >Lawful Use Notice</a
+      >
+    </div>
+  </section>
+</BaseLayout>

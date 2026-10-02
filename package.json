@@ -12,6 +12,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
+    "sync:legal": "node scripts/sync-camera-viewer-legal.mjs",
     "check": "astro check"
   },
   "dependencies": {

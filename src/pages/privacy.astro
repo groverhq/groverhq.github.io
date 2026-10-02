@@ -1,0 +1,102 @@
+---
+import "../styles/global.css";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { CONTACT_INFO } from "../config";
+import { buildBreadcrumbSchema } from "../utils/schema";
+
+const title = "Privacy Policy | GroverHQ Website";
+const description =
+  "How the GroverHQ website (groverhq.com) handles your information: the contact form, WhatsApp links and website analytics.";
+const breadcrumb = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Privacy Policy", url: "/privacy/" },
+]);
+
+const sections = [
+  {
+    heading: "Who we are",
+    body: [
+      `GroverHQ is a digital solutions company based in ${CONTACT_INFO.address}. You can reach us at ${CONTACT_INFO.email}.`,
+      "This policy covers the groverhq.com website. The GroverHQ Camera Viewer app for Samsung TVs has its own Privacy Policy, linked below, and collects no personal information.",
+    ],
+  },
+  {
+    heading: "What we collect",
+    body: [
+      "Contact form: if you send us a message, we receive the name, phone number and message you type. The form is handled by Formspree, which passes it to us by email. We use it only to reply to you and to discuss your project.",
+      "WhatsApp, phone and email links: if you tap them, the conversation happens in WhatsApp, your phone app or your email app, under their own policies. We keep the messages you send us.",
+      "Website analytics: we use Cloudflare Web Analytics to count visits and see which pages are read. It does not use cookies or track you across sites, and we do not see who you are.",
+      "Hosting: the site is hosted on GitHub Pages, which may keep technical logs such as IP addresses, under GitHub's own policy.",
+    ],
+  },
+  {
+    heading: "What we do not do",
+    body: [
+      "We do not sell your information, run advertising on this site, or build profiles of visitors.",
+    ],
+  },
+  {
+    heading: "How long we keep it",
+    body: [
+      "Enquiry messages are kept for as long as needed to deal with your request and for our business records, and are then deleted. Ask us to delete yours sooner at any time.",
+    ],
+  },
+  {
+    heading: "Your choices",
+    body: [
+      `You may ask us what information we hold about you, ask us to correct or delete it, or withdraw your consent, by writing to ${CONTACT_INFO.email}. We will reply within a reasonable time. Complaints can also be sent to the same address.`,
+    ],
+  },
+  {
+    heading: "Children",
+    body: [
+      "This website is not aimed at children, and we do not knowingly collect information from them.",
+    ],
+  },
+  {
+    heading: "Changes",
+    body: [
+      "We may update this policy. The date at the top shows when it last changed.",
+    ],
+  },
+];
+---
+
+<BaseLayout title={title} description={description} schema={breadcrumb}>
+  <section class="py-24 px-6 lg:px-12 max-w-3xl mx-auto">
+    <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+      <a href="/" class="hover:text-accent transition">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-ink">Privacy Policy</span>
+    </nav>
+
+    <h1 class="text-3xl lg:text-4xl font-bold mb-2">Privacy Policy</h1>
+    <p class="text-muted text-sm mb-10">
+      groverhq.com · Effective 2 October 2026
+    </p>
+
+    <div class="space-y-8">
+      {
+        sections.map((s) => (
+          <div>
+            <h2 class="text-ink text-lg font-semibold mb-3">{s.heading}</h2>
+            <div class="space-y-3 text-muted leading-relaxed">
+              {s.body.map((p) => (
+                <p>{p}</p>
+              ))}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <p class="mt-12 pt-6 border-t border-border text-sm text-muted">
+      Using our Samsung TV app? Read the
+      <a
+        href="/apps/camera-viewer/privacy/"
+        class="text-accent hover:opacity-80 transition"
+        >GroverHQ Camera Viewer Privacy Policy</a
+      >.
+    </p>
+  </section>
+</BaseLayout>

@@ -92,6 +92,7 @@ export const NAV_LINKS = [
   { name: "Packages", href: "/packages/" },
   { name: "Why Us", href: "/#why-us" },
   { name: "Work", href: "/work/" },
+  { name: "Apps", href: "/apps/" },
   { name: "About", href: "/#about" },
   { name: "Contact", href: "/#contact" },
 ];
@@ -186,4 +187,15 @@ export const SCHEMA_ORG = {
       },
     ],
   },
+};
+// GroverHQ Camera Viewer (Samsung Smart TV app) - facts used by the /apps/camera-viewer pages.
+// Keep in sync with the app and the Samsung store listing (see the app repo's PROJECT_NOTES.md).
+export const CAMERA_VIEWER = {
+  name: "GroverHQ Camera Viewer",
+  path: "/apps/camera-viewer/",
+  tagline: "Watch your IP cameras and NVRs live on your Samsung TV.",
+  // Flip to true and fill storeUrl when the Samsung TV Store listing is live.
+  storeLive: false,
+  storeUrl: "",
+  priceText: "₹99 per month + GST",
 };

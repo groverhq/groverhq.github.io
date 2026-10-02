@@ -1,0 +1,57 @@
+---
+// Renders the plain-text legal documents from src/data/camera-viewer-legal.json
+// (generated from the app's LegalTexts.cs - never edit that JSON by hand).
+// Format of the text: an ALL-CAPS line is a heading, "- " lines are bullets, other lines are paragraphs.
+interface Props {
+  body: string;
+}
+const { body } = Astro.props;
+
+type Block =
+  | { type: "h2"; text: string }
+  | { type: "p"; text: string }
+  | { type: "ul"; items: string[] };
+
+const isHeading = (l: string) => /^(\d+\.\s)?[A-Z0-9][A-Z0-9 ,&/'()-]{2,}$/.test(l);
+
+const blocks: Block[] = [];
+for (const raw of body.split("\n")) {
+  const line = raw.trimEnd();
+  if (!line.trim()) {
+    blocks.push({ type: "p", text: "" }); // paragraph break marker
+    continue;
+  }
+  const last = blocks[blocks.length - 1];
+  if (isHeading(line)) {
+    blocks.push({ type: "h2", text: line });
+  } else if (line.startsWith("- ")) {
+    if (last && last.type === "ul") last.items.push(line.slice(2));
+    else blocks.push({ type: "ul", items: [line.slice(2)] });
+  } else if (last && last.type === "p" && last.text !== "") {
+    last.text += " " + line;
+  } else if (last && last.type === "p" && last.text === "") {
+    last.text = line;
+  } else {
+    blocks.push({ type: "p", text: line });
+  }
+}
+const visible = blocks.filter((b) => !(b.type === "p" && b.text === ""));
+---
+
+<div class="space-y-4 text-muted leading-relaxed">
+  {
+    visible.map((b) =>
+      b.type === "h2" ? (
+        <h2 class="text-ink text-lg font-semibold pt-6">{b.text}</h2>
+      ) : b.type === "ul" ? (
+        <ul class="list-disc pl-6 space-y-2">
+          {b.items.map((i) => (
+            <li>{i}</li>
+          ))}
+        </ul>
+      ) : (
+        <p>{b.text}</p>
+      ),
+    )
+  }
+</div>
