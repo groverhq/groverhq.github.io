@@ -1,0 +1,73 @@
+---
+import "../../../styles/global.css";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import LegalDocument from "../../../components/LegalDocument.astro";
+import legal from "../../../data/camera-viewer-legal.json";
+import { buildBreadcrumbSchema } from "../../../utils/schema";
+
+export function getStaticPaths() {
+  return legal.documents.map((doc) => ({
+    params: { doc: doc.slug },
+    props: { doc },
+  }));
+}
+
+const { doc } = Astro.props;
+const title = `${doc.title} | GroverHQ Camera Viewer`;
+const description = `${doc.title} for GroverHQ Camera Viewer, the Samsung Smart TV app for watching IP cameras and NVRs. ${doc.effective}.`;
+const breadcrumb = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Apps", url: "/apps/" },
+  { name: "Camera Viewer", url: "/apps/camera-viewer/" },
+  { name: doc.title, url: `/apps/camera-viewer/${doc.slug}/` },
+]);
+const others = legal.documents.filter((d) => d.slug !== doc.slug);
+---
+
+<BaseLayout title={title} description={description} schema={breadcrumb}>
+  <section class="py-24 px-6 lg:px-12 max-w-3xl mx-auto">
+    <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+      <a href="/" class="hover:text-accent transition">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/apps/" class="hover:text-accent transition">Apps</a>
+      <span class="mx-2">/</span>
+      <a href="/apps/camera-viewer/" class="hover:text-accent transition"
+        >Camera Viewer</a
+      >
+      <span class="mx-2">/</span>
+      <span class="text-ink">{doc.title}</span>
+    </nav>
+
+    <h1 class="text-3xl lg:text-4xl font-bold mb-2">{doc.title}</h1>
+    <p class="text-muted mb-1">GroverHQ Camera Viewer</p>
+    <p class="text-muted text-sm mb-8">
+      {doc.effective} · Document version {legal.version}
+    </p>
+
+    <LegalDocument body={doc.body} />
+
+    <div class="mt-14 pt-6 border-t border-border text-sm text-muted">
+      <p class="mb-3 text-ink font-medium">Other Camera Viewer documents</p>
+      <ul class="flex flex-wrap gap-x-6 gap-y-2">
+        {
+          others.map((o) => (
+            <li>
+              <a
+                href={`/apps/camera-viewer/${o.slug}/`}
+                class="text-accent hover:opacity-80 transition"
+              >
+                {o.title}
+              </a>
+            </li>
+          ))
+        }
+        <li>
+          <a
+            href="/apps/camera-viewer/support/"
+            class="text-accent hover:opacity-80 transition">Support</a
+          >
+        </li>
+      </ul>
+    </div>
+  </section>
+</BaseLayout>

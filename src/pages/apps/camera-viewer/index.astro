@@ -1,0 +1,324 @@
+---
+import "../../../styles/global.css";
+import { Image } from "astro:assets";
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import { CAMERA_VIEWER, CONTACT_INFO, SITE_CONFIG } from "../../../config";
+import {
+  buildBreadcrumbSchema,
+  buildFAQSchema,
+} from "../../../utils/schema";
+import homeCameras from "../../../assets/camera-viewer/home-cameras.jpg";
+import liveHd from "../../../assets/camera-viewer/live-hd.jpg";
+import liveSdPrice from "../../../assets/camera-viewer/live-sd-price.jpg";
+import savedMenu from "../../../assets/camera-viewer/saved-camera-menu.jpg";
+
+const title = "GroverHQ Camera Viewer | CCTV & IP Cameras on Samsung TV";
+const description =
+  "Watch IP cameras, CCTV and NVR/DVR live on your Samsung Smart TV. Works with CP Plus, Hikvision, Dahua and other RTSP/ONVIF cameras. Free, with optional HD.";
+
+const screenshots = [
+  {
+    src: homeCameras,
+    alt: "Camera Viewer home screen listing cameras found on the local network",
+    caption: "Find cameras on your network",
+  },
+  {
+    src: liveHd,
+    alt: "Live view with the Main (HD) stream selected",
+    caption: "Live view, HD with the paid unlock",
+  },
+  {
+    src: savedMenu,
+    alt: "Saved camera menu with Connect, Rename and Delete",
+    caption: "Save and rename your cameras",
+  },
+  {
+    src: liveSdPrice,
+    alt: "Free live view with the watermark and the ₹99 per month unlock tile",
+    caption: "Free: standard definition with a small watermark",
+  },
+];
+
+const features = [
+  "Automatic network scan to find your cameras, or add one by IP address",
+  "Works with standalone IP cameras and multi-channel NVR/DVR recorders, with a channel picker",
+  "Switch between Sub (SD) and Main (HD) streams, with live audio when your camera sends AAC sound",
+  "Save cameras for one-button reconnect, and give each one your own name",
+  "Simple remote-control navigation: no typing beyond the one-time camera login",
+  "Try the built-in demo camera first, no hardware needed",
+  "Private by design: everything happens on your TV and your own network",
+];
+
+const faqs = [
+  {
+    question: "Which cameras and recorders work?",
+    answer:
+      "Any IP camera or NVR/DVR that offers RTSP video (H.264 or H.265) and/or ONVIF. That covers most security cameras sold in India, including CP Plus, Hikvision, Dahua, Prama, Godrej, Matrix, Zicom, Secureye, Uniview, TP-Link (Tapo/VIGI) and Reolink, plus generic cameras sold under other names. RTSP or ONVIF must be switched on in the camera or recorder, and some models need a separate ONVIF user. Cloud-only Wi-Fi cameras that do not offer RTSP/ONVIF will not work.",
+  },
+  {
+    question: "The scan does not find my camera. What now?",
+    answer:
+      "Make sure the TV and the camera or recorder are on the same local network, then use Add camera manually and type the camera's IP address (port 554 is the usual RTSP port). If you can, give the camera a fixed (static) IP address so it does not change.",
+  },
+  {
+    question: "Is it free?",
+    answer: `Yes. The free version plays the lower-resolution stream with a small moving GroverHQ watermark. An optional subscription (${CAMERA_VIEWER.priceText}, sold through Samsung Checkout) removes the watermark and unlocks the higher-resolution stream. If your camera has only one stream, or both streams have the same resolution, that stream is free.`,
+  },
+  {
+    question: "How do I cancel the subscription or get a refund?",
+    answer:
+      "Payments, cancellations and refunds are handled by Samsung Checkout under Samsung's terms. You can cancel in your Samsung account's subscription settings. If you need help, write to info@groverhq.com. After reinstalling the app, use Restore purchase in the app menu.",
+  },
+  {
+    question: "Does it record video or play back old footage?",
+    answer:
+      "No. It is a live viewer only: no recording, no playback and no seeking. Your recorder keeps the footage.",
+  },
+  {
+    question: "Does my video or camera password leave the TV?",
+    answer:
+      "No. Video goes straight from your camera to your TV. Saved camera passwords are encrypted and stay on the TV. The app has no GroverHQ server and sends no data to us. The only exception is a purchase: Samsung Checkout handles the payment and receives your Samsung account ID. Read the full Privacy Policy for details.",
+  },
+  {
+    question: "Why does video take a few seconds to start?",
+    answer:
+      "Live camera streams usually start in about 5 seconds, and the picture can be a few seconds behind real time. Because of this, the app is not a safety or alarm system.",
+  },
+  {
+    question: "Does it play sound?",
+    answer:
+      "Yes, when your camera sends AAC audio. Some cameras send other audio formats (such as G.711), which are not supported yet.",
+  },
+  {
+    question: "Which Samsung TVs and countries are supported?",
+    answer:
+      "Recent Samsung Smart TVs (Tizen), in India. The Samsung TV Store listing shows whether your TV is supported. The app is in English.",
+  },
+];
+
+const breadcrumb = buildBreadcrumbSchema([
+  { name: "Home", url: "/" },
+  { name: "Apps", url: "/apps/" },
+  { name: "Camera Viewer", url: CAMERA_VIEWER.path },
+]);
+const appSchema = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: CAMERA_VIEWER.name,
+  operatingSystem: "Tizen (Samsung Smart TV)",
+  applicationCategory: "UtilitiesApplication",
+  description: CAMERA_VIEWER.tagline,
+  url: new URL(CAMERA_VIEWER.path, SITE_CONFIG.url).toString(),
+  inLanguage: "en",
+  countriesSupported: "IN",
+  offers: {
+    "@type": "Offer",
+    price: "99",
+    priceCurrency: "INR",
+    description: "Optional monthly subscription, excluding GST. Free version available.",
+  },
+  publisher: { "@type": "Organization", name: SITE_CONFIG.name, url: SITE_CONFIG.url },
+};
+---
+
+<BaseLayout
+  title={title}
+  description={description}
+  ogImage="/apps/camera-viewer/og.jpg"
+  schema={[breadcrumb, appSchema, buildFAQSchema(faqs)]}
+>
+  <section class="py-24 px-6 lg:px-12 max-w-5xl mx-auto">
+    <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+      <a href="/" class="hover:text-accent transition">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/apps/" class="hover:text-accent transition">Apps</a>
+      <span class="mx-2">/</span>
+      <span class="text-ink">Camera Viewer</span>
+    </nav>
+
+    <p class="text-accent font-medium mb-3">
+      App for Samsung Smart TV · Made in India
+    </p>
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">GroverHQ Camera Viewer</h1>
+    <p class="text-muted text-lg lg:text-xl max-w-3xl mb-8">
+      Turn your Samsung TV into a live monitor for the IP cameras, CCTV systems
+      and NVRs/DVRs already on your home or office network. No extra screen, no
+      phone app, no cables.
+    </p>
+
+    <div class="flex flex-wrap items-center gap-4 mb-14">
+      {
+        CAMERA_VIEWER.storeLive && CAMERA_VIEWER.storeUrl ? (
+          <a
+            href={CAMERA_VIEWER.storeUrl}
+            class="px-8 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+          >
+            Get it on Samsung Smart TV
+          </a>
+        ) : (
+          <span class="px-8 py-3 bg-surface border border-border rounded-full text-ink">
+            Coming soon to Samsung Smart TVs in India
+          </span>
+        )
+      }
+      <a
+        href="/apps/camera-viewer/support/"
+        class="px-8 py-3 border border-border rounded-full hover:border-accent transition"
+      >
+        Support
+      </a>
+    </div>
+
+    <!-- Screenshots -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-20">
+      {
+        screenshots.map((s) => (
+          <figure class="bg-surface border border-border rounded-xl overflow-hidden">
+            <Image
+              src={s.src}
+              alt={s.alt}
+              width={960}
+              format="webp"
+              loading="lazy"
+              class="w-full h-auto"
+            />
+            <figcaption class="px-4 py-3 text-sm text-muted">
+              {s.caption}
+            </figcaption>
+          </figure>
+        ))
+      }
+    </div>
+
+    <!-- Everyday use -->
+    <h2 class="text-2xl lg:text-3xl font-bold mb-4">Always one button away</h2>
+    <p class="text-muted max-w-3xl mb-12">
+      Someone at the door, a quick check on the baby or the pet, a glance at
+      the shop counter or the office pantry: open the app, pick a camera and
+      you are watching, right on the TV that is already on.
+    </p>
+
+    <!-- Features -->
+    <h2 class="text-2xl lg:text-3xl font-bold mb-6">Key features</h2>
+    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-20">
+      {
+        features.map((f) => (
+          <li class="p-5 bg-surface border border-border rounded-xl text-muted">
+            {f}
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Free vs paid -->
+    <h2 class="text-2xl lg:text-3xl font-bold mb-6">Free and paid</h2>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20">
+      <div class="p-8 bg-surface border border-border rounded-xl">
+        <h3 class="text-xl font-semibold mb-2">Free</h3>
+        <p class="text-muted">
+          Live view at standard definition (the lower-resolution stream) with a
+          small moving GroverHQ watermark. Saved cameras, channel picker and
+          audio are all included.
+        </p>
+      </div>
+      <div class="p-8 bg-surface border border-accent rounded-xl">
+        <h3 class="text-xl font-semibold mb-2">
+          Unlock · {CAMERA_VIEWER.priceText}
+        </h3>
+        <p class="text-muted">
+          Removes the watermark and unlocks the higher-resolution (Main)
+          stream. Sold through Samsung Checkout, renews monthly until you
+          cancel it in your Samsung account's subscription settings. Use
+          Restore purchase in the app after a reinstall.
+        </p>
+      </div>
+    </div>
+
+    <!-- Compatibility -->
+    <h2 class="text-2xl lg:text-3xl font-bold mb-4">Compatibility</h2>
+    <p class="text-muted max-w-3xl mb-4">
+      Works with IP cameras and NVR/DVR recorders that offer RTSP and/or ONVIF
+      (H.264 or H.265 video). That covers most security cameras and recorders
+      sold in India, including CP Plus, Hikvision, Dahua, Prama, Godrej,
+      Matrix, Zicom, Secureye, Uniview, TP-Link (Tapo/VIGI), Reolink and other
+      RTSP/ONVIF-compliant systems, plus generic cameras sold under many other
+      names.
+    </p>
+    <p class="text-muted max-w-3xl mb-20">
+      Make sure RTSP/ONVIF is enabled on your camera or recorder; some models
+      need a separate ONVIF user. Cloud-only Wi-Fi cameras that do not offer
+      RTSP/ONVIF will not work. Your cameras must be on the same local network
+      as your TV. You are responsible for having the legal right to view every
+      camera you connect.
+    </p>
+
+    <!-- Privacy -->
+    <h2 class="text-2xl lg:text-3xl font-bold mb-4">Private by design</h2>
+    <p class="text-muted max-w-3xl mb-4">
+      Video decoding and rendering happen entirely on your TV. Camera passwords
+      are encrypted and stored on the TV only. No video, no camera credentials
+      and no usage data are sent to GroverHQ or anyone else. The one exception
+      is a purchase: Samsung Checkout handles the payment and receives your
+      Samsung account ID and purchase details.
+    </p>
+    <p class="mb-20">
+      <a
+        href="/apps/camera-viewer/privacy/"
+        class="text-accent hover:opacity-80 transition">Privacy Policy</a
+      >
+      ·
+      <a
+        href="/apps/camera-viewer/terms/"
+        class="text-accent hover:opacity-80 transition">Terms of Use</a
+      >
+      ·
+      <a
+        href="/apps/camera-viewer/security/"
+        class="text-accent hover:opacity-80 transition">Security Policy</a
+      >
+      ·
+      <a
+        href="/apps/camera-viewer/lawful-use/"
+        class="text-accent hover:opacity-80 transition">Lawful Use Notice</a
+      >
+    </p>
+
+    <!-- FAQ -->
+    <h2 class="text-2xl lg:text-3xl font-bold mb-6">Questions</h2>
+    <div class="space-y-4 mb-20">
+      {
+        faqs.map((f) => (
+          <details class="group bg-surface border border-border rounded-xl p-5">
+            <summary class="cursor-pointer text-ink font-medium">
+              {f.question}
+            </summary>
+            <p class="text-muted mt-3 leading-relaxed">{f.answer}</p>
+          </details>
+        ))
+      }
+    </div>
+
+    <div class="border border-dashed border-border rounded-xl p-10 text-center">
+      <h2 class="text-xl font-semibold mb-3">Need help?</h2>
+      <p class="text-muted mb-5">
+        Write to
+        <a
+          href={`mailto:${CONTACT_INFO.email}`}
+          class="text-accent hover:opacity-80 transition"
+          >{CONTACT_INFO.email}</a
+        >
+        or see the
+        <a
+          href="/apps/camera-viewer/support/"
+          class="text-accent hover:opacity-80 transition">support page</a
+        >.
+      </p>
+    </div>
+
+    <p class="text-xs text-muted mt-12">
+      Samsung, Tizen, Smart Hub and Samsung Checkout are trademarks of Samsung.
+      Camera brand names belong to their owners. GroverHQ is not affiliated
+      with, or endorsed by, Samsung or any camera brand.
+    </p>
+  </section>
+</BaseLayout>
