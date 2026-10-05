@@ -1,0 +1,18 @@
+---
+import {
+    FOUND_SERVICES,
+    ADS_SERVICES,
+    ADDON_SERVICES,
+    inr,
+} from "../data/pricing";
+
+interface Props {
+    id: string;
+}
+const item = [...FOUND_SERVICES, ...ADS_SERVICES, ...ADDON_SERVICES].find(
+    (i) => i.id === Astro.props.id,
+);
+if (!item) throw new Error(`Unknown price id: ${Astro.props.id}`);
+---
+
+<span class="text-muted text-sm">{inr(item.price)}{item.from ? "+" : ""}</span>

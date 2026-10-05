@@ -3,17 +3,32 @@ import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { SERVICE_VERTICAL_LINKS, LOCATION_LINKS } from "../../config";
 import { buildBreadcrumbSchema } from "../../utils/schema";
+import PriceTag from "../../components/PriceTag.astro";
+import PriceCard from "../../components/PriceCard.astro";
+import { ADS_SERVICES, buildCatalogSchema } from "../../data/pricing";
+import { SITE_CONFIG } from "../../config";
 
 const breadcrumbSchema = buildBreadcrumbSchema([
     { name: "Home", url: "/" },
     { name: "Services", url: "/services/" },
 ]);
+
+// Generic "starts from" pricing on this page: no list price / MRP in the schema.
+const catalogSchema = buildCatalogSchema(
+    `${SITE_CONFIG.url}/services/`,
+    {
+        "@type": "Organization",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.url,
+    },
+    false,
+);
 ---
 
 <BaseLayout
-    title="GroverHQ Services: Website, Apps, Bots, Automation & AI"
-    description="Explore all digital services by GroverHQ — websites, apps, automation, CRM, integrations, internal tools, industry systems, AI workflows and more."
-    schema={breadcrumbSchema}
+    title="GroverHQ Services: Websites, Ads, Automation & AI"
+    description="All GroverHQ services with pricing: websites, Google & Meta Ads, automation, CRM, integrations, internal tools, industry systems and AI workflows."
+    schema={[breadcrumbSchema, catalogSchema]}
 >
     <section class="bg-bg text-ink pt-24 px-6 lg:px-12">
         <div class="max-w-6xl mx-auto">
@@ -48,7 +63,7 @@ const breadcrumbSchema = buildBreadcrumbSchema([
             <!-- TOC -->
             <nav class="mb-16">
                 <ul
-                    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-8 gap-4"
+                    class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 xl:grid-cols-9 gap-4"
                 >
                     <li>
                         <a
@@ -58,6 +73,17 @@ const breadcrumbSchema = buildBreadcrumbSchema([
                 hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
                         >
                             Websites</a
+                        >
+                    </li>
+
+                    <li>
+                        <a
+                            href="#ads"
+                            class="flex items-center justify-center h-16 px-3 text-center leading-tight
+                bg-surface rounded-xl border border-border
+                hover:border-accent hover:-translate-y-0.5 transition-all duration-200 text-sm font-medium"
+                        >
+                            Ads & Leads</a
                         >
                     </li>
 
@@ -166,55 +192,73 @@ const breadcrumbSchema = buildBreadcrumbSchema([
                     >
                         <div>
                             <h3 class="font-semibold">
-                                Business Website <span
-                                    class="text-muted text-sm">₹40,000+</span
-                                >
+                                Business Website <PriceTag id="business-website" />
                             </h3><p class="text-muted text-sm">
                                 Modern, fast, SEO-ready.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Product Catalog <span class="text-muted text-sm"
-                                    >₹50,000+</span
-                                >
+                                Product Catalog <PriceTag id="catalog-website" />
                             </h3><p class="text-muted text-sm">
                                 Filters, galleries.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Landing Pages <span class="text-muted text-sm"
-                                    >₹12,000+</span
-                                >
+                                Landing Pages <PriceTag id="landing-pages" />
                             </h3><p class="text-muted text-sm">
                                 High-conversion.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Google Business Profile <span
-                                    class="text-muted text-sm">₹10,000+</span
-                                >
+                                Google Business Profile <PriceTag id="gbp" />
                             </h3><p class="text-muted text-sm">Optimization.</p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                WhatsApp Business Setup <span
-                                    class="text-muted text-sm">₹5,000+</span
-                                >
+                                WhatsApp Business Setup <PriceTag id="whatsapp-business" />
                             </h3><p class="text-muted text-sm">
                                 Catalog + replies.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Domain + Email + Hosting <span
-                                    class="text-muted text-sm">₹5,000+</span
-                                >
+                                Domain + Email + Hosting <PriceTag id="domain-email-hosting" />
                             </h3><p class="text-muted text-sm">Setup + DNS.</p>
                         </div>
                     </div>
+                </section>
+
+                <section
+                    id="ads"
+                    class="fade-up p-8 bg-surface rounded-2xl border border-border mb-12 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+                >
+                    <h2 class="text-3xl font-bold mb-2">
+                        Ads & Lead Generation
+                    </h2>
+                    <div class="h-1 w-20 bg-accent mb-4"></div>
+                    <p class="text-muted text-sm mb-8">
+                        Ad budget is separate and paid directly to Google/Meta.
+                        Follow-up automation, review automation, WhatsApp
+                        Business setup and CRM are listed in their sections
+                        below.
+                    </p>
+
+                    <div
+                        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                    >
+                        {
+                            ADS_SERVICES.filter(
+                                (i) => i.id !== "landing-pages",
+                            ).map((item) => <PriceCard item={item} showMrp={false} />)
+                        }
+                    </div>
+                    <p class="text-muted text-sm mt-6">
+                        Landing pages for campaigns are listed under Websites &
+                        Online Presence.
+                    </p>
                 </section>
 
                 <section
@@ -296,27 +340,21 @@ const breadcrumbSchema = buildBreadcrumbSchema([
                     >
                         <div>
                             <h3 class="font-semibold">
-                                CRM System <span class="text-muted text-sm"
-                                    >₹35,000+</span
-                                >
+                                CRM System <PriceTag id="crm" />
                             </h3><p class="text-muted text-sm">
                                 Leads + customers.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Automated Follow‑ups <span
-                                    class="text-muted text-sm">₹15,000+</span
-                                >
+                                Automated Follow‑ups <PriceTag id="follow-ups" />
                             </h3><p class="text-muted text-sm">
                                 WhatsApp + email.
                             </p>
                         </div>
                         <div>
                             <h3 class="font-semibold">
-                                Review Automation <span
-                                    class="text-muted text-sm">₹15,000+</span
-                                >
+                                Review Automation <PriceTag id="review-automation" />
                             </h3><p class="text-muted text-sm">
                                 Google + WhatsApp.
                             </p>

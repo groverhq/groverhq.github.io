@@ -1,0 +1,34 @@
+---
+import { inr, discountPct, type PriceItem } from "../data/pricing";
+
+interface Props {
+    item: PriceItem;
+    showMrp?: boolean;
+}
+const { item, showMrp = true } = Astro.props;
+---
+
+<div class="p-5 bg-surface border border-border rounded-xl">
+    <h3 class="font-semibold mb-1">{item.name}</h3>
+    <p class="text-accent font-bold">
+        {item.from && <span class="text-muted text-sm font-normal">from </span>}
+        {inr(item.price)}
+        {
+            showMrp && (
+                <span class="text-muted text-sm font-normal line-through ml-1">
+                    {inr(item.mrp)}
+                </span>
+            )
+        }
+        <span class="text-muted text-sm font-normal">
+            {item.per ? "/ month" : item.from ? "" : "one-time"}
+        </span>
+        {
+            showMrp && (
+                <span class="text-xs text-muted font-normal ml-1">
+                    ({discountPct(item)}% off)
+                </span>
+            )
+        }
+    </p>
+</div>
