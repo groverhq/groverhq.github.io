@@ -1,8 +1,3 @@
----
-import { Image } from "astro:assets";
-import BannerTall from "../assets/banner-tall.png"; // your banner
----
-
 <section class="bg-bg text-ink py-24 px-6 lg:px-12">
   <div
     class="max-w-6xl mx-auto flex flex-col lg:flex-row items-center justify-between gap-12"
@@ -110,22 +105,52 @@ import BannerTall from "../assets/banner-tall.png"; // your banner
       </div>
     </div>
 
-    <!-- RIGHT SIDE (LOGO + TAGLINE BANNER) -->
-    <div
-      class="flex justify-center lg:justify-end pl-0 lg:pl-12 w-full lg:flex-[0_0_50%]"
-    >
-      <Image
-        src={BannerTall}
-        alt="GroverHQ Banner"
-        width={2560}
-        height={1440}
-        format="webp"
-        fetchpriority="high"
-        loading="eager"
-        decoding="async"
-        sizes="(min-width: 1280px) 1200px, (min-width: 1024px) 900px, 100vw"
-        class="w-full max-w-xl lg:max-w-3xl xl:max-w-5xl"
-      />
+    <!-- RIGHT SIDE (WHAT WE DO CARD) -->
+    <div class="w-full lg:flex-[0_0_42%] flex justify-center lg:justify-end">
+      <div
+        class="relative w-full max-w-md bg-surface border border-border rounded-2xl p-6 lg:p-8 overflow-hidden"
+      >
+        <div class="absolute inset-x-0 top-0 h-1 bg-accent"></div>
+        <p class="text-accent text-sm font-semibold mb-2">How we help</p>
+        <ul class="divide-y divide-border">
+        <li>
+          <a href="/packages/" class="group flex items-center gap-4 py-4">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-bg border border-border flex items-center justify-center text-accent font-semibold">1</span>
+            <span>
+              <span class="block font-semibold group-hover:text-accent transition">Get found on Google</span>
+              <span class="block text-muted text-sm">Fast SEO website + Google Business Profile</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/packages/#get-leads" class="group flex items-center gap-4 py-4">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-bg border border-border flex items-center justify-center text-accent font-semibold">2</span>
+            <span>
+              <span class="block font-semibold group-hover:text-accent transition">Get leads with ads</span>
+              <span class="block text-muted text-sm">Google & Meta Ads with every enquiry tracked</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/services/#crm" class="group flex items-center gap-4 py-4">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-bg border border-border flex items-center justify-center text-accent font-semibold">3</span>
+            <span>
+              <span class="block font-semibold group-hover:text-accent transition">Convert and follow up</span>
+              <span class="block text-muted text-sm">CRM, WhatsApp follow-ups, review automation</span>
+            </span>
+          </a>
+        </li>
+        <li>
+          <a href="/services/" class="group flex items-center gap-4 py-4">
+            <span class="w-10 h-10 shrink-0 rounded-lg bg-bg border border-border flex items-center justify-center text-accent font-semibold">4</span>
+            <span>
+              <span class="block font-semibold group-hover:text-accent transition">Build custom systems</span>
+              <span class="block text-muted text-sm">Apps, automation, integrations and AI</span>
+            </span>
+          </a>
+        </li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>

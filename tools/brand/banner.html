@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>GroverHQ banner</title>
+<!-- Rendered by scripts/build-brand.mjs. Query: ?w=1200&h=630&mode=card|strip|youtube -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0d10;
+    --surface: #15181c;
+    --ink: #f2f3f5;
+    --muted: #9ca3af;
+    --border: #262b31;
+    --accent: #4eead1;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { width: 100%; height: 100%; background: var(--bg); }
+  body {
+    font-family: "Montserrat", "Segoe UI", sans-serif;
+    color: var(--ink);
+    overflow: hidden;
+    position: relative;
+  }
+  /* soft teal glow, top right */
+  body::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 90% at 92% 8%, rgba(78, 234, 209, 0.16), transparent 60%),
+      radial-gradient(50% 70% at 0% 100%, rgba(78, 234, 209, 0.06), transparent 60%);
+  }
+  .frame { position: absolute; display: flex; flex-direction: column; justify-content: center; }
+  .logo { display: block; height: auto; }
+  .rule { background: var(--accent); border-radius: 4px; }
+  .tagline { font-weight: 600; letter-spacing: -0.01em; line-height: 1.15; }
+  .chips { color: var(--muted); font-weight: 500; letter-spacing: 0.02em; }
+  .chips b { color: var(--accent); font-weight: 600; padding: 0 0.35em; }
+  .url {
+    position: absolute; color: var(--accent); font-weight: 600; letter-spacing: 0.04em;
+  }
+
+  /* ---------- card: 1200x630 (OG), 1600x900 (hero) ---------- */
+  body.card { --u: calc(var(--w) / 1200); }
+  body.card .frame { left: calc(80 * var(--u)); right: calc(80 * var(--u)); top: 0; bottom: 0; }
+  body.card .logo { width: calc(560 * var(--u)); }
+  body.card .rule { width: calc(96 * var(--u)); height: calc(6 * var(--u)); margin: calc(44 * var(--u)) 0 calc(34 * var(--u)); }
+  body.card .tagline { font-size: calc(46 * var(--u)); max-width: calc(820 * var(--u)); }
+  body.card .chips { font-size: calc(24 * var(--u)); margin-top: calc(26 * var(--u)); }
+  body.card .url { right: calc(80 * var(--u)); bottom: calc(52 * var(--u)); font-size: calc(22 * var(--u)); }
+
+  /* ---------- og: centred, safe for square crops (all content inside the middle ~600px) ---------- */
+  body.og { --u: calc(var(--w) / 1200 * var(--s, 1)); }
+  body.og .frame { left: 0; right: 0; top: 0; bottom: 0; align-items: center; text-align: center; }
+  body.og .logo { width: calc(500 * var(--u)); }
+  body.og .rule { width: calc(80 * var(--u)); height: calc(5 * var(--u)); margin: calc(38 * var(--u)) 0 calc(30 * var(--u)); }
+  body.og .tagline { font-size: calc(40 * var(--u)); }
+  body.og .chips { font-size: calc(21 * var(--u)); margin-top: calc(24 * var(--u)); }
+  body.og .url { left: 0; right: 0; text-align: center; bottom: calc(40 * var(--u)); font-size: calc(20 * var(--u)); }
+
+  /* ---------- strip: LinkedIn / GitHub 1584x396, X 1500x500, FB 1640x624 ---------- */
+  body.strip { --u: calc(var(--h) / 396); }
+  body.strip .frame { left: 0; right: 0; top: 0; bottom: 0; flex-direction: row; align-items: center; justify-content: center; gap: calc(64 * var(--u)); }
+  body.strip .logo { width: calc(420 * var(--u)); }
+  body.strip .divider { width: calc(3 * var(--u)); height: calc(150 * var(--u)); background: var(--accent); border-radius: 3px; }
+  body.strip .text { display: flex; flex-direction: column; gap: calc(14 * var(--u)); }
+  body.strip .tagline { font-size: calc(34 * var(--u)); }
+  body.strip .chips { font-size: calc(19 * var(--u)); }
+  body.strip .rule, body.strip .url { display: none; }
+  /* LinkedIn/X profile photo overlaps the left edge: keep content right of centre-left */
+  body.strip.offset .frame { padding-left: calc(220 * var(--u)); }
+
+  /* ---------- youtube: 2560x1440, safe area 1546x423 centred ---------- */
+  body.youtube .frame { left: calc(50% - 773px); width: 1546px; top: calc(50% - 211px); height: 423px; flex-direction: row; align-items: center; justify-content: center; gap: 56px; }
+  body.youtube .logo { width: 480px; }
+  body.youtube .divider { width: 3px; height: 160px; background: var(--accent); border-radius: 3px; }
+  body.youtube .text { display: flex; flex-direction: column; gap: 14px; }
+  body.youtube .tagline { font-size: 38px; }
+  body.youtube .chips { font-size: 21px; }
+  body.youtube .rule, body.youtube .url { display: none; }
+
+  .strip-only, .youtube-only { display: none; }
+  body.strip .strip-only, body.youtube .strip-only { display: block; }
+  body.card .text { display: contents; }
+</style>
+</head>
+<body>
+<div class="frame">
+  <img class="logo" src="assets/wordmark-light.png" alt="GroverHQ" />
+  <div class="rule"></div>
+  <div class="strip-only divider"></div>
+  <div class="text">
+    <div class="tagline">Digital Solutions<br />for Modern Businesses</div>
+    <div class="chips">Web<b>•</b>Apps<b>•</b>Bots<b>•</b>Automation<b>•</b>AI</div>
+  </div>
+</div>
+<div class="url">groverhq.com</div>
+<script>
+  const q = new URLSearchParams(location.search);
+  const w = +q.get("w"), h = +q.get("h");
+  document.documentElement.style.setProperty("--s", q.get("s") || "1");
+  document.body.className = (q.get("mode") || "card") + (q.get("offset") ? " offset" : "");
+  document.documentElement.style.setProperty("--w", w);
+  document.documentElement.style.setProperty("--h", h);
+  // calc() with unitless --w needs px: expose unit-bearing vars
+  document.documentElement.style.setProperty("--w", w + "px");
+  document.documentElement.style.setProperty("--h", h + "px");
+</script>
+</body>
+</html>

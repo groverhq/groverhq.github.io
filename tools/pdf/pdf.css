@@ -1,0 +1,117 @@
+/* Shared styles for scripts/build-pdfs.mjs. Tokens mirror src/styles/global.css (noir theme). */
+:root {
+  --bg: #0b0d10;
+  --surface: #15181c;
+  --ink: #0f1216;
+  --text: #2a3038;
+  --muted: #667085;
+  --line: #e4e7ec;
+  --soft: #f5f7f8;
+  --accent: #4eead1;
+  --accent-deep: #0f9d89; /* teal readable on white */
+  --on-dark: #f2f3f5;
+  --on-dark-muted: #9ca3af;
+}
+@page {
+  size: A4; margin: 16mm 14mm 22mm;
+  @bottom-left { content: var(--foot-left, ""); font: 500 7.6pt "Montserrat", sans-serif; color: #667085; border-top: .25mm solid #e4e7ec; padding-top: 2.5mm; vertical-align: top; }
+  @bottom-right { content: var(--foot-right, ""); font: 500 7.6pt "Montserrat", sans-serif; color: #667085; border-top: .25mm solid #e4e7ec; padding-top: 2.5mm; vertical-align: top; text-align: right; }
+}
+@page cover { size: A4; margin: 0; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+body { font-family: "Montserrat", "Segoe UI", sans-serif; font-size: 9.6pt; line-height: 1.5; color: var(--text); }
+
+/* ---------- cover / back pages (full bleed, dark) ---------- */
+.dark-page {
+  page: cover; position: relative; z-index: 5;
+  width: 210mm; height: 297mm; overflow: hidden;
+  background: var(--bg); color: var(--on-dark);
+  padding: 26mm 22mm; display: flex; flex-direction: column; justify-content: center;
+  break-after: page;
+}
+.dark-page::before {
+  content: ""; position: absolute; inset: 0;
+  background:
+    radial-gradient(70% 45% at 95% 0%, rgba(78, 234, 209, .20), transparent 65%),
+    radial-gradient(60% 40% at 0% 100%, rgba(78, 234, 209, .08), transparent 65%);
+}
+.dark-page > * { position: relative; }
+.dark-page.last { break-after: auto; }
+.dark-page .logo { width: 92mm; height: auto; display: block; }
+.dark-page .bar { width: 26mm; height: 1.6mm; background: var(--accent); border-radius: 2mm; margin: 14mm 0 10mm; }
+.dark-page h1 { font-size: 30pt; line-height: 1.1; font-weight: 700; letter-spacing: -.02em; }
+.dark-page .sub { font-size: 13pt; font-weight: 500; color: var(--on-dark-muted); margin-top: 6mm; max-width: 140mm; }
+.dark-page .chips { margin-top: 10mm; color: var(--accent); font-weight: 600; letter-spacing: .03em; font-size: 10.5pt; }
+.dark-page .foot { position: absolute; left: 22mm; right: 22mm; bottom: 20mm; display: flex; justify-content: space-between; color: var(--on-dark-muted); font-size: 9pt; }
+.dark-page .foot b { color: var(--accent); font-weight: 600; }
+.dark-page .cta-row { display: flex; gap: 6mm; margin-top: 12mm; flex-wrap: wrap; }
+.dark-page .cta { border: .3mm solid #2f353c; background: var(--surface); border-radius: 3mm; padding: 4mm 6mm; }
+.dark-page .cta small { display: block; color: var(--on-dark-muted); font-size: 8pt; text-transform: uppercase; letter-spacing: .08em; }
+.dark-page .cta span { font-size: 11.5pt; font-weight: 600; color: var(--on-dark); }
+
+
+/* ---------- content ---------- */
+h2.sec { font-size: 15pt; font-weight: 700; color: var(--ink); letter-spacing: -.01em; display: flex; align-items: center; gap: 3mm; margin: 0 0 4mm; break-after: avoid-page; }
+.sec-block > h2.sec + * { break-before: avoid-page; }
+h2.sec .n { display: inline-flex; align-items: center; justify-content: center; min-width: 8mm; height: 8mm; padding: 0 2mm; border-radius: 2mm; background: var(--bg); color: var(--accent); font-size: 10pt; font-weight: 700; }
+.sec-block { margin-bottom: 9mm; }
+.sec-note { color: var(--muted); font-size: 8.6pt; margin: -2mm 0 4mm; }
+.grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3.5mm; }
+.card { border: .3mm solid var(--line); border-radius: 2.5mm; padding: 4mm 4.5mm; background: #fff; break-inside: avoid; }
+.card h3 { font-size: 10.2pt; font-weight: 700; color: var(--ink); line-height: 1.25; }
+.card .idx { color: var(--accent-deep); font-weight: 700; margin-right: 1.5mm; }
+.card ul { list-style: none; margin: 2mm 0 3mm; }
+.card li { position: relative; padding-left: 4mm; font-size: 8.8pt; color: var(--text); line-height: 1.45; }
+.card li::before { content: ""; position: absolute; left: 0; top: 1.7mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--accent-deep); }
+.price { font-size: 9.4pt; font-weight: 700; color: var(--ink); padding-top: 2.2mm; border-top: .25mm dashed var(--line); }
+.price small { font-weight: 500; color: var(--muted); font-size: 8pt; }
+.price .mrp { text-decoration: line-through; color: var(--muted); font-weight: 500; margin-left: 1.5mm; }
+.price .off { color: var(--accent-deep); font-size: 8pt; margin-left: 1.5mm; }
+
+/* package cards (setup pdf) */
+.pkgs { display: grid; grid-template-columns: 1fr 1fr; gap: 4mm; margin-bottom: 8mm; }
+.pkg { border-radius: 3mm; padding: 6mm; background: var(--bg); color: var(--on-dark); position: relative; overflow: hidden; }
+.pkg::before { content: ""; position: absolute; inset: 0; background: radial-gradient(80% 60% at 100% 0%, rgba(78,234,209,.18), transparent 65%); }
+.pkg > * { position: relative; }
+.pkg small { display: block; font-size: 7.8pt; letter-spacing: .1em; text-transform: uppercase; color: var(--accent); font-weight: 600; }
+.pkg h3 { font-size: 12.5pt; margin: 1.5mm 0 3mm; }
+.pkg .big { font-size: 22pt; font-weight: 700; color: var(--accent); letter-spacing: -.02em; }
+.pkg .big .mrp { font-size: 11pt; color: var(--on-dark-muted); text-decoration: line-through; font-weight: 500; margin-left: 2mm; }
+.pkg .big .per { font-size: 9pt; color: var(--on-dark-muted); font-weight: 500; }
+.pkg .badge { display: inline-block; margin-top: 2mm; background: var(--accent); color: var(--bg); font-size: 7.8pt; font-weight: 700; border-radius: 10mm; padding: .6mm 2.6mm; }
+.pkg ul { list-style: none; margin-top: 3.5mm; }
+.pkg li { font-size: 8.6pt; color: var(--on-dark); padding: .7mm 0 .7mm 4mm; position: relative; }
+.pkg li::before { content: "✓"; position: absolute; left: 0; color: var(--accent); font-weight: 700; }
+
+.bonus { background: var(--soft); border-left: 1.2mm solid var(--accent-deep); border-radius: 0 2mm 2mm 0; padding: 3.2mm 4.5mm; font-weight: 600; color: var(--ink); margin-bottom: 8mm; }
+.groups { display: grid; grid-template-columns: 1fr; gap: 3.5mm; }
+.group { border: .3mm solid var(--line); border-radius: 2.5mm; padding: 4mm 5mm; break-inside: avoid; }
+.group h3 { font-size: 10pt; font-weight: 700; color: var(--ink); margin-bottom: 1.5mm; }
+.group ul { list-style: none; columns: 2; column-gap: 8mm; }
+.group li { font-size: 8.8pt; padding-left: 4mm; position: relative; break-inside: avoid; line-height: 1.5; margin-bottom: .6mm; }
+.group li::before { content: ""; position: absolute; left: 0; top: 1.7mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--accent-deep); }
+ul.plain { list-style: none; }
+ul.plain li { padding-left: 4mm; position: relative; margin-bottom: 1mm; }
+ul.plain li::before { content: ""; position: absolute; left: 0; top: 1.9mm; width: 1.6mm; height: 1.6mm; border-radius: 50%; background: var(--accent-deep); }
+table.rates { width: 100%; border-collapse: collapse; font-size: 9pt; }
+table.rates th { text-align: left; font-size: 7.8pt; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); font-weight: 600; padding: 2mm 2.5mm; border-bottom: .4mm solid var(--ink); }
+table.rates td { padding: 2.4mm 2.5mm; border-bottom: .25mm solid var(--line); vertical-align: top; }
+table.rates td.r, table.rates th.r { text-align: right; white-space: nowrap; }
+table.rates .mrp { color: var(--muted); text-decoration: line-through; margin-right: 1.5mm; font-weight: 500; }
+table.rates .amt { font-weight: 700; color: var(--ink); }
+table.rates .off { color: var(--accent-deep); font-weight: 600; font-size: 8pt; display: block; }
+table.rates tr { break-inside: avoid; }
+.fine { font-size: 8pt; color: var(--muted); margin-top: 3mm; }
+ul.plain { break-inside: avoid; }
+h3.sub { margin: 6mm 0 2mm; font-size: 10pt; color: var(--ink); break-after: avoid-page; }
+h3.sub + table { break-before: avoid-page; }
+.sec-block.ads { break-before: page; }
+/* keep a heading together with the first block under it; never split the heading itself */
+h2.sec { break-inside: avoid; display: block; }
+h2.sec .n { vertical-align: middle; margin-right: 3mm; }
+.sec-block > h2.sec + * { break-before: avoid; }
+.addons { columns: 2; column-gap: 6mm; }
+.addon { break-inside: avoid; border-bottom: .25mm solid var(--line); padding: 2.2mm 0; }
+.addon b { display: block; font-size: 9pt; color: var(--ink); }
+.addon span { display: block; font-size: 8.4pt; color: var(--muted); line-height: 1.4; }

@@ -10,6 +10,7 @@ const {
   description = SITE_CONFIG.description,
   schema: schemaProp,
   ogImage,
+  ogImageAlt = "GroverHQ: Digital Solutions for Modern Businesses",
   noindex = false,
 } = Astro.props;
 
@@ -40,7 +41,19 @@ const pageSchema = schemaProp
     ? schemaProp
     : [schemaProp]
   : [];
-const schemaList = [orgSchema, ...pageSchema];
+// Site-wide WebSite entity; pages reference it (and the Organization) by @id.
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_CONFIG.url}/#website`,
+  url: siteOrigin.href,
+  name: SITE_CONFIG.name,
+  inLanguage: "en-IN",
+  publisher: { "@id": `${SITE_CONFIG.url}/#organization` },
+};
+const schemaList = [orgSchema, websiteSchema, ...pageSchema];
+// Known size only for the default share image (1200x630).
+const isDefaultOg = !ogImage;
 ---
 
 <html lang="en" data-theme="noir">
@@ -72,6 +85,8 @@ const schemaList = [orgSchema, ...pageSchema];
     />
     <meta name="theme-color" content="#0B0D10" />
     <link rel="canonical" href={canonicalURL} />
+    <link rel="alternate" hreflang="en-IN" href={canonicalURL} />
+    <link rel="alternate" hreflang="x-default" href={canonicalURL} />
 
     <!-- Performance hints -->
     <link rel="preconnect" href="https://static.cloudflareinsights.com" />
@@ -96,6 +111,9 @@ const schemaList = [orgSchema, ...pageSchema];
         "Fast, scalable digital products for modern businesses."}
     />
     <meta property="og:image" content={resolvedOgImage} />
+    <meta property="og:image:alt" content={ogImageAlt} />
+    {isDefaultOg && <meta property="og:image:width" content="1200" />}
+    {isDefaultOg && <meta property="og:image:height" content="630" />}
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -108,6 +126,7 @@ const schemaList = [orgSchema, ...pageSchema];
         "Fast, scalable digital products for modern businesses."}
     />
     <meta name="twitter:image" content={resolvedOgImage} />
+    <meta name="twitter:image:alt" content={ogImageAlt} />
 
     <!-- JSON-LD Schema -->
     {

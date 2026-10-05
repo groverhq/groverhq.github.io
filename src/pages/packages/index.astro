@@ -3,7 +3,11 @@ import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PriceCard from "../../components/PriceCard.astro";
 import { SITE_CONFIG, CONTACT_INFO } from "../../config";
-import { buildBreadcrumbSchema, buildFAQSchema } from "../../utils/schema";
+import {
+    buildBreadcrumbSchema,
+    buildFAQSchema,
+    buildWebPageSchema,
+} from "../../utils/schema";
 import {
     PACKAGES,
     FOUND_SERVICES,
@@ -51,6 +55,11 @@ const breadcrumbSchema = buildBreadcrumbSchema([
 ]);
 
 const faqSchema = buildFAQSchema(faqs);
+const webPageSchema = buildWebPageSchema({
+    name: pageTitle,
+    description: pageDescription,
+    path: "/packages/",
+});
 
 const packagesUrl = `${SITE_CONFIG.url}/packages/`;
 const provider = {
@@ -77,7 +86,7 @@ const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneLink}`;
 <BaseLayout
     title={pageTitle}
     description={pageDescription}
-    schema={[...offerSchema, catalogSchema, breadcrumbSchema, faqSchema]}
+    schema={[webPageSchema, ...offerSchema, catalogSchema, breadcrumbSchema, faqSchema]}
 >
     <section class="py-24 px-6 lg:px-12 max-w-5xl mx-auto">
         <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
