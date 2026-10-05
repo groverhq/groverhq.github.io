@@ -88,3 +88,42 @@ export function buildReviewSchema({
     ...(url ? { url } : {}),
   };
 }
+/**
+ * Builds a WebPage (or CollectionPage etc.) JSON-LD object that ties the page
+ * to the site-wide WebSite/Organization entities, its breadcrumb and its
+ * primary image. Pair with buildBreadcrumbSchema for the same path.
+ */
+export function buildWebPageSchema({
+  name,
+  description,
+  path,
+  type = "WebPage",
+  image = SITE_CONFIG.ogImage,
+  imageSize = { width: 1200, height: 630 },
+}: {
+  name: string;
+  description: string;
+  path: string;
+  type?: "WebPage" | "CollectionPage" | "AboutPage" | "ContactPage";
+  image?: string;
+  imageSize?: { width: number; height: number };
+}) {
+  const url = new URL(path, SITE_CONFIG.url).toString();
+  return {
+    "@context": "https://schema.org",
+    "@type": type,
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: "en-IN",
+    isPartOf: { "@id": `${SITE_CONFIG.url}/#website` },
+    about: { "@id": `${SITE_CONFIG.url}/#organization` },
+    breadcrumb: { "@id": `${url}#breadcrumb` },
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      url: new URL(image, SITE_CONFIG.url).toString(),
+      ...imageSize,
+    },
+  };
+}

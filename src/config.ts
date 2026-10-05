@@ -180,6 +180,24 @@ export const SCHEMA_ORG = {
         "@type": "Offer",
         itemOffered: {
           "@type": "Service",
+          name: "Local SEO & Google Business Profile",
+          description:
+            "SEO-optimized websites, Google Business Profile setup and ongoing SEO maintenance so local customers can find you.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Google & Meta Ads Management",
+          description:
+            "Google Ads and Meta (Facebook, Instagram, click-to-WhatsApp) ad setup, conversion tracking, optimization and reporting.",
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
           name: "Integrations",
           description:
             "Tally, Zoho, Razorpay, WhatsApp API, Google Sheets and custom API integrations.",
