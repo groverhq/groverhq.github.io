@@ -1,7 +1,7 @@
 // Renders the on-brand banner/OG images from tools/brand/banner.html with headless Chrome/Edge.
 //   node scripts/build-brand.mjs            -> site images only (public/og-image.png)
 //   node scripts/build-brand.mjs --social   -> also the social size set into the OneDrive brand folder
-// Override the output folder with env BRAND_OUT (default: C:/OneDrive/GroverHQ/Brand Assets/Banners_v2).
+// Override the output folder with env BRAND_OUT (default: C:/OneDrive/GroverHQ/Brand Assets/02_Social_Banners/Current_2026-10).
 import { spawnSync } from "node:child_process";
 import { existsSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
@@ -43,7 +43,7 @@ function render(out, w, h, mode, extra = "") {
 render(resolve(root, "public/og-image.png"), 1200, 630, "og");
 
 if (process.argv.includes("--social")) {
-  const out = process.env.BRAND_OUT ?? "C:/OneDrive/GroverHQ/Brand Assets/Banners_v2";
+  const out = process.env.BRAND_OUT ?? "C:/OneDrive/GroverHQ/Brand Assets/02_Social_Banners/Current_2026-10";
   const sizes = [
     ["OpenGraph_1200x630.png", 1200, 630, "og", ""],
     ["OpenGraph_Square_1200x1200.png", 1200, 1200, "og", "&s=1.3"],
