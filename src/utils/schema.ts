@@ -14,9 +14,13 @@ import { SITE_CONFIG } from "../config";
 export function buildBreadcrumbSchema(
   items: { name: string; url: string }[],
 ) {
+  // @id must match the `breadcrumb` reference in buildWebPageSchema, otherwise
+  // Google sees an empty BreadcrumbList ("Missing field itemListElement").
+  const current = new URL(items[items.length - 1].url, SITE_CONFIG.url).toString();
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
+    "@id": `${current}#breadcrumb`,
     itemListElement: items.map((item, i) => ({
       "@type": "ListItem",
       position: i + 1,
