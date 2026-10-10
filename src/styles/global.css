@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "@fontsource-variable/montserrat";
 
 /*
   THEME TOKEN SYSTEM
@@ -14,6 +15,8 @@
 */
 
 @theme {
+    /* Same family as the PDF menus and brand banners (tools/pdf, tools/brand). */
+    --font-sans: "Montserrat Variable", "Segoe UI", ui-sans-serif, system-ui, sans-serif;
     --color-bg: var(--theme-bg);
     --color-surface: var(--theme-surface);
     --color-ink: var(--theme-ink);
@@ -36,6 +39,12 @@
 
 html {
     scroll-behavior: smooth;
+    /* Montserrat runs wide; a 15px base keeps one-line labels on one line. */
+    font-size: 15px;
+}
+
+body {
+    letter-spacing: -0.01em;
 }
 
 .input-field {

@@ -1,4 +1,5 @@
 ---
+import { priceOf } from "../../data/pricing";
 import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -22,7 +23,7 @@ const faqs = [
     },
     {
         question: "How much does an interior brand website cost?",
-        answer: "Business websites start at ₹40,000, and product catalogs with filters and galleries start at ₹50,000. See our full services and pricing page for exact scope.",
+        answer: `Business websites start at ${priceOf("business-website")}, and product catalogs with filters and galleries start at ₹50,000. See our full services and pricing page for exact scope.`,
     },
 ];
 

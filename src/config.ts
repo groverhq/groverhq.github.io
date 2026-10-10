@@ -1,3 +1,16 @@
+import { FOUND_SERVICES, ADS_SERVICES, ADDON_SERVICES, inr } from "./data/pricing";
+import { SCHOOL_PACKAGES } from "./data/school";
+
+// Price band for LocalBusiness schema, derived from the shared price data.
+const ALL_PRICES = [
+  ...FOUND_SERVICES,
+  ...ADS_SERVICES,
+  ...ADDON_SERVICES,
+  ...SCHOOL_PACKAGES,
+].map((i) => i.price);
+const PRICE_MIN = Math.min(...ALL_PRICES);
+const PRICE_MAX = Math.max(...ALL_PRICES);
+
 // Site Configuration
 export const SITE_CONFIG = {
   name: "GroverHQ",
@@ -90,11 +103,24 @@ export const SOCIAL_LINKS = [
 export const NAV_LINKS = [
   { name: "Services", href: "/services/" },
   { name: "Packages", href: "/packages/" },
-  { name: "Why Us", href: "/#why-us" },
   { name: "Work", href: "/work/" },
   { name: "Apps", href: "/apps/" },
   { name: "About", href: "/#about" },
+];
+
+// Footer "Company" column (home-page sections that are not in the top nav)
+export const FOOTER_COMPANY_LINKS = [
+  { name: "About", href: "/#about" },
+  { name: "Why GroverHQ", href: "/#why-us" },
+  { name: "Work", href: "/work/" },
+  { name: "Apps", href: "/apps/" },
   { name: "Contact", href: "/#contact" },
+];
+
+// Footer "Services" column
+export const FOOTER_SERVICE_LINKS = [
+  { name: "All services", href: "/services/" },
+  { name: "Packages & pricing", href: "/packages/" },
 ];
 
 // Location Pages (footer + services hub links)
@@ -109,6 +135,7 @@ export const LOCATION_LINKS = [
 export const SERVICE_VERTICAL_LINKS = [
   { name: "Clinics & Doctors", href: "/services/web-design-for-clinics-doctors/" },
   { name: "Interior Designers", href: "/services/web-design-for-interior-designers/" },
+  { name: "Schools & Institutes", href: "/services/school-management-system/" },
 ];
 
 // Schema Organization Data
@@ -121,7 +148,7 @@ export const SCHEMA_ORG = {
   image: `${SITE_CONFIG.url}${SITE_CONFIG.ogImage}`,
   description: SITE_CONFIG.description,
   telephone: CONTACT_INFO.phone,
-  priceRange: "₹5,000 - ₹50,000",
+  priceRange: `${inr(PRICE_MIN)} - ${inr(PRICE_MAX)}`,
   address: {
     "@type": "PostalAddress",
     streetAddress: CONTACT_INFO.streetAddress,

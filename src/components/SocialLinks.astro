@@ -6,6 +6,7 @@ interface Props {
   variant?: "light" | "dark";
   excludeWhatsApp?: boolean;
   maxItems?: number;
+  align?: "start" | "center";
 }
 
 const {
@@ -13,6 +14,7 @@ const {
   variant = "dark",
   excludeWhatsApp = false,
   maxItems,
+  align = "center",
 } = Astro.props;
 
 let links = SOCIAL_LINKS;
@@ -70,7 +72,7 @@ const icons: Record<string, string> = {
 };
 ---
 
-<div class="flex flex-wrap gap-3 justify-center">
+<div class={`flex flex-wrap gap-3 ${align === "start" ? "justify-start" : "justify-center"}`}>
   {
     links.map((link) => (
       <a

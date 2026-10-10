@@ -1,4 +1,5 @@
 ---
+import { priceOf } from "../../data/pricing";
 import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -22,7 +23,7 @@ const faqs = [
     },
     {
         question: "What's included in a business website?",
-        answer: "Business websites start at ₹40,000 and are modern, fast, and SEO-ready. See our full services and pricing page for exact scope and pricing on add-ons like booking and WhatsApp integration.",
+        answer: `Business websites start at ${priceOf("business-website")} and are modern, fast, and SEO-ready. See our full services and pricing page for exact scope and pricing on add-ons like booking and WhatsApp integration.`,
     },
 ];
 

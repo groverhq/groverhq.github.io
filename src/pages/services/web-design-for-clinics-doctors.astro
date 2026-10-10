@@ -1,4 +1,5 @@
 ---
+import { priceOf } from "../../data/pricing";
 import { Image } from "astro:assets";
 import "../../styles/global.css";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -22,7 +23,7 @@ const faqs = [
     },
     {
         question: "How much does a clinic website cost?",
-        answer: "Business websites start at ₹40,000. Appointment booking, WhatsApp integration, and review embeds are scoped and priced based on what the clinic needs — see our full services and pricing page for details.",
+        answer: `Business websites start at ${priceOf("business-website")}. Appointment booking, WhatsApp integration, and review embeds are scoped and priced based on what the clinic needs — see our full services and pricing page for details.`,
     },
 ];
 
