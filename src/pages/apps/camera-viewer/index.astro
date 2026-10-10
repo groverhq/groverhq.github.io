@@ -12,7 +12,7 @@ import liveHd from "../../../assets/camera-viewer/live-hd.jpg";
 import liveSdPrice from "../../../assets/camera-viewer/live-sd-price.jpg";
 import savedMenu from "../../../assets/camera-viewer/saved-camera-menu.jpg";
 
-const title = "GroverHQ Camera Viewer | CCTV & IP Cameras on Samsung TV";
+const title = "CCTV App for Samsung Smart TV | GroverHQ Camera Viewer";
 const description =
   "Watch IP cameras, CCTV and NVR/DVR live on your Samsung Smart TV. Works with CP Plus, Hikvision, Dahua and other RTSP/ONVIF cameras. Free, with optional HD.";
 
@@ -118,6 +118,12 @@ const appSchema = {
     description: "Optional monthly subscription, excluding GST. Free version available.",
   },
   publisher: { "@type": "Organization", name: SITE_CONFIG.name, url: SITE_CONFIG.url },
+  featureList: features,
+  screenshot: screenshots.map((sh) => ({
+    "@type": "ImageObject",
+    caption: sh.caption,
+    contentUrl: new URL(sh.src.src, SITE_CONFIG.url).toString(),
+  })),
 };
 ---
 
@@ -140,7 +146,9 @@ const appSchema = {
     <p class="text-accent font-medium mb-3">
       App for Samsung Smart TV · Made in India
     </p>
-    <h1 class="text-3xl lg:text-5xl font-bold mb-6">GroverHQ Camera Viewer</h1>
+    <h1 class="text-3xl lg:text-5xl font-bold mb-6">
+      CCTV &amp; IP Camera Viewer for Samsung Smart TV
+    </h1>
     <p class="text-muted text-lg lg:text-xl max-w-3xl mb-8">
       Turn your Samsung TV into a live monitor for the IP cameras, CCTV systems
       and NVRs/DVRs already on your home or office network. No extra screen, no
@@ -251,6 +259,12 @@ const appSchema = {
       RTSP/ONVIF will not work. Your cameras must be on the same local network
       as your TV. You are responsible for having the legal right to view every
       camera you connect.
+    </p>
+    <p class="text-muted max-w-3xl mb-20 -mt-14">
+      New to RTSP? See how to
+      <a href="/guides/find-rtsp-url-cctv-camera/" class="text-accent underline">find your camera's RTSP URL</a>
+      or compare
+      <a href="/guides/watch-cctv-on-samsung-tv/" class="text-accent underline">ways to watch CCTV on a Samsung TV</a>.
     </p>
 
     <!-- Privacy -->

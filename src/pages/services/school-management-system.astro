@@ -18,9 +18,9 @@ import {
     SCHOOL_STUDENT_CAP,
 } from "../../data/school";
 
-const pageTitle = "School Management System for Schools | GroverHQ";
+const pageTitle = "School Management System & ERP in India | GroverHQ";
 const pageDescription =
-    "Fast school website plus student, parent, teacher and admin portals. Packages from ₹50,000 one-time, first year of hosting included. No APK to install.";
+    "School ERP with student, parent, teacher and admin portals: attendance, Razorpay fees, report cards. Packages from ₹50,000. Built in Mohali, no APK needed.";
 const path = "/services/school-management-system/";
 
 const tiers = SCHOOL_PACKAGES.map((p, i) => ({
@@ -116,13 +116,31 @@ const serviceSchema = {
     })),
 };
 
+const productSchema = tiers.map((t) => ({
+    "@context": "https://schema.org",
+    "@type": "Product",
+    name: `School Management System: ${t.name}`,
+    description: t.features.join("; "),
+    brand: { "@type": "Brand", name: SITE_CONFIG.name },
+    category: "School management software",
+    url: pageUrl,
+    offers: {
+        "@type": "Offer",
+        priceCurrency: "INR",
+        price: t.price,
+        availability: "https://schema.org/InStock",
+        url: pageUrl,
+        description: "Starting price; final quote depends on scope. First year of hosting and maintenance included.",
+    },
+}));
+
 const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneLink}`;
 ---
 
 <BaseLayout
     title={pageTitle}
     description={pageDescription}
-    schema={[webPageSchema, serviceSchema, breadcrumbSchema, faqSchema]}
+    schema={[webPageSchema, serviceSchema, ...productSchema, breadcrumbSchema, faqSchema]}
 >
     <section class="py-24 px-6 lg:px-12 max-w-5xl mx-auto">
         <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
@@ -135,12 +153,13 @@ const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneLink}`;
 
         <div class="text-center mb-14">
             <h1 class="text-4xl lg:text-6xl font-bold mb-4">
-                School Management System
+                School Management System &amp; School ERP for India
             </h1>
             <p class="text-muted text-lg max-w-2xl mx-auto">
-                A fast website plus student, teacher and admin portals for
-                schools and institutes. One system, one vendor, and no APK to
-                install.
+                School ERP software for schools and institutes: a fast website plus
+                student, parent, teacher and admin portals for attendance, marks,
+                fees and report cards. Built in Mohali for schools across India.
+                One system, one vendor, and no APK to install.
             </p>
             <div class="flex flex-wrap justify-center gap-3 mt-8">
                 <a
@@ -370,6 +389,23 @@ const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneLink}`;
                 >Website + Discoverability Setup</a
             >, or ask us for a combined quote.
         </p>
+
+        <!-- Guides -->
+        <div class="mt-20 max-w-3xl mx-auto">
+            <h2 class="text-2xl font-bold mb-4">Guides for schools</h2>
+            <ul class="space-y-2 list-disc pl-5">
+                <li>
+                    <a href="/guides/how-to-choose-a-school-management-system/" class="text-accent underline hover:opacity-80"
+                        >How to choose a school management system (school ERP)</a
+                    >
+                </li>
+                <li>
+                    <a href="/guides/school-management-system-cost-india/" class="text-accent underline hover:opacity-80"
+                        >School management system cost in India</a
+                    >
+                </li>
+            </ul>
+        </div>
 
         <!-- FAQ -->
         <div class="mt-20">

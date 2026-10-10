@@ -1,0 +1,88 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { inr, priceOf, PACKAGES } from "../../data/pricing";
+---
+
+<GuideLayout slug="business-website-cost-india">
+    <p>
+        Quotes for the same business website can differ by several times, and
+        the reason is rarely the design alone. Cost follows scope: how many
+        pages, what features, who writes the content, and what happens after
+        launch. This guide explains the pieces so you can compare quotes fairly.
+        For a worked example we use our own published starting prices.
+    </p>
+
+    <h2>What drives the cost</h2>
+    <ul>
+        <li>
+            <strong>Type of site.</strong> A simple business website with a
+            few pages costs less than a product catalogue with filters and
+            galleries, and far less than an online store with checkout.
+        </li>
+        <li>
+            <strong>Number of pages and custom design.</strong> A template
+            adapted to your brand is cheaper than a fully custom design.
+        </li>
+        <li>
+            <strong>Features.</strong> Appointment booking, payment gateways,
+            customer logins, multi-language support and live chat are each
+            extra work.
+        </li>
+        <li>
+            <strong>Content.</strong> Who writes the text and supplies the
+            photos? Delays in content are the most common reason sites launch
+            late.
+        </li>
+        <li>
+            <strong>SEO setup.</strong> Page titles, descriptions, structured
+            data, sitemap and Search Console setup are often skipped by cheap
+            quotes and are hard to add later.
+        </li>
+        <li>
+            <strong>Speed and mobile.</strong> Most visitors are on phones, so
+            a site that is slow or awkward on mobile loses enquiries.
+        </li>
+    </ul>
+
+    <h2>Ongoing costs people forget</h2>
+    <ul>
+        <li><strong>Domain name.</strong> Paid yearly, and it should be registered in your name.</li>
+        <li><strong>Hosting.</strong> Included in some quotes, billed yearly in others.</li>
+        <li><strong>Business email.</strong> Often separate from hosting.</li>
+        <li><strong>Maintenance.</strong> Security updates, backups, fixes and content changes.</li>
+        <li><strong>Marketing.</strong> A website alone does not bring visitors. Google Business Profile, SEO and ads are usually separate.</li>
+    </ul>
+
+    <h2>Example: GroverHQ starting prices</h2>
+    <p>
+        These are starting prices. The final quote depends on scope, and
+        current prices are always on our <a href="/packages/">packages</a> and
+        <a href="/services/">services</a> pages.
+    </p>
+    <ul>
+        <li>Business website with a content management system: from {priceOf("business-website")}.</li>
+        <li>Product catalogue or portfolio website: from {priceOf("catalog-website")}.</li>
+        <li>Domain, email and hosting setup: from {priceOf("domain-email-hosting")}.</li>
+        <li>Landing page for a campaign: from {priceOf("landing-pages")}.</li>
+        <li>
+            Website + Discoverability Setup, which pairs a fast SEO-ready
+            website with a fully optimised Google Business Profile:
+            {inr(PACKAGES.setup.price)} one-time, with the first month of
+            maintenance included.
+        </li>
+    </ul>
+
+    <h2>How to compare quotes</h2>
+    <ol>
+        <li>Ask every vendor to list pages and features so the quotes cover the same scope.</li>
+        <li>Ask who owns the domain, the design files and the code.</li>
+        <li>Ask what is included after launch, and what yearly fees follow.</li>
+        <li>Ask how many rounds of changes are included.</li>
+        <li>Ask whether SEO setup and mobile speed are part of the price.</li>
+    </ol>
+
+    <p>
+        To get your business found as well as online, read our
+        <a href="/guides/google-business-profile-setup-checklist/">Google Business Profile setup checklist</a>.
+    </p>
+</GuideLayout>

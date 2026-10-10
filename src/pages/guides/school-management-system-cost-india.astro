@@ -1,0 +1,128 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { SCHOOL_PACKAGES, SCHOOL_STUDENT_CAP } from "../../data/school";
+import { inr } from "../../data/pricing";
+---
+
+<GuideLayout slug="school-management-system-cost-india">
+    <p>
+        There is no single price for a school management system in India. Cost
+        depends on how many modules you need, whether you want store apps,
+        messaging and data entry, and how the vendor structures fees. This
+        guide explains the line items so you can compare quotes properly. For
+        a concrete example we use our own published prices at the end.
+    </p>
+
+    <h2>What drives the price</h2>
+    <ul>
+        <li>
+            <strong>Modules.</strong> Attendance and circulars cost less than a
+            full suite with fees, exams, report cards, timetable, homework and
+            staff leave.
+        </li>
+        <li>
+            <strong>School size.</strong> Some vendors price by student count,
+            others by a size band. Always ask which band your school falls in.
+        </li>
+        <li>
+            <strong>Mobile apps.</strong> An installable web app (PWA) is
+            usually cheaper than separate Android and iOS store apps, which
+            also need publishing and upkeep.
+        </li>
+        <li>
+            <strong>Website.</strong> A new school website is often a separate
+            line item from the management system.
+        </li>
+        <li>
+            <strong>Data setup.</strong> Entering your existing student,
+            parent and teacher records is either done by your admin or quoted
+            separately.
+        </li>
+        <li>
+            <strong>Languages and customisation.</strong> Hindi or Punjabi
+            interfaces, certificates and custom report-card templates are
+            usually add-ons.
+        </li>
+    </ul>
+
+    <h2>Two common pricing models</h2>
+    <p>
+        <strong>One-time build plus yearly maintenance.</strong> You pay for
+        development once, then a smaller yearly fee for hosting, updates and
+        support. Costs are predictable, and you can see the three-year total
+        up front.
+    </p>
+    <p>
+        <strong>Per-student subscription.</strong> A recurring fee per student
+        per year. This starts cheap for a small school but grows as admissions
+        grow, and you never stop paying for the base system.
+    </p>
+    <p>
+        Neither is always better. Compare the total over three to five years
+        for your actual student count.
+    </p>
+
+    <h2>Costs that are easy to miss</h2>
+    <ul>
+        <li>
+            <strong>SMS, WhatsApp and OTP messages.</strong> These go through
+            third-party providers who charge per message. Ask whether they are
+            included or billed at actuals.
+        </li>
+        <li>
+            <strong>Payment gateway charges.</strong> Online fee collection
+            through a gateway such as Razorpay carries the gateway's own
+            charges, separate from the software price.
+        </li>
+        <li>
+            <strong>Domain renewal.</strong> Typically around ₹1,000 per year,
+            paid by the school if the domain is in its name.
+        </li>
+        <li>
+            <strong>Year-two jump.</strong> Check whether the first year of
+            hosting and maintenance is included, and what the yearly fee is
+            from year two.
+        </li>
+        <li>
+            <strong>Upgrade path.</strong> If you start small, ask what it
+            costs to add modules later.
+        </li>
+    </ul>
+
+    <h2>Example: GroverHQ School Management System prices</h2>
+    <p>
+        These are our published starting prices for schools of up to {SCHOOL_STUDENT_CAP} students. The
+        final quote depends on scope. The first year of hosting and maintenance
+        is included, and the yearly fee starts from the second year.
+    </p>
+    <ul>
+        {
+            SCHOOL_PACKAGES.map((p) => (
+                <li>
+                    <strong>{p.name}:</strong> from {inr(p.price)} one-time, then {inr(p.amc)} per year from year 2.
+                </li>
+            ))
+        }
+    </ul>
+    <p>
+        Add-ons such as WhatsApp or SMS alerts, OTP login, certificates, Hindi
+        or Punjabi interfaces and store apps are priced separately and listed
+        on the
+        <a href="/services/school-management-system/#add-ons">add-on modules</a>
+        section of the School Management System page. Message charges from the
+        provider are billed at actuals.
+    </p>
+
+    <h2>How to compare quotes</h2>
+    <ol>
+        <li>List the modules you need and make every vendor quote the same list.</li>
+        <li>Ask for the three-year total, including yearly fees.</li>
+        <li>Ask what is not included, and who does data entry.</li>
+        <li>Ask what happens to your system and data if you stop paying.</li>
+    </ol>
+    <p>
+        Our checklist on
+        <a href="/guides/how-to-choose-a-school-management-system/">how to choose a school management system</a>
+        has the full list of questions to ask.
+    </p>
+</GuideLayout>

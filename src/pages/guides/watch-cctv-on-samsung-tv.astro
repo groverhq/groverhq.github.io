@@ -1,0 +1,82 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { CAMERA_VIEWER } from "../../config";
+---
+
+<GuideLayout slug="watch-cctv-on-samsung-tv">
+    <p>
+        A big TV is a good screen for security cameras: someone at the door,
+        the shop counter, the pet or the baby, all without picking up a phone.
+        There are four practical ways to get camera feeds onto a Samsung Smart
+        TV, and each has trade-offs.
+    </p>
+
+    <h2>1. HDMI from the recorder</h2>
+    <p>
+        Most NVRs and DVRs have an HDMI output. Run a cable to a TV and the
+        recorder's own interface appears on the screen. It is simple and
+        reliable, and it also gives playback of recordings. The drawbacks are
+        the cable run and that the TV becomes dedicated to the recorder.
+    </p>
+
+    <h2>2. Cast or mirror from a phone</h2>
+    <p>
+        Open the camera maker's phone app and cast or screen-mirror it to the
+        TV. It needs no extra hardware, but it ties up your phone, can be
+        laggy, and the phone has to stay on and nearby.
+    </p>
+
+    <h2>3. The camera brand's TV app</h2>
+    <p>
+        Some brands publish a Smart TV app. Check the Samsung TV app store for
+        your camera's brand. Support varies a lot by brand and model, and
+        many brands have no Samsung TV app.
+    </p>
+
+    <h2>4. An RTSP or ONVIF viewer app on the TV</h2>
+    <p>
+        Cameras and recorders that offer RTSP or ONVIF can be shown by a
+        generic viewer app, whatever the brand. The TV connects over your home
+        or office network straight to the camera. This works across brands, but
+        the TV and cameras must be on the same local network, and you need the
+        device's address and login. Our guide on
+        <a href="/guides/find-rtsp-url-cctv-camera/">finding your camera's RTSP URL</a>
+        explains how.
+    </p>
+
+    <h2>Which should you choose?</h2>
+    <ul>
+        <li><strong>Want playback and the most reliable picture:</strong> HDMI from the recorder.</li>
+        <li><strong>Need a quick look occasionally:</strong> cast from your phone.</li>
+        <li><strong>Mixed brands, no cables, live viewing on an existing TV:</strong> an RTSP/ONVIF viewer app.</li>
+    </ul>
+
+    <h2>Limits to know about</h2>
+    <ul>
+        <li>Live video can arrive a few seconds behind real time, so none of these replaces an alarm system.</li>
+        <li>Cloud-only Wi-Fi cameras without RTSP or ONVIF will not work with a viewer app.</li>
+        <li>Use the lower-resolution stream if your network is slow, and the main stream when you want detail.</li>
+        <li>Make sure you have the legal right to view any camera you connect.</li>
+    </ul>
+
+    <h2>GroverHQ Camera Viewer</h2>
+    <p>
+        <a href={CAMERA_VIEWER.path}>GroverHQ Camera Viewer</a> is a live-view
+        app for Samsung Smart TVs in India that finds cameras on your network
+        or lets you add one by IP address, and works with IP cameras and NVR/DVR
+        channels that offer RTSP or ONVIF. It is live view only: no recording
+        and no playback. The free version shows standard definition with a
+        small watermark, and an optional {CAMERA_VIEWER.priceText} unlock
+        removes the watermark and adds HD. {
+            CAMERA_VIEWER.storeLive
+                ? "It is available from the Samsung TV Store."
+                : "It is coming soon to the Samsung TV Store."
+        }
+    </p>
+
+    <p class="text-muted text-sm">
+        Samsung is a trademark of Samsung. Camera brand names belong to their
+        owners. GroverHQ is not affiliated with, or endorsed by, Samsung or any
+        camera brand.
+    </p>
+</GuideLayout>
