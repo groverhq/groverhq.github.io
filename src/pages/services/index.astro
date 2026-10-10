@@ -8,6 +8,7 @@ import {
 } from "../../utils/schema";
 import PriceCard from "../../components/PriceCard.astro";
 import PackagesStrip from "../../components/PackagesStrip.astro";
+import FeaturedStrip from "../../components/FeaturedStrip.astro";
 import { ADS_SERVICES, buildCatalogSchema, inr } from "../../data/pricing";
 import { CATALOG } from "../../data/services-catalog";
 import { SITE_CONFIG } from "../../config";
@@ -190,6 +191,15 @@ const catalogSchema = buildCatalogSchema(
                 >
             </div>
 
+            <p class="text-center text-muted mt-6">
+                Building for a school or institute? See our
+                <a
+                    href="/services/school-management-system/"
+                    class="text-accent underline hover:opacity-80"
+                    >School Management System</a
+                >.
+            </p>
+
             <div class="mt-24 space-y-20">
                 {
                     CATALOG.filter((c) => c.id === "websites").map((sec) => (
@@ -274,6 +284,7 @@ const catalogSchema = buildCatalogSchema(
 
             <!-- Packages cross-link -->
             <PackagesStrip class="mt-4" />
+            <FeaturedStrip class="mt-4" />
 
             <!-- By Industry -->
             <div class="mt-24">

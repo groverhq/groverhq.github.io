@@ -1,0 +1,408 @@
+---
+import "../../styles/global.css";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG, CONTACT_INFO } from "../../config";
+import {
+    buildBreadcrumbSchema,
+    buildFAQSchema,
+    buildWebPageSchema,
+} from "../../utils/schema";
+import { inr } from "../../data/pricing";
+import {
+    SCHOOL_PACKAGES,
+    SCHOOL_WEBSITE,
+    SCHOOL_COMPARE,
+    SCHOOL_INCLUDED,
+    SCHOOL_ADDONS,
+    SCHOOL_NOT_INCLUDED,
+    SCHOOL_STUDENT_CAP,
+} from "../../data/school";
+
+const pageTitle = "School Management System for Schools | GroverHQ";
+const pageDescription =
+    "Fast school website plus student, parent, teacher and admin portals. Packages from ₹50,000 one-time, first year of hosting included. No APK to install.";
+const path = "/services/school-management-system/";
+
+const tiers = SCHOOL_PACKAGES.map((p, i) => ({
+    name: p.name,
+    price: p.price,
+    yearly: p.amc,
+    inherits: i > 0 ? SCHOOL_PACKAGES[i - 1].name : undefined,
+    features: p.bullets.filter((b) => !b.startsWith("Everything in")),
+}));
+
+const website = {
+    price: SCHOOL_WEBSITE.price,
+    yearly: SCHOOL_WEBSITE.amc,
+    features: [...SCHOOL_WEBSITE.left, ...SCHOOL_WEBSITE.right],
+};
+
+const included = SCHOOL_INCLUDED.map(([title, tag, lists]) => ({
+    title,
+    tag,
+    items: lists.flat(),
+}));
+
+const compare = SCHOOL_COMPARE;
+const addons = SCHOOL_ADDONS;
+const notIncluded = SCHOOL_NOT_INCLUDED.flat();
+
+const faqs = [
+    {
+        question: "How much does a school management system cost?",
+        answer: `Packages start at ${tiers.map((t) => `${inr(t.price)} one-time (${t.name})`).join(", ")} for schools of up to ${SCHOOL_STUDENT_CAP} students; the final quote depends on scope. The first year of hosting and maintenance is included, and the yearly fee starts from the second year.`,
+    },
+    {
+        question: "Do parents and teachers need to install an APK?",
+        answer: "No. The system is an installable web app (PWA) that works from the browser and can be added to the phone's home screen. Play Store and App Store apps are available as optional add-ons.",
+    },
+    {
+        question: "Can we start with Core and upgrade later?",
+        answer: "Yes. The system is modular. You can move from Core to Standard to Complete, or add individual modules, at any time without rebuilding. Upgrades are delivered as independent mini-projects.",
+    },
+    {
+        question: "Who owns the domain, and what happens if maintenance is not renewed?",
+        answer: "The school owns the domain (typical renewal is about ₹1,000 per year) and GroverHQ assists with setup. Hosting and maintenance are managed by GroverHQ. If maintenance is not renewed, hosting stops and the system goes offline; backups are kept for 30 days.",
+    },
+    {
+        question: "How do online fee payments work?",
+        answer: "Fee payments run through Razorpay, with receipts and payment history in the portal. Razorpay's gateway charges apply as per Razorpay. Online payments are part of the Standard and Complete packages.",
+    },
+    {
+        question: "What are the payment terms and timeline?",
+        answer: "50% advance and 50% on delivery for the one-time build. The timeline is confirmed at scoping, based on the package and modules, with weekly progress updates.",
+    },
+];
+
+const provider = {
+    "@type": "Organization",
+    name: SITE_CONFIG.name,
+    url: SITE_CONFIG.url,
+};
+const pageUrl = `${SITE_CONFIG.url}${path}`;
+
+const webPageSchema = buildWebPageSchema({
+    name: pageTitle,
+    description: pageDescription,
+    path,
+});
+const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: "Home", url: "/" },
+    { name: "Services", url: "/services/" },
+    { name: "School Management System", url: path },
+]);
+const faqSchema = buildFAQSchema(faqs);
+const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: "School Management System",
+    serviceType: "School management software and website",
+    description: pageDescription,
+    areaServed: { "@type": "Country", name: "India" },
+    provider,
+    offers: tiers.map((t) => ({
+        "@type": "Offer",
+        name: `School Management System: ${t.name}`,
+        url: pageUrl,
+        priceCurrency: "INR",
+        availability: "https://schema.org/InStock",
+        priceSpecification: {
+            "@type": "PriceSpecification",
+            priceCurrency: "INR",
+            minPrice: t.price,
+        },
+        description:
+            `Starting price for schools of up to ${SCHOOL_STUDENT_CAP} students; final quote depends on scope. First year of hosting and maintenance included.`,
+    })),
+};
+
+const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneLink}`;
+---
+
+<BaseLayout
+    title={pageTitle}
+    description={pageDescription}
+    schema={[webPageSchema, serviceSchema, breadcrumbSchema, faqSchema]}
+>
+    <section class="py-24 px-6 lg:px-12 max-w-5xl mx-auto">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+            <a href="/" class="hover:text-accent transition">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/services/" class="hover:text-accent transition">Services</a>
+            <span class="mx-2">/</span>
+            <span class="text-ink">School Management System</span>
+        </nav>
+
+        <div class="text-center mb-14">
+            <h1 class="text-4xl lg:text-6xl font-bold mb-4">
+                School Management System
+            </h1>
+            <p class="text-muted text-lg max-w-2xl mx-auto">
+                A fast website plus student, teacher and admin portals for
+                schools and institutes. One system, one vendor, and no APK to
+                install.
+            </p>
+            <div class="flex flex-wrap justify-center gap-3 mt-8">
+                <a
+                    href={whatsappUrl}
+                    class="px-6 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+                    >Get a quote on WhatsApp</a
+                >
+                <a
+                    href="/School-Management-System.pdf"
+                    target="_blank"
+                    class="px-6 py-3 border border-border text-ink font-medium rounded-full hover:border-accent transition"
+                    >Download menu (PDF)</a
+                >
+            </div>
+        </div>
+
+        <!-- Packages -->
+        <h2 class="text-2xl font-bold text-center mb-2" id="packages">
+            Packages
+        </h2>
+        <p class="text-muted text-center max-w-2xl mx-auto mb-8">
+            Starting prices for schools of up to {SCHOOL_STUDENT_CAP} students; the final quote
+            depends on scope. Development is paid once. The first year of
+            hosting and maintenance is included; the yearly fee starts from the
+            second year.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {
+                tiers.map((t) => (
+                    <div class="p-6 bg-surface border border-border rounded-xl flex flex-col">
+                        <h3 class="text-xl font-semibold">{t.name}</h3>
+                        <p class="text-accent font-bold text-2xl mt-2">
+                            <span class="text-muted text-sm font-normal">
+                                from{" "}
+                            </span>
+                            {inr(t.price)}
+                            <span class="text-muted text-sm font-normal">
+                                {" "}
+                                one-time
+                            </span>
+                        </p>
+                        <p class="text-muted text-sm mb-4">
+                            {inr(t.yearly)} / year from year 2
+                        </p>
+                        <ul class="text-sm space-y-2 list-disc pl-5">
+                            {t.inherits && (
+                                <li class="font-medium">
+                                    Everything in {t.inherits}
+                                </li>
+                            )}
+                            {t.features.map((f) => (
+                                <li>{f}</li>
+                            ))}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+
+        <div class="mt-6 p-6 bg-surface border border-border rounded-xl">
+            <h3 class="text-xl font-semibold">
+                School Website
+                <span class="text-muted text-sm font-normal">
+                    add-on to any package
+                </span>
+            </h3>
+            <p class="text-accent font-bold mt-1">
+                <span class="text-muted text-sm font-normal">from </span>
+                {inr(website.price)}
+                <span class="text-muted text-sm font-normal">
+                    one-time · {inr(website.yearly)} / year hosting +
+                    maintenance from year 2
+                </span>
+            </p>
+            <ul class="text-sm grid sm:grid-cols-2 gap-x-6 gap-y-2 list-disc pl-5 mt-4">
+                {website.features.map((f) => <li>{f}</li>)}
+            </ul>
+        </div>
+
+        <!-- Comparison -->
+        <h2 class="text-2xl font-bold text-center mt-20 mb-2">
+            One system instead of many
+        </h2>
+        <div class="overflow-x-auto mt-6">
+            <table class="w-full text-sm text-left border-collapse min-w-[32rem]">
+                <thead>
+                    <tr class="border-b border-border text-muted">
+                        <th class="py-3 pr-4 font-medium">Area</th>
+                        <th class="py-3 pr-4 font-medium">Typical legacy setup</th>
+                        <th class="py-3 font-medium text-accent">GroverHQ system</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {
+                        compare.map(([a, b, c]) => (
+                            <tr class="border-b border-border">
+                                <th scope="row" class="py-3 pr-4 font-medium">{a}</th>
+                                <td class="py-3 pr-4 text-muted">{b}</td>
+                                <td class="py-3">{c}</td>
+                            </tr>
+                        ))
+                    }
+                </tbody>
+            </table>
+        </div>
+
+        <!-- What's included -->
+        <h2 class="text-2xl font-bold text-center mt-20 mb-8" id="included">
+            What's included
+        </h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+                included.map((g) => (
+                    <div class="p-6 bg-surface border border-border rounded-xl">
+                        <h3 class="font-semibold mb-3">
+                            {g.title}
+                            <span class="ml-2 text-xs text-accent border border-border rounded-full px-2 py-0.5 font-normal">
+                                {g.tag}
+                            </span>
+                        </h3>
+                        <ul class="text-sm space-y-2 list-disc pl-5">
+                            {g.items.map((i) => <li>{i}</li>)}
+                        </ul>
+                    </div>
+                ))
+            }
+        </div>
+
+        <!-- Add-ons -->
+        <h2 class="text-2xl font-bold text-center mt-20 mb-2" id="add-ons">
+            Add-on modules
+        </h2>
+        <p class="text-muted text-center max-w-2xl mx-auto mb-8">
+            Added anytime as independent mini-projects, quoted to your scope.
+            Each add-on adds a small yearly maintenance fee, starting from the
+            second year. Vendor charges for SMS, WhatsApp and OTP messages are
+            billed at actuals.
+        </p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {
+                addons.map((a) => (
+                    <div class="p-5 bg-surface border border-border rounded-xl">
+                        <h3 class="font-semibold mb-1">{a.name}</h3>
+                        <p class="text-accent font-bold">
+                            {a.price == null ? "Quoted" : inr(a.price)}
+                            <span class="text-muted text-sm font-normal">
+                                {a.price == null
+                                    ? " one-time"
+                                    : ` + ${inr(a.yearly ?? 0)} / year`}
+                            </span>
+                        </p>
+                        {a.sub && <p class="text-xs text-accent mt-1">{a.sub}</p>}
+                        <p class="text-muted text-sm mt-2">{a.text}</p>
+                    </div>
+                ))
+            }
+        </div>
+        <p class="text-muted text-sm text-center mt-4">
+            Store apps are published from GroverHQ's developer accounts.
+        </p>
+
+        <!-- Not included, ownership, terms -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-20">
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Not included</h2>
+                <ul class="space-y-2 list-disc pl-5">
+                    {notIncluded.map((i) => <li>{i}</li>)}
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Ownership &amp; renewal</h2>
+                <ul class="space-y-2 list-disc pl-5">
+                    <li>
+                        Domain is owned by the school; typical renewal is about
+                        ₹1,000 per year. GroverHQ assists with initial setup.
+                    </li>
+                    <li>
+                        Hosting and maintenance are managed by GroverHQ and
+                        include SSL, uptime monitoring, security updates and
+                        backups. The first year is included.
+                    </li>
+                    <li>
+                        If maintenance is not renewed, hosting stops and the
+                        system goes offline. Backups are retained for 30 days.
+                    </li>
+                    <li>
+                        Store apps are published under GroverHQ's developer
+                        accounts and stop working with the system if
+                        maintenance lapses.
+                    </li>
+                    <li>Development is paid once per package or module.</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Upgrade policy</h2>
+                <ul class="space-y-2 list-disc pl-5">
+                    <li>Modular system: modules can be added anytime.</li>
+                    <li>
+                        Move from Core to Standard to Complete without
+                        rebuilding.
+                    </li>
+                    <li>Upgrades are delivered as independent mini-projects.</li>
+                </ul>
+            </div>
+            <div>
+                <h2 class="text-2xl font-bold mb-4">Timeline &amp; payment</h2>
+                <ul class="space-y-2 list-disc pl-5">
+                    <li>
+                        Timeline is confirmed at scoping, based on package and
+                        modules, with weekly progress updates.
+                    </li>
+                    <li>50% advance, 50% on delivery (one-time build).</li>
+                    <li>
+                        Hosting and maintenance: first year included, billed
+                        yearly from the second year.
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <p class="text-ink text-lg mt-14">
+            Want parents to find your school on Google Search and Maps? Pair
+            this with our
+            <a
+                href="/packages/"
+                class="text-accent underline hover:opacity-80"
+                >Website + Discoverability Setup</a
+            >, or ask us for a combined quote.
+        </p>
+
+        <!-- FAQ -->
+        <div class="mt-20">
+            <h2 class="text-2xl font-bold text-center mb-8">
+                Frequently Asked Questions
+            </h2>
+            <div class="space-y-6 max-w-3xl mx-auto">
+                {
+                    faqs.map((faq) => (
+                        <div class="border-b border-border pb-6">
+                            <h3 class="font-semibold text-lg mb-2">
+                                {faq.question}
+                            </h3>
+                            <p class="text-muted">{faq.answer}</p>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div
+            class="mt-16 border border-dashed border-border rounded-xl p-10 text-center"
+        >
+            <h3 class="text-xl font-semibold mb-3">Let's digitize your school.</h3>
+            <p class="text-muted mb-6">
+                Message us on WhatsApp. We'll understand your school's setup and
+                reply with scope and a clear quote.
+            </p>
+            <a
+                href={whatsappUrl}
+                class="inline-block px-8 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+                >Chat on WhatsApp</a
+            >
+        </div>
+    </section>
+</BaseLayout>

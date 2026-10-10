@@ -1,0 +1,39 @@
+---
+import { CAMERA_VIEWER } from "../config";
+import { SCHOOL_PACKAGES } from "../data/school";
+import { inr } from "../data/pricing";
+
+interface Props {
+    class?: string;
+}
+const { class: className = "" } = Astro.props;
+const tileClass =
+    "block group p-6 bg-bg border border-border rounded-xl transition-all duration-300 hover:border-accent hover:shadow-xl";
+---
+
+<div class:list={["grid grid-cols-1 md:grid-cols-2 gap-4", className]}>
+    <a href="/services/school-management-system/" class={tileClass}>
+        <p class="text-accent text-sm font-semibold mb-1">For schools</p>
+        <p class="text-ink font-semibold text-lg">School Management System</p>
+        <p class="text-muted text-sm mt-1">
+            Website plus student, teacher and admin portals. From {
+                inr(SCHOOL_PACKAGES[0].price)
+            } one-time.
+        </p>
+        <span
+            class="inline-block mt-3 text-accent font-medium group-hover:translate-x-1 transition-transform"
+            >See packages →</span
+        >
+    </a>
+    <a href={CAMERA_VIEWER.path} class={tileClass}>
+        <p class="text-accent text-sm font-semibold mb-1">App</p>
+        <p class="text-ink font-semibold text-lg">{CAMERA_VIEWER.name}</p>
+        <p class="text-muted text-sm mt-1">
+            {CAMERA_VIEWER.tagline} Unlock HD for {CAMERA_VIEWER.priceText}.
+        </p>
+        <span
+            class="inline-block mt-3 text-accent font-medium group-hover:translate-x-1 transition-transform"
+            >Learn more →</span
+        >
+    </a>
+</div>

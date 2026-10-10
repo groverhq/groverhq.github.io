@@ -2,27 +2,25 @@
 import SocialLinks from "./SocialLinks.astro";
 import {
   CONTACT_INFO,
-  NAV_LINKS,
+  FOOTER_COMPANY_LINKS,
+  FOOTER_SERVICE_LINKS,
   LOCATION_LINKS,
   SERVICE_VERTICAL_LINKS,
 } from "../config";
 ---
 
-<footer class="bg-bg text-muted py-12 px-8 border-t border-border">
-  <div
-    class="max-w-6xl mx-auto flex flex-col lg:flex-row lg:items-start lg:gap-20"
-  >
-    <!-- Brand -->
-    <div class="lg:w-1/4">
+<footer class="bg-bg text-muted py-12 px-6 lg:px-12 border-t border-border">
+  <div class="max-w-6xl mx-auto grid grid-cols-2 lg:grid-cols-12 gap-x-8 gap-y-10">
+    <!-- Brand + contact + social -->
+    <div class="col-span-2 lg:col-span-4">
       <h3 class="text-ink text-xl font-semibold mb-2">GroverHQ</h3>
-      <p class="text-muted max-w-sm">
-        Digital Solutions for Modern Businesses
-        <br />
-        — Web, Apps, Bots, Automation & AI.
+      <p class="text-muted max-w-xs">
+        Digital Solutions for Modern Businesses — Web, Apps, Bots, Automation &
+        AI.
       </p>
 
-      <div class="mt-8 space-y-1 text-sm">
-        <p>
+      <ul class="mt-6 space-y-1 text-sm">
+        <li>
           <a
             href="https://maps.app.goo.gl/aHfDMJcUiHEYdj1v5"
             target="_blank"
@@ -31,103 +29,112 @@ import {
           >
             {CONTACT_INFO.address}</a
           >
-        </p>
-        <p>
+        </li>
+        <li>
           <a
             href={`tel:+${CONTACT_INFO.phoneLink}`}
             class="text-accent hover:opacity-80 transition"
           >
             {CONTACT_INFO.phone}</a
           >
-        </p>
-        <p>
+        </li>
+        <li>
           <a
             href={`mailto:${CONTACT_INFO.email}`}
             class="text-accent hover:opacity-80 transition"
           >
             {CONTACT_INFO.email}</a
           >
-        </p>
+        </li>
+      </ul>
+
+      <div class="mt-6 max-w-56">
+        <SocialLinks size="sm" variant="dark" align="start" />
       </div>
     </div>
 
-    <!-- Links + Social -->
-    <div
-      class="grid grid-cols-1 sm:grid-cols-4 gap-x-8 gap-y-10 lg:w-2/3 mt-12 lg:mt-0"
-    >
-      <!-- Company Links -->
-      <div class="lg:pl-8">
-        <h4 class="text-ink font-medium mb-3">Company</h4>
-        <ul class="space-y-2">
-          {
-            NAV_LINKS.map((link) => (
-              <li>
-                <a href={link.href} class="hover:text-ink transition">
-                  {link.name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+    <!-- Services + industries -->
+    <nav aria-label="Services" class="col-span-1 lg:col-span-3">
+      <h4 class="text-ink font-medium mb-3">Services</h4>
+      <ul class="space-y-2">
+        {
+          FOOTER_SERVICE_LINKS.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-ink transition">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+      <h4 class="text-ink font-medium mt-6 mb-3">Industries</h4>
+      <ul class="space-y-2">
+        {
+          SERVICE_VERTICAL_LINKS.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-ink transition">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
 
-      <!-- Locations -->
-      <div>
-        <h4 class="text-ink font-medium mb-3">
-          <a href="/locations/" class="hover:text-accent transition">
-            Locations</a
-          >
-        </h4>
-        <ul class="space-y-2">
-          {
-            LOCATION_LINKS.map((link) => (
-              <li>
-                <a href={link.href} class="hover:text-ink transition">
-                  {link.name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
+    <!-- Locations -->
+    <nav aria-label="Locations" class="col-span-1 lg:col-span-2">
+      <h4 class="text-ink font-medium mb-3">
+        <a href="/locations/" class="hover:text-accent transition">Locations</a>
+      </h4>
+      <ul class="space-y-2">
+        {
+          LOCATION_LINKS.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-ink transition">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
 
-      <!-- Industries -->
-      <div>
-        <h4 class="text-ink font-medium mb-3">Industries</h4>
-        <ul class="space-y-2">
-          {
-            SERVICE_VERTICAL_LINKS.map((link) => (
-              <li>
-                <a href={link.href} class="hover:text-ink transition">
-                  {link.name}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-
-      <!-- Social Icons -->
-      <div class="flex flex-col gap-4">
-        <SocialLinks size="md" variant="dark" />
-      </div>
-    </div>
+    <!-- Company -->
+    <nav aria-label="Company" class="col-span-2 lg:col-span-3">
+      <h4 class="text-ink font-medium mb-3">Company</h4>
+      <ul class="space-y-2">
+        {
+          FOOTER_COMPANY_LINKS.map((link) => (
+            <li>
+              <a href={link.href} class="hover:text-ink transition">
+                {link.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
   </div>
 
-  <!-- Copyright -->
+  <!-- Copyright + legal -->
   <div
-    class="w-full text-center mt-12 pt-6 border-t border-border text-sm text-muted"
+    class="max-w-6xl mx-auto mt-12 pt-6 border-t border-border text-sm text-muted flex flex-col sm:flex-row sm:justify-between gap-3"
   >
-    © {new Date().getFullYear()} GroverHQ. All rights reserved.
-    <span class="mx-2">·</span>
-    <a href="/privacy/" class="hover:text-ink transition">Privacy Policy</a>
-    <span class="mx-2">·</span>
-    <a href="/apps/camera-viewer/" class="hover:text-ink transition"
-      >Camera Viewer app</a
-    >
-    <span class="mx-2">·</span>
-    <a href="/apps/camera-viewer/terms/" class="hover:text-ink transition"
-      >App Terms</a
-    >
+    <p>© {new Date().getFullYear()} GroverHQ. All rights reserved.</p>
+    <ul class="flex flex-wrap gap-x-5 gap-y-1">
+      <li>
+        <a href="/privacy/" class="hover:text-ink transition">Website privacy</a>
+      </li>
+      <li>
+        <a href="/apps/camera-viewer/privacy/" class="hover:text-ink transition"
+          >App privacy</a
+        >
+      </li>
+      <li>
+        <a href="/apps/camera-viewer/terms/" class="hover:text-ink transition"
+          >App terms</a
+        >
+      </li>
+    </ul>
   </div>
 </footer>

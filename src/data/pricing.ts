@@ -129,3 +129,10 @@ export function buildCatalogSchema(
     ),
   };
 }
+
+/** Formatted rupee price of any priced item by id, e.g. priceOf("business-website") -> "₹40,000". */
+export const priceOf = (id: string) => {
+  const item = [...FOUND_SERVICES, ...ADS_SERVICES, ...ADDON_SERVICES].find((i) => i.id === id);
+  if (!item) throw new Error(`Unknown price id: ${id}`);
+  return inr(item.price);
+};
