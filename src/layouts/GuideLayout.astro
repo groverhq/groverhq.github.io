@@ -1,0 +1,93 @@
+---
+import "../styles/global.css";
+import BaseLayout from "./BaseLayout.astro";
+import { SITE_CONFIG, CONTACT_INFO } from "../config";
+import { GUIDES } from "../data/guides";
+import { buildBreadcrumbSchema, buildWebPageSchema } from "../utils/schema";
+
+interface Props {
+    slug: string;
+}
+const guide = GUIDES.find((g) => g.slug === Astro.props.slug);
+if (!guide) throw new Error(`Unknown guide: ${Astro.props.slug}`);
+
+const path = `/guides/${guide.slug}/`;
+const url = `${SITE_CONFIG.url}${path}`;
+const related = GUIDES.filter((g) => g.slug !== guide.slug);
+const whatsappUrl = `https://wa.me/${CONTACT_INFO.phoneLink}`;
+const modified = guide.updated ?? guide.published;
+
+const articleSchema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    headline: guide.h1,
+    description: guide.description,
+    mainEntityOfPage: { "@id": `${url}#webpage` },
+    datePublished: guide.published,
+    dateModified: modified,
+    inLanguage: "en-IN",
+    image: `${SITE_CONFIG.url}${SITE_CONFIG.ogImage}`,
+    author: { "@id": `${SITE_CONFIG.url}/#organization` },
+    publisher: { "@id": `${SITE_CONFIG.url}/#organization` },
+};
+const schema = [
+    buildWebPageSchema({ name: guide.title, description: guide.description, path }),
+    articleSchema,
+    buildBreadcrumbSchema([
+        { name: "Home", url: "/" },
+        { name: "Guides", url: "/guides/" },
+        { name: guide.h1, url: path },
+    ]),
+];
+const modifiedLabel = new Date(modified).toLocaleDateString("en-IN", {
+    day: "numeric",
+    month: "long",
+    year: "numeric",
+});
+---
+
+<BaseLayout title={guide.title} description={guide.description} schema={schema}>
+    <article class="py-24 px-6 lg:px-12 max-w-4xl mx-auto">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted mb-6">
+            <a href="/" class="hover:text-accent transition">Home</a>
+            <span class="mx-2">/</span>
+            <a href="/guides/" class="hover:text-accent transition">Guides</a>
+            <span class="mx-2">/</span>
+            <span class="text-ink">{guide.h1}</span>
+        </nav>
+
+        <h1 class="text-3xl lg:text-4xl font-bold mb-4">{guide.h1}</h1>
+        <p class="text-muted text-sm mb-10">
+            By GroverHQ · Updated <time datetime={modified}>{modifiedLabel}</time>
+        </p>
+
+        <div
+            class="space-y-5 text-ink text-lg leading-relaxed [&_h2]:text-2xl [&_h2]:font-semibold [&_h2]:mt-12 [&_h2]:mb-2 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:space-y-2 [&_ol]:list-decimal [&_ol]:pl-6 [&_ol]:space-y-2 [&_a]:text-accent [&_a]:underline [&_a:hover]:opacity-80"
+        >
+            <slot />
+        </div>
+
+        <div class="mt-14 border border-dashed border-border rounded-xl p-8 text-center">
+            <a
+                href={guide.cta.href}
+                class="inline-block px-8 py-3 bg-accent text-accent-ink font-medium rounded-full hover:opacity-90 transition"
+                >{guide.cta.label}</a
+            >
+            <p class="text-muted mt-4">
+                Questions? <a href={whatsappUrl} class="text-accent underline">Message us on WhatsApp</a>.
+            </p>
+        </div>
+
+        <h2 class="text-xl font-semibold mt-14 mb-4">More guides</h2>
+        <ul class="space-y-2">
+            {
+                related.map((g) => (
+                    <li>
+                        <a href={`/guides/${g.slug}/`} class="text-accent underline hover:opacity-80">{g.h1}</a>
+                    </li>
+                ))
+            }
+        </ul>
+    </article>
+</BaseLayout>

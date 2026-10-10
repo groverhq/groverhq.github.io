@@ -1,0 +1,109 @@
+---
+import GuideLayout from "../../layouts/GuideLayout.astro";
+import { CAMERA_VIEWER } from "../../config";
+---
+
+<GuideLayout slug="find-rtsp-url-cctv-camera">
+    <p>
+        Most IP cameras and NVR/DVR recorders can stream live video over RTSP,
+        a standard protocol that many apps and players understand. If you want
+        to see your cameras in a media player or a viewer app, you often need
+        the camera's RTSP address. This guide shows the common formats, how to
+        switch RTSP on, and how to test the stream.
+    </p>
+
+    <h2>What an RTSP URL looks like</h2>
+    <p>The general shape is:</p>
+    <p><code>rtsp://username:password@IP-address:554/path</code></p>
+    <ul>
+        <li><strong>username and password</strong> are the camera's or NVR's login.</li>
+        <li><strong>IP-address</strong> is the device's address on your local network.</li>
+        <li><strong>554</strong> is the usual RTSP port. Some devices use another.</li>
+        <li><strong>path</strong> differs by brand and selects the channel and stream quality.</li>
+    </ul>
+
+    <h2>Common path formats</h2>
+    <p>
+        These are widely used patterns. Models and firmware differ, so confirm
+        against your manufacturer's documentation.
+    </p>
+    <ul>
+        <li>
+            <strong>Hikvision and many compatible recorders:</strong>
+            <code>/Streaming/Channels/101</code> for channel 1 main stream,
+            <code>/Streaming/Channels/102</code> for the sub stream. Channel 2
+            is 201 and 202.
+        </li>
+        <li>
+            <strong>Dahua and CP Plus:</strong>
+            <code>/cam/realmonitor?channel=1&amp;subtype=0</code> for the main
+            stream, <code>subtype=1</code> for the sub stream.
+        </li>
+        <li>
+            <strong>TP-Link Tapo:</strong> <code>/stream1</code> (higher
+            quality) and <code>/stream2</code> (lower), after creating a camera
+            account in the Tapo app's advanced settings.
+        </li>
+        <li>
+            <strong>Reolink:</strong> typically
+            <code>/h264Preview_01_main</code> and
+            <code>/h264Preview_01_sub</code>, with the channel number changing
+            for recorders.
+        </li>
+    </ul>
+
+    <h2>Step 1: Enable RTSP or ONVIF</h2>
+    <ul>
+        <li>Open the camera or NVR web page by typing its IP address into a browser on the same network.</li>
+        <li>Look in the network or integration settings for RTSP and ONVIF, and make sure they are enabled.</li>
+        <li>Some models need a separate ONVIF user. Create one if the settings ask for it.</li>
+    </ul>
+
+    <h2>Step 2: Find the IP address and port</h2>
+    <ul>
+        <li>Check your router's list of connected devices, or the NVR's network settings.</li>
+        <li>Give the camera a fixed (static) IP or a DHCP reservation so the address does not change.</li>
+        <li>Check the RTSP port in the network settings. The default is 554.</li>
+    </ul>
+
+    <h2>Step 3: Test the URL in VLC</h2>
+    <ol>
+        <li>Install VLC media player on a computer on the same network.</li>
+        <li>Choose Media, then Open Network Stream.</li>
+        <li>Paste the full RTSP URL and press Play.</li>
+        <li>If video appears, the address, login and path are correct. If it does not, recheck the path and that RTSP is enabled.</li>
+    </ol>
+
+    <h2>NVRs and multi-camera recorders</h2>
+    <p>
+        A recorder usually exposes each camera as a numbered channel. The
+        channel number appears in the path, so channel 3 on a Hikvision-style
+        recorder would be <code>/Streaming/Channels/301</code>. The main
+        stream is higher resolution and the sub stream is lower, which is
+        lighter on the network.
+    </p>
+
+    <h2>Things that will not work</h2>
+    <ul>
+        <li>Cloud-only Wi-Fi cameras that do not offer RTSP or ONVIF.</li>
+        <li>Cameras and viewer on different networks, unless you set up secure remote access yourself.</li>
+    </ul>
+
+    <h2>Using it on a Samsung TV</h2>
+    <p>
+        <a href={CAMERA_VIEWER.path}>GroverHQ Camera Viewer</a> is our app for
+        showing RTSP and ONVIF cameras and NVR/DVR channels on a Samsung Smart
+        TV. {
+            CAMERA_VIEWER.storeLive
+                ? "It is available from the Samsung TV Store in India."
+                : "It is coming soon to Samsung TVs in India."
+        }
+        Read the <a href="/guides/watch-cctv-on-samsung-tv/">guide to watching CCTV on a Samsung TV</a>
+        for all the options.
+    </p>
+
+    <p class="text-muted text-sm">
+        Camera brand names belong to their owners. GroverHQ is not affiliated
+        with, or endorsed by, any camera brand or Samsung.
+    </p>
+</GuideLayout>

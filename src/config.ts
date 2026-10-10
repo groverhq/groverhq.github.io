@@ -114,6 +114,7 @@ export const FOOTER_COMPANY_LINKS = [
   { name: "Why GroverHQ", href: "/#why-us" },
   { name: "Work", href: "/work/" },
   { name: "Apps", href: "/apps/" },
+  { name: "Guides", href: "/guides/" },
   { name: "Contact", href: "/#contact" },
 ];
 
