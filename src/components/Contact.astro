@@ -17,19 +17,37 @@
         <!-- Form + Contact Info -->
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
             <!-- Contact Form -->
-            <form class="space-y-6" onsubmit="return false;">
+            <form id="contactForm" class="space-y-6" onsubmit="return false;" novalidate>
                 <!-- Name -->
                 <div>
                     <label for="name" class="block text-ink mb-2">Name</label>
                     <input
                         id="name"
                         type="text"
+                        maxlength="80"
                         class="input-field"
                         placeholder="Your name"
                         autocomplete="name"
                     />
                     <p id="error-name" class="error-text hidden">
                         Please enter your name
+                    </p>
+                </div>
+
+                <!-- Email -->
+                <div>
+                    <label for="email" class="block text-ink mb-2">Email</label>
+                    <input
+                        id="email"
+                        type="email"
+                        inputmode="email"
+                        maxlength="254"
+                        class="input-field"
+                        placeholder="you@example.com"
+                        autocomplete="email"
+                    />
+                    <p id="error-email" class="error-text hidden">
+                        Please enter a valid email address
                     </p>
                 </div>
 
@@ -41,12 +59,14 @@
                     <input
                         id="phone"
                         type="tel"
+                        maxlength="25"
                         class="input-field"
-                        placeholder="9878236480"
+                        placeholder="9878236480 or +1 605 555 0123"
                         autocomplete="tel"
                     />
                     <p id="error-phone" class="error-text hidden">
-                        Please enter a valid phone number
+                        Enter a 10-digit Indian mobile number, or an
+                        international number starting with + and country code
                     </p>
                 </div>
 
@@ -58,12 +78,58 @@
                     <textarea
                         id="message"
                         rows="5"
+                        maxlength="1500"
                         class="input-field"
                         placeholder="Tell us about your project..."></textarea>
+                    <p id="message-count" class="text-muted text-xs mt-1 text-right">
+                        0 / 1500
+                    </p>
                     <p id="error-message" class="error-text hidden">
-                        Please enter a message
+                        Please enter a message (5 to 1500 characters)
                     </p>
                 </div>
+
+                <!-- Honeypot: hidden from people, bots tend to fill it -->
+                <div class="hidden" aria-hidden="true">
+                    <label for="website">Leave this empty</label>
+                    <input
+                        id="website"
+                        type="text"
+                        tabindex="-1"
+                        autocomplete="off"
+                    />
+                </div>
+
+                <!-- Consent -->
+                <div>
+                    <label class="flex items-start gap-3 text-muted text-sm">
+                        <input
+                            id="consent"
+                            type="checkbox"
+                            class="mt-1 h-4 w-4 shrink-0 accent-current"
+                        />
+                        <span>
+                            I agree that GroverHQ may use my name, email and
+                            phone number to contact me about this enquiry. See
+                            the
+                            <a
+                                href="/privacy/"
+                                class="text-accent hover:opacity-80 underline"
+                                >website privacy notice</a
+                            >.
+                        </span>
+                    </label>
+                    <p id="error-consent" class="error-text hidden">
+                        Please tick the box so we can contact you
+                    </p>
+                </div>
+
+                <p
+                    id="formStatus"
+                    role="status"
+                    class="hidden text-sm font-medium"
+                >
+                </p>
 
                 <!-- Submit -->
                 <div class="flex flex-col sm:flex-row gap-4 pt-2">
@@ -80,8 +146,9 @@
                     <!-- Email Button -->
                     <button
                         type="button"
+                        id="sendEmailBtn"
                         onclick="sendEmail()"
-                        class="flex-1 bg-accent text-accent-ink font-semibold py-3 rounded-lg hover:opacity-90 transition cursor-pointer"
+                        class="flex-1 bg-accent text-accent-ink font-semibold py-3 rounded-lg hover:opacity-90 transition cursor-pointer disabled:opacity-60 disabled:cursor-not-allowed"
                         aria-label="Send Email"
                     >
                         Send Email
@@ -150,70 +217,80 @@
         </div>
     </div>
 
-    <!-- Success Banner -->
-    <div
-        id="successBanner"
-        class="hidden fixed top-6 right-6 bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300"
-    >
-        Message sent successfully!
-    </div>
-
-    <!-- Error Banner -->
-    <div
-        id="errorBanner"
-        class="hidden fixed top-6 right-6 bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300"
-    >
-        Something went wrong. Please try again.
-    </div>
-
     <!-- Validation + Send Script -->
     <script is:inline>
+        // Returns a normalised phone string ("+91XXXXXXXXXX" / "+<cc><number>") or null.
+        function normalizePhone(raw) {
+            const cleaned = raw.trim().replace(/[\s\-().]/g, "");
+            if (!/^\+?\d+$/.test(cleaned)) return null;
+
+            if (cleaned.startsWith("+")) {
+                const digits = cleaned.slice(1);
+                if (digits.startsWith("91")) {
+                    return /^91[6-9]\d{9}$/.test(digits) ? "+" + digits : null;
+                }
+                return /^[1-9]\d{7,14}$/.test(digits) ? "+" + digits : null;
+            }
+
+            // No "+": accept Indian mobiles only (9878236480, 09878236480, 919878236480)
+            const m = cleaned.match(/^(?:91|0)?([6-9]\d{9})$/);
+            return m ? "+91" + m[1] : null;
+        }
+
+        function validEmail(v) {
+            const e = v.trim();
+            return (
+                e.length <= 254 &&
+                /^[A-Za-z0-9._%+'-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/.test(
+                    e,
+                ) &&
+                !e.includes("..")
+            );
+        }
+
         function validateFields() {
             const name = document.getElementById("name");
+            const email = document.getElementById("email");
             const phone = document.getElementById("phone");
             const message = document.getElementById("message");
+            const consent = document.getElementById("consent");
 
-            const errName = document.getElementById("error-name");
-            const errPhone = document.getElementById("error-phone");
-            const errMessage = document.getElementById("error-message");
+            const fields = [name, email, phone, message];
+            const errors = {
+                name: document.getElementById("error-name"),
+                email: document.getElementById("error-email"),
+                phone: document.getElementById("error-phone"),
+                message: document.getElementById("error-message"),
+                consent: document.getElementById("error-consent"),
+            };
 
             let valid = true;
+            const fail = (field, err) => {
+                if (field) field.classList.add("input-error");
+                err.classList.remove("hidden");
+                valid = false;
+            };
 
             // Reset
-            [name, phone, message].forEach((f) =>
-                f.classList.remove("input-error"),
-            );
-            [errName, errPhone, errMessage].forEach((e) =>
-                e.classList.add("hidden"),
-            );
+            fields.forEach((f) => f.classList.remove("input-error"));
+            Object.values(errors).forEach((e) => e.classList.add("hidden"));
 
-            // Name
-            if (name.value.trim().length < 2) {
-                name.classList.add("input-error");
-                errName.classList.remove("hidden");
-                valid = false;
-            }
+            if (name.value.trim().length < 2 || name.value.length > 80) fail(name, errors.name);
+            if (!validEmail(email.value)) fail(email, errors.email);
 
-            // Phone
-            const digits = phone.value.replace(/\D/g, "");
-            if (digits.length < 10) {
-                phone.classList.add("input-error");
-                errPhone.classList.remove("hidden");
-                valid = false;
-            }
+            const normalizedPhone = normalizePhone(phone.value);
+            if (!normalizedPhone) fail(phone, errors.phone);
 
-            // Message
-            if (message.value.trim().length < 5) {
-                message.classList.add("input-error");
-                errMessage.classList.remove("hidden");
-                valid = false;
-            }
+            const msgLen = message.value.trim().length;
+            if (msgLen < 5 || msgLen > 1500) fail(message, errors.message);
+            if (!consent.checked) fail(null, errors.consent);
 
             if (!valid) return null;
 
             return {
-                name: name.value,
-                phone: phone.value,
+                name: name.value.trim(),
+                email: email.value.trim(),
+                phone: normalizedPhone,
                 message: message.value,
             };
         }
@@ -249,6 +326,7 @@
             const text = `New Inquiry from GroverHQ Website:
 
 Name: ${data.name}
+Email: ${data.email}
 Phone: ${data.phone}
 Message: ${data.message}`;
 
@@ -257,27 +335,92 @@ Message: ${data.message}`;
         }
 
         async function sendEmail() {
+            // Honeypot: silently pretend success to bots
+            if (document.getElementById("website").value) {
+                showBanner("success");
+                return;
+            }
+
+            document.getElementById("formStatus").className = "hidden";
             const data = validateFields();
             if (!data) return;
 
-            // Build FormData
+            const btn = document.getElementById("sendEmailBtn");
+            if (btn.disabled) return;
+            const label = btn.textContent;
+            btn.disabled = true;
+            btn.textContent = "Sending...";
+
             const formData = new FormData();
             formData.append("name", data.name);
+            formData.append("email", data.email);
             formData.append("phone", data.phone);
             formData.append("message", data.message);
+            formData.append("consent", "Agreed to be contacted");
 
-            // Submit via AJAX to Formspree
-            const response = await fetch("https://formspree.io/f/mojkwgno", {
-                method: "POST",
-                body: formData,
-                headers: { Accept: "application/json" },
-            });
-
-            if (response.ok) {
-                showBanner("success");
-            } else {
+            try {
+                const response = await fetch(
+                    "https://formspree.io/f/mojkwgno",
+                    {
+                        method: "POST",
+                        body: formData,
+                        headers: { Accept: "application/json" },
+                    },
+                );
+                if (response.ok) {
+                    showBanner("success");
+                    setStatus("success");
+                    document.getElementById("contactForm").reset();
+                    updateCount();
+                } else {
+                    showBanner("error");
+                    setStatus("error");
+                }
+            } catch (err) {
                 showBanner("error");
+                setStatus("error");
+            } finally {
+                btn.disabled = false;
+                btn.textContent = label;
             }
         }
+
+        function setStatus(type) {
+            const el = document.getElementById("formStatus");
+            el.textContent =
+                type === "success"
+                    ? "Thanks! Your message has been sent. We'll get back to you soon."
+                    : "Something went wrong. Please try again, or email info@groverhq.com.";
+            el.className =
+                "text-sm font-medium " +
+                (type === "success" ? "text-green-600" : "text-red-600");
+            el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+
+        function updateCount() {
+            const m = document.getElementById("message");
+            document.getElementById("message-count").textContent =
+                m.value.length + " / 1500";
+        }
+        document.getElementById("message").addEventListener("input", updateCount);
     </script>
 </section>
+
+<!-- Banners live outside the section: .fade-up uses a transform, which would make "fixed" relative to the section and push them off-screen -->
+<div>
+    <!-- Success Banner -->
+    <div
+        id="successBanner"
+        class="hidden fixed top-20 left-4 right-4 sm:left-auto sm:right-6 sm:top-6 z-[70] text-center bg-green-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300"
+    >
+        Message sent successfully!
+    </div>
+
+    <!-- Error Banner -->
+    <div
+        id="errorBanner"
+        class="hidden fixed top-20 left-4 right-4 sm:left-auto sm:right-6 sm:top-6 z-[70] text-center bg-red-600 text-white px-6 py-3 rounded-lg shadow-lg transition-opacity duration-300"
+    >
+        Something went wrong. Please try again.
+    </div>
+</div>
